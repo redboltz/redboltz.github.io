@@ -1,1 +1,58 @@
-Test
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Goban</title>
+
+<!--[if IE]><script type="text/javascript" src="/_lib/js/excanvas.js"></script><![endif]-->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="sprintf.min.js"></script>
+<script type="text/javascript" src="https://raw.github.com/msgpack/msgpack-javascript/master/msgpack.js"></script>
+<script type="text/javascript" src="goban.js"></script>
+<style type="text/css">
+ul {
+    list-style-type: none;
+    padding: 0px 0px 0px 2px;
+}
+ul li {
+    margin: 0px;
+}
+ul li pre{
+    margin: 0px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="gobandiv" tabindex="1" width="512" height="512">
+<canvas id="goban" width="512" height="512" style="position: absolute; left: 0; top: 0; z-index: 0; border:1px solid #CCC;">
+canvasタグをサポートしたブラウザが必要です。
+</canvas>
+<canvas id="stone"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 1;"></canvas>
+<canvas id="focus"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 2;"></canvas>
+<canvas id="number" width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 3;"></canvas>
+<canvas id="yaku"   width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 4;"></canvas>
+<canvas id="input"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 5;"></canvas>
+<div id="scorediv" tabindex="2" style="position: absolute; left: 513px; top: 0px; width: 155px; height: 512px; overflow: auto;">
+<ul id="scoreView"></ul>
+</div>
+</div>
+
+<div style="position: absolute; left: 10px; top: 512px;">
+<p>
+  <input type="checkbox" name="show_number" id="show_number" value="Show number">
+  <label for="show_number">Show number</label>
+  <input type="checkbox" name="show_yaku" id="show_yaku" value="Show sequence" checked="checked">
+  <label for="show_yaku">Show sequence</label>
+  <select name="gametype" id="gametype">
+    <option id="BHvWH" value="Black(Human) vs White(Human)">Black(Human) vs White(Human)</option>
+    <option id="BHvWC" value="Black(Human) vs White(Com)">Black(Human) vs White(Com)</option>
+    <option id="BCvWH" value="Black(Com) vs White(Human)">Black(Com) vs White(Human)</option>
+  </select>
+</p>
+</div>
+</body>
+</html>
