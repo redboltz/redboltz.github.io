@@ -277,16 +277,16 @@ $(window).on('load', function() {
                     return
                 }
                 if (pos.equals(alt5first)) {
-                    clearStone(ctxStone, alt5first)
-                    clearNumber(ctxNumber, alt5first)
-                    clearNumber(ctxNumber, alt5second)
-                    pos = alt5second
-                }
-                else if (pos.equals(alt5second)) {
                     clearStone(ctxStone, alt5second)
                     clearNumber(ctxNumber, alt5first)
                     clearNumber(ctxNumber, alt5second)
                     pos = alt5first
+                }
+                else if (pos.equals(alt5second)) {
+                    clearStone(ctxStone, alt5first)
+                    clearNumber(ctxNumber, alt5first)
+                    clearNumber(ctxNumber, alt5second)
+                    pos = alt5second
                 }
                 else {
                     return
@@ -597,7 +597,7 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[WHITE player's turn] Choose the BLACK stone to remove", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[WHITE player's turn] Choose the BLACK stone to decide", 8 * BASE, 15 * BASE + BASE / 2 + 6)
     }
     function drawNormalGuide(ctx) {
         ctx.beginPath()
