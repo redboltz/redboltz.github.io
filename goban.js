@@ -253,6 +253,8 @@ $(window).on('load', function() {
         if (score.move == BLACK && blackPlayer == COM) return
         if (score.move == WHITE && whitePlayer == COM) return
         var pos = adjustXY(e)
+        var stone = score.getStone(pos)
+        if (stone == BLACK || stone == WHITE) return
         if (altMove.checked) {
             if (score.turn == 1) {
                 if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
@@ -293,8 +295,6 @@ $(window).on('load', function() {
                 }
             }
         }
-        var stone = score.getStone(pos)
-        if (stone == BLACK || stone == WHITE) return
 
         // Update Internal Model
         score.put(pos)
