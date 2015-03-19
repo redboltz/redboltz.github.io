@@ -478,8 +478,8 @@ $(window).on('load', function() {
             ctx.clearRect(
                 (pos.x + 1) * BASE - BASE / 2,
                 (pos.y + 1) * BASE - BASE / 2,
-                (pos.x + 1) * BASE + BASE / 2,
-                (pos.y + 1) * BASE - BASE / 2)
+                BASE,
+                BASE)
         }
         ctx.arc(
             (pos.x + 1) * BASE,
@@ -495,11 +495,12 @@ $(window).on('load', function() {
         putStoneDirect(ctx, pos, stone)
     }
     function clearStone(ctx, pos) {
+        ctx.beginPath()
         ctx.clearRect(
             (pos.x + 1) * BASE - BASE / 2,
             (pos.y + 1) * BASE - BASE / 2,
-            (pos.x + 1) * BASE + BASE / 2,
-            (pos.y + 1) * BASE - BASE / 2)
+            BASE,
+            BASE)
     }
     function setFocus(ctx, pos) {
         ctx.beginPath()
@@ -524,11 +525,12 @@ $(window).on('load', function() {
         ctx.fillText(no, (pos.x + 1) * BASE, (pos.y + 1) * BASE + 6)
     }
     function clearNumber(ctx, pos) {
+        ctx.beginPath()
         ctx.clearRect(
             (pos.x + 1) * BASE - BASE / 2,
             (pos.y + 1) * BASE - BASE / 2,
-            (pos.x + 1) * BASE + BASE / 2,
-            (pos.y + 1) * BASE - BASE / 2)
+            BASE,
+            BASE)
     }
     function putYaku(ctx, positions) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
