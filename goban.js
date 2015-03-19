@@ -271,6 +271,7 @@ $(window).on('load', function() {
                     return
                 }
                 if (alt5second == null) {
+                    if (pos.equals(alt5first)) return
                     // Symmetry check
                     alt5second = pos
                     putStoneDirect(ctxStone, pos, BLACK)
