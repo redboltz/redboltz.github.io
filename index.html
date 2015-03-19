@@ -35,7 +35,8 @@ canvasタグをサポートしたブラウザが必要です。
 <canvas id="focus"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 2;"></canvas>
 <canvas id="number" width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 3;"></canvas>
 <canvas id="yaku"   width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 4;"></canvas>
-<canvas id="input"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 5;"></canvas>
+<canvas id="guide"   width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 5;"></canvas>
+<canvas id="input"  width="512" height="512" style="position: absolute; left: 0px; top: 0px; z-index: 6;"></canvas>
 <div id="scorediv" tabindex="2" style="position: absolute; left: 513px; top: 0px; width: 155px; height: 512px; overflow: auto;">
 <ul id="scoreView"></ul>
 </div>
@@ -43,6 +44,11 @@ canvasタグをサポートしたブラウザが必要です。
 
 <div style="position: absolute; left: 10px; top: 512px;">
 <p>
+  <input type="button" name="start" id="start" value="Start">
+  <input type="button" name="pass" id="pass" value="Pass">
+  <input type="button" name="resign" id="resign" value="Resign">
+  <input type="checkbox" name="alt_move" id="alt_move" value="Alternative move" checked="checked">
+  <label for="alt_move">Alternative move</label>
   <input type="checkbox" name="show_number" id="show_number" value="Show number">
   <label for="show_number">Show number</label>
   <input type="checkbox" name="show_yaku" id="show_yaku" value="Show sequence" checked="checked">
