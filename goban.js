@@ -549,7 +549,7 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Put WHITE stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[Tentative BLACK player's turn] Put WHITE stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 6)
         ctx.lineWidth = 3
         ctx.strokeStyle = "#0066FF"
         var margin = BASE*0.3
@@ -561,33 +561,43 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Put BLACK stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[Tentative BLACK player's turn] Put BLACK stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 6)
         ctx.lineWidth = 3
         ctx.strokeStyle = "#0066FF"
         var margin = BASE*0.3
         ctx.rect((8-3)*BASE+margin, (8-3)*BASE+margin, BASE*6-margin*2, BASE*6-margin*2)
         ctx.stroke()
     }
+    function drawSwapGuide(ctx) {
+        ctx.beginPath()
+        ctx.textAlign = "center"
+        ctx.fillStyle = "#FCDC5F"
+        ctx.fillRect(0, 14*BASE, CANVAS_WIDTH, BASE*2)
+        ctx.fillStyle = "#0066FF"
+        ctx.font = "16px 'Times New Roman'"
+        ctx.fillText("[Tentative WHITE player's turn] Choose BLACK or WHITE.", 8 * BASE, 14 * BASE + BASE / 2 + 6)
+        ctx.fillText("then WHITE player put WHITE stone.", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+    }
     function draw5_1Guide(ctx) {
         ctx.beginPath()
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Put 1st candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[BLACK player's turn] Put the 1st candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
     }
     function draw5_2Guide(ctx) {
         ctx.beginPath()
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Put 2nd candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[BLACK player's turn] Put the 2nd candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
     }
     function draw5removeGuide(ctx) {
         ctx.beginPath()
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Choose removing BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[WHITE player's turn] Choose the BLACK stone to remove", 8 * BASE, 15 * BASE + BASE / 2 + 6)
     }
     function drawNormalGuide(ctx) {
         ctx.beginPath()
@@ -595,7 +605,7 @@ $(window).on('load', function() {
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
         var stoneStr = score.move == BLACK ? "BLACK" : "WHITE"
-        ctx.fillText("Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
+        ctx.fillText("[" + stoneStr +" player's turn] Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 6)
     }
     function drawGuide(ctx) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
@@ -609,6 +619,12 @@ $(window).on('load', function() {
         case 2:
             if (altMove.checked) {
                 draw3rdGuide(ctx)
+                return
+            }
+            break
+        case 3:
+            if (altMove.checked) {
+                drawSwapGuide(ctx)
                 return
             }
             break
