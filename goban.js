@@ -44,7 +44,7 @@ Score.prototype = {
     initialize: function() {
         this.turn = 0
         this.MAXTurn = 0
-        this.history = {}
+        this.history = []
         this.move = BLACK
         this.board = {}
         for (x = 0; x < MAX; ++x) {
@@ -267,6 +267,10 @@ $(window).on('load', function() {
                     alt5first = pos
                     putStoneDirect(ctxStone, pos, BLACK)
                     putNumber(ctxNumber, pos, "5A")
+                    var ps = getSymmetricPositions(pos)
+                    for (var p in ps) {
+                        putNumber(ctxNumber, pos, "X")
+                    }
                     drawGuide(ctxGuide)
                     return
                 }
@@ -930,5 +934,130 @@ $(window).on('load', function() {
         else {
             return null
         }
+    }
+    function rotatePosition(pos, r) {
+        switch (r) {
+        case 0:
+            return new Position(pos.x, pos.y)
+        case 1:
+            return new Position(pos.y, pos.x)
+        case 2:
+            return new Position(pos.y, -pos.x)
+        case 3:
+            return new Position(-pos.x, pos.y)
+        case 4:
+            return new Position(-pos.x, -pos.y)
+        case 5:
+            return new Position(-pos.y, -pos.x)
+        case 6:
+            return new Position(-pos.y, pos.x)
+        case 7:
+            return new Position(pos.x, -pos.y)
+        }
+    }
+    function normalizePosition(pos, xmin, xmax, ymin, ymax) {
+        var xrange = xmax - xmin + 1
+        var yrange = ymax - ymin + 1
+        var xcenter = xrange / 2
+        var ycenter = yrange / 2
+        var xodd = xrange % 2
+        var yodd = yrange % 2
+
+        var x = pos.x
+        if (xodd) {
+            x -= xmin + xcenter
+        }
+        else {
+            if (x >= xmin + xcenter) {
+                x -= xmin + xcenter - 1
+            }
+            else {
+                x -= xmin + xcenter
+            }
+        }
+
+        var y = pos.y
+        if (yodd) {
+            y -= ymin + ycenter
+        }
+        else {
+            if (y >= ymin + ycenter) {
+                y -= ymin + ycenter - 1
+            }
+            else {
+                y -= ymin + ycenter
+            }
+        }
+        return new Position(x, y)
+    }
+    function revertNormalizePosition(pos, xmin, xmax, ymin, ymax) {
+        var xrange = xmax - xmin + 1
+        var yrange = ymax - ymin + 1
+        var xcenter = xrange / 2
+        var ycenter = yrange / 2
+        var xodd = xrange % 2
+        var yodd = yrange % 2
+
+        var x = pos.x
+        if (xodd) {
+            x += xmin + xcenter
+        }
+        else {
+            if (x >= 0) {
+                x += xmin + xcenter - 1
+            }
+            else {
+                x += xmin + xcenter
+            }
+        }
+
+        var y = pos.y
+        if (yodd) {
+            y += ymin + ycenter
+        }
+        else {
+            if (y >= 0) {
+                y += ymin + ycenter - 1
+            }
+            else {
+                y += ymin + ycenter
+            }
+        }
+        return new Position(x, y)
+    }
+    function getSymmetricPositions(pos) {
+        var xmin = 0
+        var ymin = 0
+        var xmax = MAX
+        var ymax = MAX
+        var history = score.history.concat(pos)
+        var result = []
+        for (var p in history) {
+            if (p.x > xmin) xmin = p.x
+            if (p.x < xmax) xmax = p.x
+            if (p.y > ymin) ymin = p.y
+            if (p.y < ymax) ymax = p.y
+        }
+        for (var ridx = 1; ridx < 8; ++i) {
+            var symmetry = true
+            for (var p in score.history) {
+                var np = normalizePosition(p, xmin, xmax, ymin, ymax)
+                var rp = rotatePosition(np)
+                var rnp = revertNormalizePosition(rp, xmin, xmax, ymin, ymax)
+                if (score.getStone(p) != score.getStone(rnp)) {
+                    symmetry = false
+                    break
+                }
+            }
+            if (symmetry) {
+                var np = normalizePosition(pos, xmin, xmax, ymin, ymax)
+                var rp = rotatePosition(np)
+                var rnp = revertNormalizePosition(rp, xmin, xmax, ymin, ymax)
+                if (score.getStone(rnp) == null) {
+                    result.push(rnp)
+                }
+            }
+        }
+        return result
     }
 })
