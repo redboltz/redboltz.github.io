@@ -212,6 +212,10 @@ $(window).on('load', function() {
         $(pass).prop('disabled', true)
         score = new Score()
         $(scoreView).empty()
+        var scoreText = ""
+        var $pre = $('<pre>').text(scoreText)
+        var $newLi = $('<li>').append($pre).appendTo(scoreView)
+        $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
         ctxStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         ctxYaku.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         ctxFocus.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
@@ -250,10 +254,12 @@ $(window).on('load', function() {
         drawGuide(ctxGuide)
     })
 
-    // Board click
+    // Score list click
     $(scoreView).on('click', 'li', function() {
         moveFocus($(this))
     })
+
+    // Board click
     $(input).on('mousedown', function(e) {
         if (!playing) return
         if (score.move == BLACK && blackPlayer == COM) return
@@ -329,6 +335,13 @@ $(window).on('load', function() {
         moveFocus($newLi)
         $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
 
+        if (score.turn == 3) {
+            var $kata = $(scoreView).children(":first").children("pre")
+            var scoreText = "     "
+            scoreText += getKata()
+            $kata.text(scoreText)
+        }
+
         // Update Board View
         putStone(ctxStone, pos)
         var result = checkYaku(pos)
@@ -400,7 +413,9 @@ $(window).on('load', function() {
 
     // Internal Functions for View
     function moveFocus(obj) {
-        setFocus(ctxFocus, score.getPosition(obj.index()))
+        var idx = obj.index() - 1
+        if (idx < 0) return
+        setFocus(ctxFocus, score.getPosition(idx))
         if (lastLi) lastLi.css("background-color", "white").css("color", "black")
         lastLi = obj
         lastLi.css("background-color", "blue").css("color", "white")
@@ -1044,11 +1059,9 @@ $(window).on('load', function() {
         var ymin = MAX
         var xmax = 0
         var ymax = 0
-        var history = score.history
-//.concat(pos)
         var result = []
-        for (var i = 0; i < history.length; ++i) {
-            var p = history[i]
+        for (var i = 0; i < score.history.length; ++i) {
+            var p = score.history[i]
             if (p.x < xmin) xmin = p.x
             if (p.x > xmax) xmax = p.x
             if (p.y < ymin) ymin = p.y
@@ -1076,5 +1089,87 @@ $(window).on('load', function() {
             }
         }
         return result
+    }
+    function getKata() {
+        var xmin = 4
+        var ymin = 4
+        var xmax = 10
+        var ymax = 10
+
+        if (score.turn != 3) return ""
+        if (!score.history[0].equals(new Position(7, 7))) return ""
+
+        var direct = new Position(7, 6)
+        var indirect = new Position(8, 6)
+        for (var ridx = 0; ridx < 8; ++ridx) {
+            var h2_p = score.history[1]
+
+            var h3_p = score.history[2]
+
+            var t2_p = direct
+            var t2_np = normalizePosition(t2_p, xmin, xmax, ymin, ymax)
+            var t2_rp = rotatePosition(t2_np, ridx)
+            var t2_rnp = revertNormalizePosition(t2_rp, xmin, xmax, ymin, ymax)
+
+            if (h2_p.equals(t2_rnp)) {
+                var direct3rd = [
+                    { "name":"Kansei",    "pos": new Position(7, 5) },
+                    { "name":"Keigetsu",  "pos": new Position(8, 5) },
+                    { "name":"Sosei",     "pos": new Position(9, 5) },
+                    { "name":"Kagetsu",   "pos": new Position(8, 6) },
+                    { "name":"Zangetsu",  "pos": new Position(9, 6) },
+                    { "name":"Ugetsu",    "pos": new Position(8, 7) },
+                    { "name":"Kinsei",    "pos": new Position(9, 7) },
+                    { "name":"Shougetsu", "pos": new Position(7, 8) },
+                    { "name":"Kyugetsu",  "pos": new Position(8, 8) },
+                    { "name":"Shingetsu", "pos": new Position(9, 8) },
+                    { "name":"Zuisei",    "pos": new Position(7, 9) },
+                    { "name":"Sangetsu",  "pos": new Position(8, 9) },
+                    { "name":"Yuusei",    "pos": new Position(9, 9) },
+                ]
+                for (var i = 0; i < direct3rd.length; ++i) {
+                    var t3_p = direct3rd[i].pos
+                    var t3_np = normalizePosition(t3_p, xmin, xmax, ymin, ymax)
+                    var t3_rp = rotatePosition(t3_np, ridx)
+                    var t3_rnp = revertNormalizePosition(t3_rp, xmin, xmax, ymin, ymax)
+                    if (h3_p.equals(t3_rnp)) {
+                        return direct3rd[i].name
+                    }
+                }
+            }
+            else {
+                var t2_p = indirect
+                var t2_np = normalizePosition(t2_p, xmin, xmax, ymin, ymax)
+                var t2_rp = rotatePosition(t2_np, ridx)
+                var t2_rnp = revertNormalizePosition(t2_rp, xmin, xmax, ymin, ymax)
+                if (h2_p.equals(t2_rnp)) {
+                    var indirect3rd = [
+                        { "name":"Chousei",   "pos": new Position(9, 5) },
+                        { "name":"Kyougetsu", "pos": new Position(9, 6) },
+                        { "name":"Kousei",    "pos": new Position(9, 7) },
+                        { "name":"Suigetsu",  "pos": new Position(9, 8) },
+                        { "name":"Ryusei",    "pos": new Position(9, 9) },
+                        { "name":"Ungetsu",   "pos": new Position(8, 7) },
+                        { "name":"Hogetsu",   "pos": new Position(8, 8) },
+                        { "name":"Rangetsu",  "pos": new Position(8, 9) },
+                        { "name":"Gingetsu",  "pos": new Position(7, 8) },
+                        { "name":"Myoujyou",  "pos": new Position(7, 9) },
+                        { "name":"Shagetsu",  "pos": new Position(6, 8) },
+                        { "name":"Meigetsu",  "pos": new Position(6, 9) },
+                        { "name":"Suisei",    "pos": new Position(5, 9) },
+                    ]
+                    for (var i = 0; i < indirect3rd.length; ++i) {
+                        var t3_p = indirect3rd[i].pos
+                        var t3_np = normalizePosition(t3_p, xmin, xmax, ymin, ymax)
+                        var t3_rp = rotatePosition(t3_np, ridx)
+                        var t3_rnp = revertNormalizePosition(t3_rp, xmin, xmax, ymin, ymax)
+                        if (h3_p.equals(t3_rnp)) {
+                            return indirect3rd[i].name
+                        }
+                    }
+                }
+            }
+        }
+        return ""
     }
 })
