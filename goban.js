@@ -212,7 +212,7 @@ $(window).on('load', function() {
         $(pass).prop('disabled', true)
         score = new Score()
         $(scoreView).empty()
-        var scoreText = ""
+        var scoreText = "  "
         var $pre = $('<pre>').text(scoreText)
         var $newLi = $('<li>').append($pre).appendTo(scoreView)
         $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
