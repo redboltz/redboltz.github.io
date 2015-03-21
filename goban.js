@@ -138,6 +138,7 @@ $(window).on('load', function() {
     var focus      = document.getElementById('focus')
     var yaku       = document.getElementById('yaku')
     var guide      = document.getElementById('guide')
+    var altStone   = document.getElementById('alt_stone')
     var input      = document.getElementById('input')
     var start      = document.getElementById('start')
     var pass       = document.getElementById('pass')
@@ -147,11 +148,12 @@ $(window).on('load', function() {
     var showYaku   = document.getElementById('show_yaku')
     var gameType   = document.getElementById('gametype')
     if ( ! goban || ! goban.getContext ) return false
-    var ctxStone  = stone.getContext('2d')
-    var ctxNumber = number.getContext('2d')
-    var ctxFocus  = focus.getContext('2d')
-    var ctxYaku   = yaku.getContext('2d')
-    var ctxGuide  = guide.getContext('2d')
+    var ctxStone    = stone.getContext('2d')
+    var ctxNumber   = number.getContext('2d')
+    var ctxFocus    = focus.getContext('2d')
+    var ctxYaku     = yaku.getContext('2d')
+    var ctxGuide    = guide.getContext('2d')
+    var ctxAltStone = altStone.getContext('2d')
     var scoreView = document.getElementById("scoreView")
 
     const COM   = {}
@@ -164,6 +166,8 @@ $(window).on('load', function() {
     var yakuPositions
     var alt5first = null
     var alt5second = null
+    var symPos = []
+
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -212,6 +216,8 @@ $(window).on('load', function() {
         ctxYaku.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         ctxFocus.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         ctxNumber.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        symPos = []
         if (blackPlayer == HUMAN) {
             var pos = new Position(7, 7)
             score.put(pos)
@@ -255,6 +261,7 @@ $(window).on('load', function() {
         var pos = adjustXY(e)
         var stone = score.getStone(pos)
         if (stone == BLACK || stone == WHITE) return
+
         if (altMove.checked) {
             if (score.turn == 1) {
                 if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
@@ -266,21 +273,21 @@ $(window).on('load', function() {
                 if (alt5first == null) {
                     alt5first = pos
                     putStoneDirect(ctxStone, pos, BLACK)
-                    putNumber(ctxNumber, pos, "5A")
-                    var ps = getSymmetricPositions(pos)
-                    for (var p in ps) {
-                        putNumber(ctxNumber, pos, "X")
+                    putNumberWithColor(ctxAltStone, pos, "5A", "#00FF00")
+                    symPos = getSymmetricPositions(pos)
+                    for (var i = 0; i < symPos.length; ++i) {
+                        putNumberWithColor(ctxAltStone, symPos[i], "NG", "#FF1111")
                     }
-                    drawGuide(ctxGuide)
                     return
                 }
                 if (alt5second == null) {
                     if (pos.equals(alt5first)) return
-                    // Symmetry check
+                    for (var i = 0; i < symPos.length; ++i) {
+                        if (pos.equals(symPos[i])) return
+                    }
                     alt5second = pos
                     putStoneDirect(ctxStone, pos, BLACK)
-                    putNumber(ctxNumber, pos, "5B")
-                    drawGuide(ctxGuide)
+                    putNumberWithColor(ctxAltStone, pos, "5B", "#00FF00")
                     return
                 }
                 if (pos.equals(alt5first)) {
@@ -298,8 +305,10 @@ $(window).on('load', function() {
                 else {
                     return
                 }
+                ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
             }
         }
+
 
         // Update Internal Model
         score.put(pos)
@@ -522,12 +531,15 @@ $(window).on('load', function() {
             false)
         ctx.stroke()
     }
-    function putNumber(ctx, pos, no) {
+    function putNumberWithColor(ctx, pos, no, color) {
         ctx.beginPath()
         ctx.textAlign = "center"
-        ctx.fillStyle = "#33CC33"
+        ctx.fillStyle = color
         ctx.font = "16px 'Times New Roman'"
         ctx.fillText(no, (pos.x + 1) * BASE, (pos.y + 1) * BASE + 6)
+    }
+    function putNumber(ctx, pos, no) {
+        putNumberWithColor(ctx, pos, no, "#33CC33")
     }
     function clearNumber(ctx, pos) {
         ctx.beginPath()
@@ -615,7 +627,7 @@ $(window).on('load', function() {
         ctx.fillText("[" + stoneStr +" player's turn] Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function drawGuide(ctx) {
-        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+        ctxGuide.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         switch (score.turn) {
         case 1:
             if (altMove.checked) {
@@ -958,8 +970,8 @@ $(window).on('load', function() {
     function normalizePosition(pos, xmin, xmax, ymin, ymax) {
         var xrange = xmax - xmin + 1
         var yrange = ymax - ymin + 1
-        var xcenter = xrange / 2
-        var ycenter = yrange / 2
+        var xcenter = Math.floor(xrange / 2)
+        var ycenter = Math.floor(yrange / 2)
         var xodd = xrange % 2
         var yodd = yrange % 2
 
@@ -993,8 +1005,8 @@ $(window).on('load', function() {
     function revertNormalizePosition(pos, xmin, xmax, ymin, ymax) {
         var xrange = xmax - xmin + 1
         var yrange = ymax - ymin + 1
-        var xcenter = xrange / 2
-        var ycenter = yrange / 2
+        var xcenter = Math.floor(xrange / 2)
+        var ycenter = Math.floor(yrange / 2)
         var xodd = xrange % 2
         var yodd = yrange % 2
 
@@ -1026,23 +1038,26 @@ $(window).on('load', function() {
         return new Position(x, y)
     }
     function getSymmetricPositions(pos) {
-        var xmin = 0
-        var ymin = 0
-        var xmax = MAX
-        var ymax = MAX
-        var history = score.history.concat(pos)
+        var xmin = MAX
+        var ymin = MAX
+        var xmax = 0
+        var ymax = 0
+        var history = score.history
+//.concat(pos)
         var result = []
-        for (var p in history) {
-            if (p.x > xmin) xmin = p.x
-            if (p.x < xmax) xmax = p.x
-            if (p.y > ymin) ymin = p.y
-            if (p.y < ymax) ymax = p.y
+        for (var i = 0; i < history.length; ++i) {
+            var p = history[i]
+            if (p.x < xmin) xmin = p.x
+            if (p.x > xmax) xmax = p.x
+            if (p.y < ymin) ymin = p.y
+            if (p.y > ymax) ymax = p.y
         }
-        for (var ridx = 1; ridx < 8; ++i) {
+        for (var ridx = 1; ridx < 8; ++ridx) {
             var symmetry = true
-            for (var p in score.history) {
+            for (var i = 0; i < score.history.length; ++i) {
+                var p = score.history[i]
                 var np = normalizePosition(p, xmin, xmax, ymin, ymax)
-                var rp = rotatePosition(np)
+                var rp = rotatePosition(np, ridx)
                 var rnp = revertNormalizePosition(rp, xmin, xmax, ymin, ymax)
                 if (score.getStone(p) != score.getStone(rnp)) {
                     symmetry = false
@@ -1051,9 +1066,9 @@ $(window).on('load', function() {
             }
             if (symmetry) {
                 var np = normalizePosition(pos, xmin, xmax, ymin, ymax)
-                var rp = rotatePosition(np)
+                var rp = rotatePosition(np, ridx)
                 var rnp = revertNormalizePosition(rp, xmin, xmax, ymin, ymax)
-                if (score.getStone(rnp) == null) {
+                if (!rnp.equals(pos) && score.getStone(rnp) == null) {
                     result.push(rnp)
                 }
             }
