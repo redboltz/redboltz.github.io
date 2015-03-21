@@ -278,6 +278,7 @@ $(window).on('load', function() {
                     for (var i = 0; i < symPos.length; ++i) {
                         putNumberWithColor(ctxAltStone, symPos[i], "NG", "#FF1111")
                     }
+                    drawGuide(ctxGuide)
                     return
                 }
                 if (alt5second == null) {
@@ -288,6 +289,7 @@ $(window).on('load', function() {
                     alt5second = pos
                     putStoneDirect(ctxStone, pos, BLACK)
                     putNumberWithColor(ctxAltStone, pos, "5B", "#00FF00")
+                    drawGuide(ctxGuide)
                     return
                 }
                 if (pos.equals(alt5first)) {
@@ -568,7 +570,7 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[Tentative BLACK player's turn] Put WHITE stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText("Tentative BLACK player's turn: Put WHITE stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
         ctx.lineWidth = 3
         ctx.strokeStyle = "#0066FF"
         var margin = BASE*0.3
@@ -580,7 +582,7 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[Tentative BLACK player's turn] Put BLACK stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText("Tentative BLACK player's turn: Put BLACK stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
         ctx.lineWidth = 3
         ctx.strokeStyle = "#0066FF"
         var margin = BASE*0.3
@@ -594,7 +596,7 @@ $(window).on('load', function() {
         ctx.fillRect(0, 14*BASE, CANVAS_WIDTH, BASE*2)
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[Tentative WHITE player's turn] Choose BLACK or WHITE.", 8 * BASE, 14 * BASE + BASE / 2 + 12)
+        ctx.fillText("Tentative WHITE player's turn: Choose BLACK or WHITE.", 8 * BASE, 14 * BASE + BASE / 2 + 12)
         ctx.fillText("then WHITE player put WHITE stone.", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function draw5_1Guide(ctx) {
@@ -602,21 +604,21 @@ $(window).on('load', function() {
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[BLACK player's turn] Put the 1st candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText("BLACK player's turn: Put the 1st candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function draw5_2Guide(ctx) {
         ctx.beginPath()
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[BLACK player's turn] Put the 2nd candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText("BLACK player's turn: Put the 2nd candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function draw5removeGuide(ctx) {
         ctx.beginPath()
         ctx.textAlign = "center"
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("[WHITE player's turn] Choose the BLACK stone to decide", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText("WHITE player's turn: Choose the BLACK stone to decide", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function drawNormalGuide(ctx) {
         ctx.beginPath()
@@ -624,7 +626,7 @@ $(window).on('load', function() {
         ctx.fillStyle = "#0066FF"
         ctx.font = "16px 'Times New Roman'"
         var stoneStr = score.move == BLACK ? "BLACK" : "WHITE"
-        ctx.fillText("[" + stoneStr +" player's turn] Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
+        ctx.fillText(stoneStr +" player's turn: Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
     }
     function drawGuide(ctx) {
         ctxGuide.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
