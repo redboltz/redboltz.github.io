@@ -81,16 +81,17 @@ Score.prototype = {
         return new Iterator(this, pos, dir)
     }
 }
-Score.Y_PROHIBITED = {}
-Score.Y_WIN        = {}
-Score.Y_6          = {}
-Score.Y_5          = {}
-Score.Y_4          = {}
-Score.Y_4R         = {}
-Score.Y_44         = {}
-Score.Y_43         = {}
-Score.Y_33         = {}
-Score.Y_3          = {}
+Score.Y_PROHIBITED = "PROHIBITED"
+Score.Y_WIN        = "Y_WIN"
+Score.Y_6          = "Y_6"
+Score.Y_5          = "Y_5"
+Score.Y_4          = "Y_4"
+Score.Y_4R         = "Y_4R"
+Score.Y_44         = "Y_$44"
+Score.Y_43         = "Y_43"
+Score.Y_33         = "Y_33"
+Score.Y_3          = "Y_3"
+Score.Y_NONE       = "Y_NONE"
 
 function Iterator() {
     this.initialize.apply(this, arguments)
@@ -119,10 +120,10 @@ Iterator.prototype = {
         return this.pos.clone()
     }
 }
-Iterator.DIR_LR = { x:1, y:0 }
-Iterator.DIR_UD = { x:0, y:1 }
-Iterator.DIR_LU = { x:1, y:-1 }
-Iterator.DIR_LD = { x:1, y:1 }
+Iterator.DIR_LR = { "name":"DIR_LR", "move":{x:1, y:0} }
+Iterator.DIR_UD = { "name":"DIR_UD", "move":{x:0, y:1} }
+Iterator.DIR_LU = { "name":"DIR_LU", "move":{x:1, y:-1} }
+Iterator.DIR_LD = { "name":"DIR_LD", "move":{x:1, y:1} }
 
 
 $(window).on('load', function() {
@@ -683,165 +684,159 @@ $(window).on('load', function() {
     }
 
     // Internal Functions for Model
-    function checkYaku(pos) {
+    function isProhibited(pos, dir) {
         var stone = score.getStone(pos)
-        if (stone == WHITE) {
-            var r = isWin(pos)
-            if (r) return r
-            r = isOver6(pos)
-            if (r) {
-                r.yaku = Score.Y_WIN
-                return r
-            }
-            var r4 = is4(pos)
-            if (r4) {
-                if (r4.yaku == Score.Y_44) return r4
-                if (r4.yaku == Score.Y_4R) return r4
-            }
-            var r3 = is3(pos)
-            if (r4 && r3) {
-                var positions = {}
-                $.each(r3.positions, function(i, v){
-                    positions[v] = v
-                })
-                $.each(r4.positions, function(i, v){
-                    positions[v] = v
-                })
-                return { "yaku":Score.Y_43, "positions":positions}
-            }
-            if (r4) return r4
-            if (r3) return r3
-        }
-        else if (stone == BLACK) {
-            var r = isWin(pos)
-            if (r) return r
-            r = isOver6(pos)
-            if (r) return r
-            var r4 = is4(pos)
-            var r3 = is3(pos)
-            if (r4 && r4.yaku == Score.Y_44) return r4
-            if (r3 && r3.yaku == Score.Y_33) return r3
-            if (r4 && r4.yaku == Score.Y_4R) return r4
-            if (r4 && r3) {
-                var positions = {}
-                $.each(r3.positions, function(i, v){
-                    positions[v] = v
-                })
-                $.each(r4.positions, function(i, v){
-                    positions[v] = v
-                })
-                return { "yaku":Score.Y_43, "positions":positions}
-            }
-            if (r4 && r4.yaku == Score.Y_4) return r4
-            if (r3 && r3.yaku == Score.Y_3) return r3
-        }
-        return null
-    }
-    function isWin(pos) {
-        var r = null
-        $.each([Iterator.DIR_LR, Iterator.DIR_UD, Iterator.DIR_LU, Iterator.DIR_LD], function(i, dir){
-            if (r == null) {
-                var result = is5OneWay(pos, dir)
-                if (result && result.yaku == Score.Y_5) {
-                    r = { "yaku":Score.Y_WIN, "positions":result.positions }
-                }
-            }
-        })
-        return r
-    }
-    function isProhibited(pos) {
-        var stone = score.getStone(pos)
-        if (stone == BLACK) {
-            if (isOver6(pos)) return true
-            var r4 = is4(pos)
-            var r3 = is3(pos)
-            if (r4 && r4.yaku == Score.Y_44) return true
-            if (r3 && r3.yaku == Score.Y_33) return true
-        }
+        if (stone != BLACK) return false
+        var ret = checkYakuWithoutDir(pos, dir)
+        if (ret.yaku == Score.Y_6 || ret.yaku == Score.Y_44 || ret.yaku == Score.Y_33) return true
         return false
     }
-    function isOver6(pos) {
-        var r = null
-        $.each([Iterator.DIR_LR, Iterator.DIR_UD, Iterator.DIR_LU, Iterator.DIR_LD], function(i, dir){
-            if (r == null) {
-                var result = isOver6OneWay(pos, dir)
-                if (result && result.yaku == Score.Y_6) {
-                    r = { "yaku":Score.Y_6, "positions":result.positions }
-                }
-            }
-        })
-        return r
+
+    function checkYaku(pos) {
+        return checkYakuWithoutDir(pos, null)
     }
-    function is4(pos) {
-        var positions = {}
-        var count = 0
-        var y44detected = false
-        var y4rdetected = false
-        $.each([Iterator.DIR_LR, Iterator.DIR_UD, Iterator.DIR_LU, Iterator.DIR_LD], function(i, dir){
-            if (y44detected) return
-            var result = is4OneWay(pos, dir)
-            if (result) {
-                if (result.yaku == Score.Y_44) {
-                    y44detected = true
-                    $.each(result.positions, function(i, v){
-                        positions[v] = v
-                    })
+
+    function checkYakuWithoutDir(pos, dir) {
+        var dirs = {}
+        dirs[Iterator.DIR_LR.name] = Iterator.DIR_LR
+        dirs[Iterator.DIR_UD.name] = Iterator.DIR_UD
+        dirs[Iterator.DIR_LU.name] = Iterator.DIR_LU
+        dirs[Iterator.DIR_LD.name] = Iterator.DIR_LD
+        if (dir) delete dirs[dir.name]
+
+        var stone = score.getStone(pos)
+        var ys = []
+        for (var d in dirs) {
+            ys.push(checkOneWay(pos, dirs[d]))
+        }
+        var count = {}
+        for (var y in ys) {
+            var yaku = ys[y]
+            if (count[yaku.yaku] == null) count[yaku.yaku] = 1
+            else ++count[yaku.yaku]
+        }
+        if (count[Score.Y_5] > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_5) {
+                    return { "yaku":Score.Y_WIN, "positions":yaku.positions }
                 }
-                else if (result.yaku == Score.Y_4 || result.yaku == Score.Y_4R) {
-                    if (result.yaku == Score.Y_4R) {
-                        y4rdetected = true
-                    }
-                    ++count
-                    $.each(result.positions, function(i, v){
+            }
+        }
+        if (count[Score.Y_6] > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_6) {
+                    if (stone == WHITE) return { "yaku":Score.Y_WIN, "positions":yaku.positions }
+                    return yaku
+                }
+            }
+        }
+
+        var cy4 = count[Score.Y_4]
+        var cy44 = count[Score.Y_44]
+        var cy4r = count[Score.Y_4R]
+        var cy3 = count[Score.Y_3]
+
+        if (cy4 + cy4r + cy44 >= 2) {
+            var positions = {}
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_4 || yaku.yaku == Score.Y_44 || yaku.yaku == Score.Y_4R) {
+                    $.each(yaku.positions, function(i, v){
                         positions[v] = v
                     })
                 }
             }
-        })
-        if (y44detected || count >= 2) {
             return { "yaku":Score.Y_44, "positions":positions }
         }
-        else if (count == 1) {
-            if (y4rdetected) {
-                return { "yaku":Score.Y_4R, "positions":positions }
+        if (cy44 > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_44) return yaku
             }
-            return { "yaku":Score.Y_4, "positions":positions }
         }
-        else {
-            return null
-        }
-    }
-    function is3(pos) {
-        var positions = {}
-        var count = 0
-        $.each([Iterator.DIR_LR, Iterator.DIR_UD, Iterator.DIR_LU, Iterator.DIR_LD], function(i, dir){
-            var result = is3OneWay(pos, dir)
-            if (result && result.yaku == Score.Y_3) {
-                ++count
-                $.each(result.positions, function(i, v){
-                    positions[v] = v
-                })
+
+        if (stone == BLACK) {
+            if (cy3 >= 2) {
+                var positions = {}
+                for (var y in ys) {
+                    var yaku = ys[y]
+                    if (yaku.yaku == Score.Y_3) {
+                        $.each(yaku.positions, function(i, v){
+                            positions[v] = v
+                        })
+                    }
+                }
+                return { "yaku":Score.Y_33, "positions":positions }
             }
-        })
-        if (count >= 2) {
-            return { "yaku":Score.Y_33, "positions":positions }
         }
-        else if (count == 1) {
-            return { "yaku":Score.Y_3, "positions":positions }
+
+        if (cy4r > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_4R) return yaku
+            }
         }
-        else {
-            return null
+
+        if (cy4 + cy3 >= 2) {
+            var positions = {}
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_4 || yaku.yaku == Score.Y_3) {
+                    $.each(yaku.positions, function(i, v){
+                        positions[v] = v
+                    })
+                }
+            }
+            return { "yaku":Score.Y_43, "positions":positions }
         }
+
+        if (stone == WHITE) {
+            if (cy3 >= 2) {
+                var positions = {}
+                for (var y in ys) {
+                    var yaku = ys[y]
+                    if (yaku.yaku == Score.Y_3) {
+                        $.each(yaku.positions, function(i, v){
+                            positions[v] = v
+                        })
+                    }
+                }
+                return { "yaku":Score.Y_33, "positions":positions }
+            }
+        }
+
+        if (cy4 > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_4) return yaku
+            }
+        }
+
+        if (cy3 > 0) {
+            for (var y in ys) {
+                var yaku = ys[y]
+                if (yaku.yaku == Score.Y_3) return yaku
+            }
+        }
+        return { "yaku":Score.Y_NONE, "positions": {} }
     }
-    function isOver6OneWay(pos, dir) {
+
+    function checkOneWay(pos, dir) {
+        return checkOneWayWithDepth(pos, dir, 0, 3)
+    }
+    function checkOneWayWithDepth(pos, dir, depth, depthMax) {
+        if (depth == depthMax) return { "yaku":Score.Y_NONE, "positions":{} }
         var stone = score.getStone(pos)
-        if (stone != BLACK && stone != WHITE) return null
+        if (stone != BLACK && stone != WHITE) return { "yaku":Score.Y_NONE, "positions":{} }
         var count = 0
         var result = {}
+        var edge = []
         result[pos] = pos
-        ++count;
+        ++count
         $.each([Iterator.prototype.inc, Iterator.prototype.dec], function(i, mover) {
-            var it = score.makeIterator(pos, dir)
+            var it = score.makeIterator(pos, dir.move)
             while (true) {
                 mover.apply(it)
                 var current = it.get()
@@ -850,120 +845,65 @@ $(window).on('load', function() {
                     result[curPos] = curPos
                     ++count
                 }
-                else break;
+                else if (current == null) {
+                    var curPos = it.getPosition()
+                    edge.push(it)
+                    break
+                }
+                else break
             }
         })
         if (count >= 6) {
             return { "yaku":Score.Y_6, "positions":result }
         }
-        return false
-    }
-    function is5OneWay(pos, dir) {
-        var stone = score.getStone(pos)
-        if (stone != BLACK && stone != WHITE) return null
-        var count = 0
-        var result = {}
-        result[pos] = pos
-        ++count
-        $.each([Iterator.prototype.inc, Iterator.prototype.dec], function(i, mover) {
-            var it = score.makeIterator(pos, dir)
-            while (true) {
-                mover.apply(it)
-                var current = it.get()
-                if (current == stone) {
-                    var curPos = it.getPosition()
-                    result[curPos] = curPos
-                    ++count
-                }
-                else break;
-            }
-        })
-        if (count == 5) {
+        else if (count == 5) {
             return { "yaku":Score.Y_5, "positions":result }
         }
-        return null
-    }
-    function is4OneWay(pos, dir) {
-        var stone = score.getStone(pos)
-        if (stone != BLACK && stone != WHITE) return null
-        var enemy = stone == BLACK ? WHITE : BLACK
-        var positions5 = []
-        var result = {}
-        $.each([Iterator.prototype.inc, Iterator.prototype.dec], function(i, mover) {
-            var it = score.makeIterator(pos, dir)
-            while (true) {
-                mover.apply(it)
-                var current = it.get()
-                if (current == stone) continue
-                if (current == null) {
-                    it.put(stone)
-                    var curPos = it.getPosition()
-                    var result5 = is5OneWay(curPos, dir) //isWin(curPos)
-                    if (result5 && result5.yaku == Score.Y_5) {
-                        positions5.push(curPos)
-                        $.each(result5.positions, function(i, v) {
-                            result[v] = v
-                        })
-                        delete result[curPos]
-                    }
-                    it.put(null)
-                    break
-                }
-                else break
-            }
-        })
-        var count = positions5.length
-        if (count == 0) return null
-        if (count == 1) {
-            return { "yaku":Score.Y_4, "positions":result }
-        }
-        if (count == 2) {
-            var distance = Position.radialDistance(positions5[0], positions5[1])
-            if (distance == 5) {
-                return { "yaku":Score.Y_4R, "positions":result }
-            }
-            else {
-                return { "yaku":Score.Y_44, "positions":result }
-            }
-        }
-        return null
-    }
-    function is3OneWay(pos, dir) {
-        var stone = score.getStone(pos)
-        if (stone != BLACK && stone != WHITE) return null
-        var enemy = stone == BLACK ? WHITE : BLACK
-        var result = {}
-        var detected = false
-        $.each([Iterator.prototype.inc, Iterator.prototype.dec], function(i, mover) {
-            var it = score.makeIterator(pos, dir)
-            while (true) {
-                mover.apply(it)
-                var current = it.get()
-                if (current == stone) continue
-                if (current == null) {
-                    it.put(stone)
-                    var curPos = it.getPosition()
-                    var result4 = is4OneWay(curPos, dir)
-                    if (result4 && result4.yaku == Score.Y_4R && !isProhibited(curPos)) {
-                        detected = true
-                        $.each(result4.positions, function(i, v) {
-                            result[v] = v
-                        })
-                        delete result[curPos]
-                    }
-                    it.put(null)
-                    break
-                }
-                else break
-            }
-        })
-        if (detected) {
-            return { "yaku":Score.Y_3, "positions":result }
-        }
         else {
-            return null
+            var result = {}
+            var posWin = []
+            var detect3 = false
+            for (var it in edge) {
+                it = edge[it]
+                it.put(stone)
+                var curPos = it.getPosition()
+                var ret = checkOneWayWithDepth(curPos, dir, depth+1, depthMax)
+                if (ret.yaku == Score.Y_5 || (stone == WHITE && ret.yaku == Score.Y_6)) {
+                    if (detect3) result = {}
+                    $.each(ret.positions, function(i, v) {
+                        result[v] = v
+                    })
+                    posWin.push(curPos)
+                }
+                else if (ret.yaku == Score.Y_4R && !isProhibited(curPos, dir) && posWin.length == 0) {
+                    $.each(ret.positions, function(i, v) {
+                        result[v] = v
+                    })
+                    detect3 = true
+                }
+                delete result[curPos]
+                it.put(null)
+            }
+            var posWinLen = posWin.length
+            if (posWinLen == 1) {
+                return { "yaku":Score.Y_4, "positions":result }
+            }
+            else if (posWinLen == 2) {
+                var distance = Position.radialDistance(posWin[0], posWin[1])
+                if (distance == 5) {
+                    return { "yaku":Score.Y_4R, "positions":result }
+                }
+                else {
+                    return { "yaku":Score.Y_44, "positions":result }
+                }
+            }
+            else if (detect3) {
+                return { "yaku":Score.Y_3, "positions":result }
+            }
+            return { "yaku":Score.Y_NONE, "positions":{} }
         }
     }
+
     function rotatePosition(pos, r) {
         switch (r) {
         case 0:
