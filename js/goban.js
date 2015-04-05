@@ -1,3 +1,4 @@
+const WS_URL = "ws://localhost:12345"
 const BLACK  = {}
 const WHITE  = {}
 const BORDER = {}
@@ -125,6 +126,12 @@ Iterator.DIR_UD = { "name":"DIR_UD", "move":{x:0, y:1} }
 Iterator.DIR_LU = { "name":"DIR_LU", "move":{x:1, y:-1} }
 Iterator.DIR_LD = { "name":"DIR_LD", "move":{x:1, y:1} }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 $(window).on('load', function() {
     const STONE_SIZE    = 15
@@ -211,7 +218,6 @@ $(window).on('load', function() {
         }
     })
 
-
     // Start click
     $(start).on('click', function() {
         playing = true
@@ -248,7 +254,13 @@ $(window).on('load', function() {
             drawGuide(ctxGuide)
         }
         else if (blackPlayer == NET_WAITING) {
-            var ws = new WebSocket("ws://localhost:12345")
+            var id = getParameterByName("id")
+            if (id == "") {
+                var ws = new WebSocket(WS_URL)
+            }
+            else {
+                var ws = new WebSocket(WS_URL+"?id=" + id)
+            }
             ws.binaryType = 'arraybuffer'
             ws.onopen = wsOnOpen
             ws.onclose = wsOnClose
@@ -409,6 +421,24 @@ $(window).on('load', function() {
 */
     })
 
+    const START_REQ      =  0
+    const START_ACCEPT   =  1
+    const T_BLACK_START  =  2
+    const T_WHITE_START  =  3
+    const T_FIRST        =  4
+    const T_SECOND       =  5
+    const T_THIRD        =  6
+    const SWAP           =  7
+    const MOVE           =  8
+    const FIFTH_STONE1   =  9
+    const FIFTH_STONE2   = 10
+    const FIFTH_CHOICE   = 11
+    const PASS           = 12
+    const RESIGN         = 13
+    const DRAW_REQ       = 14
+    const DRAW_ACCEPT    = 15
+    const DRAW_REJECT    = 16
+
     function wsOnOpen(e) {
     }
     function wsOnClose(e) {
@@ -419,15 +449,28 @@ $(window).on('load', function() {
         if (e && e.data) {
             var data = new Uint8Array(e.data)
             var cmd = msgpack.unpack(data)
-            var len = msgpack.unpackedLength()
-            data = data.subarray(len)
-            var id = msgpack.unpack(data)
-            var url =
-                window.location.protocol +
-                "//" + window.location.host +
-                "/" + window.location.pathname +
-                "?id=" + id
-            jAlert(url, "Send this URL to your oppornent")
+            switch (cmd) {
+            case START_ACCEPT:
+                var len = msgpack.unpackedLength()
+                data = data.subarray(len)
+                var id = msgpack.unpack(data)
+                var url =
+                    window.location.protocol +
+                    "//" + window.location.host +
+                    "/" + window.location.pathname +
+                    "?id=" + id
+                $.toast({
+                    text: "Send the following URL to your oppornent.<br />" + url,
+                    hideAfter: false
+                })
+                break
+            case T_BLACK_START:
+                alert("black start")
+                break
+            case T_WHITE_START:
+                alert("white start")
+                break
+            }
         }
     }
 

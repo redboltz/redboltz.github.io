@@ -6,11 +6,14 @@
 
 <!--[if IE]><script type="text/javascript" src="/_lib/js/excanvas.js"></script><![endif]-->
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="sprintf.min.js"></script>
-<script type="text/javascript" src="https://raw.github.com/msgpack/msgpack-javascript/master/msgpack.js"></script>
-<script type="text/javascript" src="goban.js"></script>
-<style type="text/css">
+<link href="js/jquery.toast.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="js/sprintf.min.js"></script>
+<script type="text/javascript" src="js/msgpack.codec.js"></script>
+<script type="text/javascript" src="js/jquery.toast.js"></script>
+<script type="text/javascript" src="js/goban.js"></script>
+
+<style type"text/css>
 ul {
     list-style-type: none;
     padding: 0px 0px 0px 2px;
@@ -56,6 +59,7 @@ canvasタグをサポートしたブラウザが必要です。
   <label for="show_yaku">Show sequence</label>
   <select name="gametype" id="gametype">
     <option id="BHvWH" value="Black(Human) vs White(Human)">Black(Human) vs White(Human)</option>
+    <option id="Network" value="Play with network player">Play with network player</option>
     <option id="BHvWC" value="Black(Human) vs White(Com)">Black(Human) vs White(Com)</option>
     <option id="BCvWH" value="Black(Com) vs White(Human)">Black(Com) vs White(Human)</option>
   </select>
