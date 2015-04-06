@@ -1,4 +1,4 @@
-const WS_URL = "ws://localhost:12345"
+const WS_URL = "ws://52.68.7.189:10080"
 const BLACK  = {}
 const WHITE  = {}
 const BORDER = {}
