@@ -1,7 +1,7 @@
 const WS_URL = "ws://www.redboltz.net:10080"
-const BLACK  = {}
-const WHITE  = {}
-const BORDER = {}
+const BLACK  = "BLACK"
+const WHITE  = "WHITE"
+const BORDER = "BORDER"
 const MAX = 15
 
 function Position() {
@@ -88,7 +88,7 @@ Score.Y_6          = "Y_6"
 Score.Y_5          = "Y_5"
 Score.Y_4          = "Y_4"
 Score.Y_4R         = "Y_4R"
-Score.Y_44         = "Y_$44"
+Score.Y_44         = "Y_44"
 Score.Y_43         = "Y_43"
 Score.Y_33         = "Y_33"
 Score.Y_3          = "Y_3"
@@ -199,12 +199,17 @@ $(window).on('load', function() {
     var alt5second = null
     var symPos = []
 
+    var waitSwapOrNot = false
+
     var ws = null
 
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
     $(resign).prop('disabled', true)
+
+
+
 
     // Checkboxes
     $(showNumber).on('change', function(e) {
@@ -240,6 +245,7 @@ $(window).on('load', function() {
     })
 
     function doFirstMove() {
+        waitSwapOrNot = false
         var pos = new Position(7, 7)
         score.put(pos)
         putStone(ctxStone, pos)
@@ -260,8 +266,7 @@ $(window).on('load', function() {
         ws.send(b)
     }
 
-    // Start click
-    $(start).on('click', function() {
+    function startGame() {
         playing = true
         $(resign).prop('disabled', false)
         $(gameType).prop('disabled', true)
@@ -285,10 +290,14 @@ $(window).on('load', function() {
         else if (blackPlayer == NET_WAITING) {
             var id = getParameterByName("id")
             if (id == "") {
-                ws = new WebSocket(WS_URL)
-            }
-            else {
-                ws = new WebSocket(WS_URL+"?id=" + id)
+                var query = ""
+                if (altMove.checked) {
+                    query = "?altmove=true"
+                }
+                else {
+                    query = "?altmove=false"
+                }
+                ws = new WebSocket(WS_URL + "/" + query)
             }
             ws.binaryType = 'arraybuffer'
             ws.onopen = wsOnOpen
@@ -297,6 +306,20 @@ $(window).on('load', function() {
             ws.onmessage = wsOnMessage
             // Web Socket is connected, send data using send()
         }
+    }
+
+    var id = getParameterByName("id")
+    if (id != "") {
+        $(gameType).prop("selectedIndex", 1)
+        blackPlayer = NET_WAITING
+        whitePlayer = NET_WAITING
+        ws = new WebSocket(WS_URL+"?id=" + id)
+        startGame()
+    }
+
+    // Start click
+    $(start).on('click', function() {
+        startGame()
     })
 
     // Resign click
@@ -319,6 +342,81 @@ $(window).on('load', function() {
     })
 
     function update(pos) {
+        var stone = score.getStone(pos)
+        if (stone == BLACK || stone == WHITE) return
+
+        if (altMove.checked) {
+            if (score.turn == 1) {
+                if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
+            }
+            if (score.turn == 2) {
+                if (pos.x < 5 || pos.x > 9 || pos.y < 5 || pos.y > 9) return
+            }
+            if (score.turn == 4) {
+                if (alt5first == null) {
+                    alt5first = pos
+                    putStoneDirect(ctxStone, pos, BLACK)
+                    putNumberWithColor(ctxAltStone, pos, "5A", "#00FF00")
+                    symPos = getSymmetricPositions(pos)
+                    for (var i = 0; i < symPos.length; ++i) {
+                        putNumberWithColor(ctxAltStone, symPos[i], "NG", "#FF1111")
+                    }
+                    drawGuide(ctxGuide)
+                    if (whitePlayer == NET_HUMAN) {
+                        var a = msgpack.pack(MOVE)
+                        a = a.concat(msgpack.pack([pos.x, pos.y]))
+                        var b = new Uint8Array(a)
+                        ws.send(b)
+                    }
+                    return
+                }
+                if (alt5second == null) {
+                    if (pos.equals(alt5first)) return
+                    for (var i = 0; i < symPos.length; ++i) {
+                        if (pos.equals(symPos[i])) return
+                    }
+                    alt5second = pos
+                    putStoneDirect(ctxStone, pos, BLACK)
+                    putNumberWithColor(ctxAltStone, pos, "5B", "#00FF00")
+                    drawGuide(ctxGuide)
+                    if (whitePlayer == NET_HUMAN) {
+                        var a = msgpack.pack(MOVE)
+                        a = a.concat(msgpack.pack([pos.x, pos.y]))
+                        var b = new Uint8Array(a)
+                        ws.send(b)
+                    }
+                    return
+                }
+                if (pos.equals(alt5first)) {
+                    clearStone(ctxStone, alt5second)
+                    clearNumber(ctxNumber, alt5first)
+                    clearNumber(ctxNumber, alt5second)
+                    pos = alt5first
+                    if (blackPlayer == NET_HUMAN) {
+                        var a = msgpack.pack(MOVE)
+                        a = a.concat(msgpack.pack([pos.x, pos.y]))
+                        var b = new Uint8Array(a)
+                        ws.send(b)
+                    }
+                }
+                else if (pos.equals(alt5second)) {
+                    clearStone(ctxStone, alt5first)
+                    clearNumber(ctxNumber, alt5first)
+                    clearNumber(ctxNumber, alt5second)
+                    pos = alt5second
+                    if (blackPlayer == NET_HUMAN) {
+                        var a = msgpack.pack(MOVE)
+                        a = a.concat(msgpack.pack([pos.x, pos.y]))
+                        var b = new Uint8Array(a)
+                        ws.send(b)
+                    }
+                }
+                else {
+                    return
+                }
+                ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+            }
+        }
         // Update Internal Model
         score.put(pos)
 
@@ -326,17 +424,52 @@ $(window).on('load', function() {
             $(pass).prop('disabled', false)
         }
 
-        // Send data to network player
-        if ((score.move == BLACK && blackPlayer == NET_HUMAN) ||
-            (score.move == WHITE && whitePlayer == NET_HUMAN)) {
-            if (altMove.checked) {
+        var send = false
+        if (altMove.checked) {
+            if (score.turn < 3) {
+                if (whitePlayer == NET_HUMAN) {
+                    send = true
+                }
+            }
+            else if (score.turn == 3 && blackPlayer == NET_HUMAN) {
+                waitSwapOrNot = true
+                $.toast({
+                    text: "Which color do you want to play?<br />" + '<input type="button" name="black" id="black" value="Black">    <input type="button" name="white" id="white" value="White">',
+                    hideAfter: false,
+                    position: 'bottom-center'
+                })
+                $("#black").on('click', function () {
+                    blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+                    var a = msgpack.pack(SWAP)
+                    var b = new Uint8Array(a)
+                    ws.send(b)
+                    $.toast().reset('all')
+                    waitSwapOrNot = false
+                })
+                $("#white").on('click', function () {
+                    $.toast().reset('all')
+                    waitSwapOrNot = false
+                })
             }
             else {
-                var a = msgpack.pack(MOVE)
-                a = a.concat(msgpack.pack([pos.x, pos.y]))
-                var b = new Uint8Array(a)
-                ws.send(b)
+                if ((score.move == BLACK && blackPlayer == NET_HUMAN) ||
+                    (score.move == WHITE && whitePlayer == NET_HUMAN)) {
+                    send = true
+                }
             }
+        }
+        else {
+            if ((score.move == BLACK && blackPlayer == NET_HUMAN) ||
+                (score.move == WHITE && whitePlayer == NET_HUMAN)) {
+                send = true
+            }
+        }
+        if (send) {
+            // Send data to network player
+            var a = msgpack.pack(MOVE)
+            a = a.concat(msgpack.pack([pos.x, pos.y]))
+            var b = new Uint8Array(a)
+            ws.send(b)
         }
         // Update Score View
         stone = score.getStone(pos)
@@ -388,10 +521,18 @@ $(window).on('load', function() {
     // Board click
     $(input).on('mousedown', function(e) {
         if (!playing) return
+        if (waitSwapOrNot) return
         if (altMove.checked) {
-            if (score.turn < 3 && blackPlayer == HUMAN) {
+            if (score.turn < 3) {
+                if (blackPlayer != HUMAN) return
             }
-            else if (score.turn == 4 && blackPlayer == HUMAN) {
+            else if (score.turn == 4) {
+                if (alt5first == null || alt5second == null) {
+                    if (blackPlayer != HUMAN) return
+                }
+                else {
+                    if (whitePlayer != HUMAN) return
+                }
             }
             else {
                 if (score.move == BLACK && blackPlayer != HUMAN) return
@@ -403,57 +544,6 @@ $(window).on('load', function() {
             if (score.move == WHITE && whitePlayer != HUMAN) return
         }
         var pos = adjustXY(e)
-        var stone = score.getStone(pos)
-        if (stone == BLACK || stone == WHITE) return
-
-        if (altMove.checked) {
-            if (score.turn == 1) {
-                if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
-            }
-            if (score.turn == 2) {
-                if (pos.x < 5 || pos.x > 9 || pos.y < 5 || pos.y > 9) return
-            }
-            if (score.turn == 4) {
-                if (alt5first == null) {
-                    alt5first = pos
-                    putStoneDirect(ctxStone, pos, BLACK)
-                    putNumberWithColor(ctxAltStone, pos, "5A", "#00FF00")
-                    symPos = getSymmetricPositions(pos)
-                    for (var i = 0; i < symPos.length; ++i) {
-                        putNumberWithColor(ctxAltStone, symPos[i], "NG", "#FF1111")
-                    }
-                    drawGuide(ctxGuide)
-                    return
-                }
-                if (alt5second == null) {
-                    if (pos.equals(alt5first)) return
-                    for (var i = 0; i < symPos.length; ++i) {
-                        if (pos.equals(symPos[i])) return
-                    }
-                    alt5second = pos
-                    putStoneDirect(ctxStone, pos, BLACK)
-                    putNumberWithColor(ctxAltStone, pos, "5B", "#00FF00")
-                    drawGuide(ctxGuide)
-                    return
-                }
-                if (pos.equals(alt5first)) {
-                    clearStone(ctxStone, alt5second)
-                    clearNumber(ctxNumber, alt5first)
-                    clearNumber(ctxNumber, alt5second)
-                    pos = alt5first
-                }
-                else if (pos.equals(alt5second)) {
-                    clearStone(ctxStone, alt5first)
-                    clearNumber(ctxNumber, alt5first)
-                    clearNumber(ctxNumber, alt5second)
-                    pos = alt5second
-                }
-                else {
-                    return
-                }
-                ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-            }
-        }
         update(pos)
     })
 
@@ -489,27 +579,41 @@ $(window).on('load', function() {
             var cmd = msgpack.unpack(data)
             switch (cmd) {
             case START_ACCEPT:
-                var len = msgpack.unpackedLength()
-                data = data.subarray(len)
+                data = data.subarray(msgpack.unpackedLength())
                 var id = msgpack.unpack(data)
                 var url = window.location.protocol + "//" + window.location.host
                 if (window.location.pathname != "") {
-                    url += "/" + window.location.pathname
+                    url += window.location.pathname
                 }
                 url += "?id=" + id
                 $.toast({
                     text: "Send the following URL to your oppornent.<br />" + url,
-                    hideAfter: false
+                    hideAfter: false,
+                    position: 'bottom-center'
                 })
                 break
             case T_BLACK_START:
                 blackPlayer = HUMAN
                 whitePlayer = NET_HUMAN
+                data = data.subarray(msgpack.unpackedLength())
+                if (msgpack.unpack(data)) {
+                    altMove.checked = true
+                }
+                else {
+                    altMove.checked = false
+                }
                 doFirstMove()
                 break
             case T_WHITE_START:
                 blackPlayer = NET_HUMAN
                 whitePlayer = HUMAN
+                data = data.subarray(msgpack.unpackedLength())
+                if (msgpack.unpack(data)) {
+                    altMove.checked = true
+                }
+                else {
+                    altMove.checked = false
+                }
                 break
             case MOVE:
                 var len = msgpack.unpackedLength()
@@ -517,6 +621,14 @@ $(window).on('load', function() {
                 var upd = msgpack.unpack(data)
                 pos = new Position(upd[0], upd[1])
                 update(pos)
+                break
+            case SWAP:
+                blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+                $.toast({
+                    text: "Your oppornent choose swap black and white. Then you are white.",
+                    hideAfter: false,
+                    position: 'bottom-center'
+                })
                 break
             }
         }
