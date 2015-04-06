@@ -454,11 +454,11 @@ $(window).on('load', function() {
                 var len = msgpack.unpackedLength()
                 data = data.subarray(len)
                 var id = msgpack.unpack(data)
-                var url =
-                    window.location.protocol +
-                    "//" + window.location.host +
-                    "/" + window.location.pathname +
-                    "?id=" + id
+                var url = window.location.protocol + "//" + window.location.host
+                if (window.location.pathname != "") {
+                    url += "/" + window.location.pathname
+                }
+                url += "?id=" + id
                 $.toast({
                     text: "Send the following URL to your oppornent.<br />" + url,
                     hideAfter: false
