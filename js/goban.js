@@ -180,6 +180,8 @@ $(window).on('load', function() {
     var alt5second = null
     var symPos = []
 
+    var ws = null
+
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -256,10 +258,10 @@ $(window).on('load', function() {
         else if (blackPlayer == NET_WAITING) {
             var id = getParameterByName("id")
             if (id == "") {
-                var ws = new WebSocket(WS_URL)
+                ws = new WebSocket(WS_URL)
             }
             else {
-                var ws = new WebSocket(WS_URL+"?id=" + id)
+                ws = new WebSocket(WS_URL+"?id=" + id)
             }
             ws.binaryType = 'arraybuffer'
             ws.onopen = wsOnOpen
@@ -267,7 +269,6 @@ $(window).on('load', function() {
             ws.onerror = wsOnError
             ws.onmessage = wsOnMessage
             // Web Socket is connected, send data using send()
-            // ws.send(msgpack.toByteArray(msgpack.pack(buf)))
         }
     })
 
@@ -440,11 +441,28 @@ $(window).on('load', function() {
     const DRAW_ACCEPT    = 16
     const DRAW_REJECT    = 17
 
+    function pingHandler() {
+        if (ws) {
+            ws.send(msgpack.toByteArray(msgpack.pack(PING)))
+        }
+    }
+    var pingId = null
+    function setTimer() {
+        if (ws) {
+            pingId = setInterval(pingHandler, 30000)
+        }
+    }
+    function resetTimer() {
+        clearInterval(pingId)
+        setTimer()
+    }
     function wsOnOpen(e) {
     }
     function wsOnClose(e) {
+        ws = null
     }
     function wsOnError(e) {
+        ws = null
     }
     function wsOnMessage(e) {
         if (e && e.data) {
