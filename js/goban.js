@@ -457,6 +457,7 @@ $(window).on('load', function() {
         setTimer()
     }
     function wsOnOpen(e) {
+        setTimer()
     }
     function wsOnClose(e) {
         ws = null
