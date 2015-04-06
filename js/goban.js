@@ -443,7 +443,9 @@ $(window).on('load', function() {
 
     function pingHandler() {
         if (ws) {
-            ws.send(msgpack.toByteArray(msgpack.pack(PING)))
+            var a = msgpack.pack(PING)
+            var b = new Uint8Array(a)
+            ws.send(b)
         }
     }
     var pingId = null
