@@ -139,6 +139,25 @@ $(window).on('load', function() {
     const CANVAS_WIDTH  = BASE * (MAX + 1)
     const CANVAS_HEIGHT = BASE * (MAX + 1)
 
+    const PING           =  0
+    const START_REQ      =  1
+    const START_ACCEPT   =  2
+    const T_BLACK_START  =  3
+    const T_WHITE_START  =  4
+    const T_FIRST        =  5
+    const T_SECOND       =  6
+    const T_THIRD        =  7
+    const SWAP           =  8
+    const MOVE           =  9
+    const FIFTH_STONE1   = 10
+    const FIFTH_STONE2   = 11
+    const FIFTH_CHOICE   = 12
+    const PASS           = 13
+    const RESIGN         = 14
+    const DRAW_REQ       = 15
+    const DRAW_ACCEPT    = 16
+    const DRAW_REJECT    = 17
+
     var score = {}
     var goban      = document.getElementById('goban')
     var stone      = document.getElementById('stone')
@@ -220,6 +239,27 @@ $(window).on('load', function() {
         }
     })
 
+    function doFirstMove() {
+        var pos = new Position(7, 7)
+        score.put(pos)
+        putStone(ctxStone, pos)
+        if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
+        if (altMove.checked) {
+            alt5first = null
+            alt5second = null
+        }
+        var scoreText = sprintf("%3d: %s: %s", 1, "Black", pos.toString())
+        var $pre = $('<pre>').text(scoreText)
+        var $newLi = $('<li>').append($pre).appendTo(scoreView)
+        moveFocus($newLi)
+        $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
+        drawGuide(ctxGuide)
+        var a = msgpack.pack(MOVE)
+        a = a.concat(msgpack.pack([pos.x, pos.y]))
+        var b = new Uint8Array(a)
+        ws.send(b)
+    }
+
     // Start click
     $(start).on('click', function() {
         playing = true
@@ -240,20 +280,7 @@ $(window).on('load', function() {
         ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         symPos = []
         if (blackPlayer == HUMAN) {
-            var pos = new Position(7, 7)
-            score.put(pos)
-            putStone(ctxStone, pos)
-            if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
-            if (altMove.checked) {
-                alt5first = null
-                alt5second = null
-            }
-            var scoreText = sprintf("%3d: %s: %s", 1, "Black", pos.toString())
-            var $pre = $('<pre>').text(scoreText)
-            var $newLi = $('<li>').append($pre).appendTo(scoreView)
-            moveFocus($newLi)
-            $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
-            drawGuide(ctxGuide)
+            doFirstMove()
         }
         else if (blackPlayer == NET_WAITING) {
             var id = getParameterByName("id")
@@ -291,11 +318,90 @@ $(window).on('load', function() {
         moveFocus($(this))
     })
 
+    function update(pos) {
+        // Update Internal Model
+        score.put(pos)
+
+        if (score.turn == 5) {
+            $(pass).prop('disabled', false)
+        }
+
+        // Send data to network player
+        if ((score.move == BLACK && blackPlayer == NET_HUMAN) ||
+            (score.move == WHITE && whitePlayer == NET_HUMAN)) {
+            if (altMove.checked) {
+            }
+            else {
+                var a = msgpack.pack(MOVE)
+                a = a.concat(msgpack.pack([pos.x, pos.y]))
+                var b = new Uint8Array(a)
+                ws.send(b)
+            }
+        }
+        // Update Score View
+        stone = score.getStone(pos)
+        var stoneString = stone == BLACK ? "Black" : "White"
+        var scoreText = sprintf("%3d: %s: %s", score.turn, stoneString, pos.toString())
+        var $pre = $('<pre>').text(scoreText)
+        var $newLi = $('<li>').append($pre).appendTo(scoreView)
+        moveFocus($newLi)
+        $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
+
+        if (score.turn == 3) {
+            var $kata = $(scoreView).children(":first").children("pre")
+            var scoreText = "     "
+            scoreText += getKata()
+            $kata.text(scoreText)
+        }
+
+        // Update Board View
+        putStone(ctxStone, pos)
+        var result = checkYaku(pos)
+        if (result) {
+            yakuPositions = result.positions
+        }
+        else {
+            yakuPositions = null
+        }
+        if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
+        if (showYaku.checked)   putYaku(ctxYaku, yakuPositions)
+        setFocus(ctxFocus, pos)
+
+        // Dialog
+        if (result) {
+            if (result.yaku == Score.Y_WIN) {
+                if (stone == BLACK) {
+                    alert("BLACK WIN")
+                }
+                else if (stone == WHITE) {
+                    alert("WHITE WIN")
+                }
+            }
+            else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
+                alert("BLACK MOVE IS PROHIBITED, WHITE WIN")
+            }
+
+        }
+        drawGuide(ctxGuide)
+    }
+
     // Board click
     $(input).on('mousedown', function(e) {
         if (!playing) return
-        if (score.move == BLACK && blackPlayer == COM) return
-        if (score.move == WHITE && whitePlayer == COM) return
+        if (altMove.checked) {
+            if (score.turn < 3 && blackPlayer == HUMAN) {
+            }
+            else if (score.turn == 4 && blackPlayer == HUMAN) {
+            }
+            else {
+                if (score.move == BLACK && blackPlayer != HUMAN) return
+                if (score.move == WHITE && whitePlayer != HUMAN) return
+            }
+        }
+        else {
+            if (score.move == BLACK && blackPlayer != HUMAN) return
+            if (score.move == WHITE && whitePlayer != HUMAN) return
+        }
         var pos = adjustXY(e)
         var stone = score.getStone(pos)
         if (stone == BLACK || stone == WHITE) return
@@ -348,98 +454,8 @@ $(window).on('load', function() {
                 ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
             }
         }
-
-
-        // Update Internal Model
-        score.put(pos)
-
-        if (score.turn == 5) {
-            $(pass).prop('disabled', false)
-        }
-
-
-        // Update Score View
-        stone = score.getStone(pos)
-        var stoneString = stone == BLACK ? "Black" : "White"
-        var scoreText = sprintf("%3d: %s: %s", score.turn, stoneString, pos.toString())
-        var $pre = $('<pre>').text(scoreText)
-        var $newLi = $('<li>').append($pre).appendTo(scoreView)
-        moveFocus($newLi)
-        $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
-
-        if (score.turn == 3) {
-            var $kata = $(scoreView).children(":first").children("pre")
-            var scoreText = "     "
-            scoreText += getKata()
-            $kata.text(scoreText)
-        }
-
-        // Update Board View
-        putStone(ctxStone, pos)
-        var result = checkYaku(pos)
-        if (result) {
-            yakuPositions = result.positions
-        }
-        else {
-            yakuPositions = null
-        }
-        if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
-        if (showYaku.checked)   putYaku(ctxYaku, yakuPositions)
-        setFocus(ctxFocus, pos)
-
-        // Dialog
-        if (result) {
-            if (result.yaku == Score.Y_WIN) {
-                if (stone == BLACK) {
-                    alert("BLACK WIN")
-                }
-                else if (stone == WHITE) {
-                    alert("WHITE WIN")
-                }
-            }
-            else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
-                alert("BLACK MOVE IS PROHIBITED, WHITE WIN")
-            }
-
-        }
-        drawGuide(ctxGuide)
-/*
-        if ((score.turn % 2 == 0 && blackPlayer == COM) ||
-            (score.turn % 2 != 0 && whitePlayer == COM)) {
-            var buf = []
-            $.each(score.history, function() {
-                buf.push(this.x)
-                buf.push(this.y)
-            })
-            var ws = new WebSocket("ws://localhost:9002")
-            ws.binaryType = 'arraybuffer'
-            ws.onopen = function()
-            {
-                // Web Socket is connected, send data using send()
-                ws.send(msgpack.toByteArray(msgpack.pack(buf)))
-            }
-        }
-*/
+        update(pos)
     })
-
-    const PING           =  0
-    const START_REQ      =  1
-    const START_ACCEPT   =  2
-    const T_BLACK_START  =  3
-    const T_WHITE_START  =  4
-    const T_FIRST        =  5
-    const T_SECOND       =  6
-    const T_THIRD        =  7
-    const SWAP           =  8
-    const MOVE           =  9
-    const FIFTH_STONE1   = 10
-    const FIFTH_STONE2   = 11
-    const FIFTH_CHOICE   = 12
-    const PASS           = 13
-    const RESIGN         = 14
-    const DRAW_REQ       = 15
-    const DRAW_ACCEPT    = 16
-    const DRAW_REJECT    = 17
 
     function pingHandler() {
         if (ws) {
@@ -487,10 +503,20 @@ $(window).on('load', function() {
                 })
                 break
             case T_BLACK_START:
-                alert("black start")
+                blackPlayer = HUMAN
+                whitePlayer = NET_HUMAN
+                doFirstMove()
                 break
             case T_WHITE_START:
-                alert("white start")
+                blackPlayer = NET_HUMAN
+                whitePlayer = HUMAN
+                break
+            case MOVE:
+                var len = msgpack.unpackedLength()
+                data = data.subarray(len)
+                var upd = msgpack.unpack(data)
+                pos = new Position(upd[0], upd[1])
+                update(pos)
                 break
             }
         }
