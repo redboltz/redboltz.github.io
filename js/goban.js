@@ -421,23 +421,24 @@ $(window).on('load', function() {
 */
     })
 
-    const START_REQ      =  0
-    const START_ACCEPT   =  1
-    const T_BLACK_START  =  2
-    const T_WHITE_START  =  3
-    const T_FIRST        =  4
-    const T_SECOND       =  5
-    const T_THIRD        =  6
-    const SWAP           =  7
-    const MOVE           =  8
-    const FIFTH_STONE1   =  9
-    const FIFTH_STONE2   = 10
-    const FIFTH_CHOICE   = 11
-    const PASS           = 12
-    const RESIGN         = 13
-    const DRAW_REQ       = 14
-    const DRAW_ACCEPT    = 15
-    const DRAW_REJECT    = 16
+    const PING           =  0
+    const START_REQ      =  1
+    const START_ACCEPT   =  2
+    const T_BLACK_START  =  3
+    const T_WHITE_START  =  4
+    const T_FIRST        =  5
+    const T_SECOND       =  6
+    const T_THIRD        =  7
+    const SWAP           =  8
+    const MOVE           =  9
+    const FIFTH_STONE1   = 10
+    const FIFTH_STONE2   = 11
+    const FIFTH_CHOICE   = 12
+    const PASS           = 13
+    const RESIGN         = 14
+    const DRAW_REQ       = 15
+    const DRAW_ACCEPT    = 16
+    const DRAW_REJECT    = 17
 
     function wsOnOpen(e) {
     }
