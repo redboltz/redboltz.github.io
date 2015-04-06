@@ -1,4 +1,4 @@
-const WS_URL = "ws://52.68.7.189:10080"
+const WS_URL = "ws://www.redboltz.net:10080"
 const BLACK  = {}
 const WHITE  = {}
 const BORDER = {}
