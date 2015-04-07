@@ -210,7 +210,7 @@ $(window).on('load', function() {
     $(pass).prop('disabled', true)
     $(resign).prop('disabled', true)
 
-    $('.notSelectable').disableSelection()
+
 
 
     // Checkboxes
