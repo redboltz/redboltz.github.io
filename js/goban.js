@@ -549,10 +549,10 @@ $(window).on('load', function() {
         update(pos)
     })
 
-    $(input).on('touchstart', function(e) {
+    $(input).bind('touchstart', function(e) {
         drawTouchGuide(ctxTouch, adjustXY(e))
     })
-    $(input).on('touchend', function(e) {
+    $(input).bind('touchend', function(e) {
         clearTouchGuide(ctxTouch)
     })
     function pingHandler() {
