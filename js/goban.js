@@ -522,8 +522,9 @@ $(window).on('load', function() {
         drawGuide(ctxGuide)
     }
 
-    // Board click
-    $(input).on('mousedown', function(e) {
+    var disableClick = false
+
+    function humanInput(pos) {
         if (!playing) return
         if (waitSwapOrNot) return
         if (altMove.checked) {
@@ -547,19 +548,28 @@ $(window).on('load', function() {
             if (score.move == BLACK && blackPlayer != HUMAN) return
             if (score.move == WHITE && whitePlayer != HUMAN) return
         }
-        var pos = adjustXY(e)
         update(pos)
+    }
+    // Board click
+    $(input).on('mousedown', function(e) {
+        if (disableClick) return
+        var pos = adjustXY(e)
+        humanInput(pos)
     })
 
     var touchId = null
-    var touchEvent = null
     var touchMode = false
+    var touchPos = null
+    var lastTouchPos = null
+
     $(input).bind('touchstart', function(e) {
         if (!playing) return
-        touchEvent = e.originalEvent
+        disableClick = true
         touchId = setTimeout(
             function() {
-                drawTouchGuide(ctxTouch, adjustXY(touchEvent.touches[0]))
+                touchPos = adjustXY(e.originalEvent.touches[0])
+                lastTouchPos = touchPos
+                drawTouchGuide(ctxTouch, touchPos)
                 e.preventDefault()
                 touchMode = true
                 touchId = null
@@ -573,15 +583,23 @@ $(window).on('load', function() {
         }
         if (touchMode) {
             e.preventDefault()
-            clearTouchGuide(ctxTouch)
-            touchMode = false
+            touchPos = adjustXY(e.originalEvent.touches[0])
+            if (!touchPos.equals(lastTouchPos)) {
+                clearTouchGuide(ctxTouch, lastTouchPos)
+                drawTouchGuide(ctxTouch, touchPos)
+            }
         }
     })
     $(input).bind('touchend', function(e) {
+        if (touchId) {
+            clearInterval(touchId)
+            touchId = null
+        }
         if (touchMode) {
             e.preventDefault()
-            clearTouchGuide(ctxTouch)
+            clearTouchGuide(ctxTouch, touchPos)
             touchMode = false
+            humanInput(touchPos)
         }
     })
     function pingHandler() {
@@ -894,8 +912,13 @@ $(window).on('load', function() {
             false)
         ctx.stroke()
     }
-    function clearTouchGuide(ctx) {
-        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    function clearTouchGuide(ctx, pos) {
+        ctx.beginPath()
+        ctx.clearRect(
+            (pos.x + 1) * BASE - BASE,
+            (pos.y + 1) * BASE - BASE,
+            BASE * 2,
+            BASE * 2)
     }
 
     function draw2ndGuide(ctx) {
