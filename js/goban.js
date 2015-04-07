@@ -262,10 +262,12 @@ $(window).on('load', function() {
         moveFocus($newLi)
         $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
         drawGuide(ctxGuide)
-        var a = msgpack.pack(MOVE)
-        a = a.concat(msgpack.pack([pos.x, pos.y]))
-        var b = new Uint8Array(a)
-        ws.send(b)
+        if (ws) {
+            var a = msgpack.pack(MOVE)
+            a = a.concat(msgpack.pack([pos.x, pos.y]))
+            var b = new Uint8Array(a)
+            ws.send(b)
+        }
     }
 
     function startGame() {
@@ -555,7 +557,7 @@ $(window).on('load', function() {
     $(input).bind('touchstart', function(e) {
         if (!playing) return
         touchEvent = e.originalEvent
-        touchId = setInterval(
+        touchId = setTimeout(
             function() {
                 drawTouchGuide(ctxTouch, adjustXY(touchEvent.touches[0]))
                 e.preventDefault()
