@@ -558,7 +558,7 @@ $(window).on('load', function() {
         touchId = setInterval(
             function() {
                 drawTouchGuide(ctxTouch, adjustXY(touchEvent.touches[0]))
-                touchEvent.preventDefault()
+                e.preventDefault()
                 touchMode = true
                 touchId = null
             },
@@ -570,14 +570,14 @@ $(window).on('load', function() {
             touchId = null
         }
         if (touchMode) {
-            e.ogirinalEvent.preventDefault()
+            e.preventDefault()
             clearTouchGuide(ctxTouch)
             touchMode = false
         }
     })
     $(input).bind('touchend', function(e) {
         if (touchMode) {
-            e.ogirinalEvent.preventDefault()
+            e.preventDefault()
             clearTouchGuide(ctxTouch)
             touchMode = false
         }
