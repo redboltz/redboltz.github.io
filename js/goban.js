@@ -919,7 +919,7 @@ $(window).on('load', function() {
     function drawTouchGuide(ctx, pos) {
         ctx.beginPath()
         ctx.lineWidth = 6
-        ctx.strokeStyle = "#AA0066"
+        ctx.strokeStyle = "#0066FF"
         ctx.moveTo(BASE * (pos.x + 1), BASE)
         ctx.lineTo(BASE * (pos.x + 1), BASE * MAX)
         ctx.moveTo(BASE, BASE * (pos.y + 1))
