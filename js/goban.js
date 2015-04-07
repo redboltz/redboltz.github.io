@@ -140,23 +140,24 @@ $(window).on('load', function() {
     const CANVAS_HEIGHT = BASE * (MAX + 1)
 
     const PING           =  0
-    const START_REQ      =  1
-    const START_ACCEPT   =  2
-    const T_BLACK_START  =  3
-    const T_WHITE_START  =  4
-    const T_FIRST        =  5
-    const T_SECOND       =  6
-    const T_THIRD        =  7
-    const SWAP           =  8
-    const MOVE           =  9
-    const FIFTH_STONE1   = 10
-    const FIFTH_STONE2   = 11
-    const FIFTH_CHOICE   = 12
-    const PASS           = 13
-    const RESIGN         = 14
-    const DRAW_REQ       = 15
-    const DRAW_ACCEPT    = 16
-    const DRAW_REJECT    = 17
+    const NEW_ID         =  1
+    const START_REQ      =  2
+    const START_RET      =  3
+    const T_BLACK_START  =  4
+    const T_WHITE_START  =  5
+    const T_FIRST        =  6
+    const T_SECOND       =  7
+    const T_THIRD        =  8
+    const SWAP           =  9
+    const MOVE           = 10
+    const FIFTH_STONE1   = 11
+    const FIFTH_STONE2   = 12
+    const FIFTH_CHOICE   = 13
+    const PASS           = 14
+    const RESIGN         = 15
+    const DRAW_REQ       = 16
+    const DRAW_ACCEPT    = 17
+    const DRAW_REJECT    = 18
 
     var score = {}
     var goban      = document.getElementById('goban')
@@ -205,6 +206,8 @@ $(window).on('load', function() {
 
     var ws = null
 
+    var swapped = false
+
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -252,10 +255,6 @@ $(window).on('load', function() {
         score.put(pos)
         putStone(ctxStone, pos)
         if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
-        if (altMove.checked) {
-            alt5first = null
-            alt5second = null
-        }
         var scoreText = sprintf("%3d: %s: %s", 1, "Black", pos.toString())
         var $pre = $('<pre>').text(scoreText)
         var $newLi = $('<li>').append($pre).appendTo(scoreView)
@@ -272,6 +271,9 @@ $(window).on('load', function() {
 
     function startGame() {
         playing = true
+        swapped = false
+        alt5first = null
+        alt5second = null
         $(resign).prop('disabled', false)
         $(gameType).prop('disabled', true)
         $(altMove).prop('disabled', true)
@@ -301,29 +303,46 @@ $(window).on('load', function() {
                 else {
                     query = "?altmove=false"
                 }
-                ws = new WebSocket(WS_URL + "/" + query)
+                if (!ws) {
+                    ws = new WebSocket(WS_URL + "/" + query)
+                    ws.binaryType = 'arraybuffer'
+                    ws.onopen = wsOnOpen
+                    ws.onclose = wsOnClose
+                    ws.onerror = wsOnError
+                    ws.onmessage = wsOnMessage
+                }
             }
-            ws.binaryType = 'arraybuffer'
-            ws.onopen = wsOnOpen
-            ws.onclose = wsOnClose
-            ws.onerror = wsOnError
-            ws.onmessage = wsOnMessage
-            // Web Socket is connected, send data using send()
         }
     }
-
     var id = getParameterByName("id")
     if (id != "") {
         $(gameType).prop("selectedIndex", 1)
         blackPlayer = NET_WAITING
         whitePlayer = NET_WAITING
-        ws = new WebSocket(WS_URL+"?id=" + id)
+        if (!ws) {
+            ws = new WebSocket(WS_URL+"?id=" + id)
+            ws.binaryType = 'arraybuffer'
+            ws.onopen = wsOnOpen
+            ws.onclose = wsOnClose
+            ws.onerror = wsOnError
+            ws.onmessage = wsOnMessage
+        }
         startGame()
     }
 
     // Start click
     $(start).on('click', function() {
-        startGame()
+        if ((blackPlayer == HUMAN && whitePlayer == NET_HUMAN) ||
+            (blackPlayer == NET_HUMAN && whitePlayer == HUMAN)) {
+            var id = getParameterByName("id")
+            var a = msgpack.pack(START_REQ)
+            a = a.concat(msgpack.pack(altMove.checked))
+            var b = new Uint8Array(a)
+            ws.send(b)
+        }
+        else {
+            startGame()
+        }
     })
 
     // Resign click
@@ -446,6 +465,7 @@ $(window).on('load', function() {
                 })
                 $("#black").on('click', function () {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+                    swapped = true
                     var a = msgpack.pack(SWAP)
                     var b = new Uint8Array(a)
                     ws.send(b)
@@ -537,6 +557,49 @@ $(window).on('load', function() {
 
         }
         drawGuide(ctxGuide)
+    }
+
+    function restartGame() {
+        if (swapped == false) {
+            blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+        }
+        if (blackPlayer == HUMAN) {
+            if (altMove.checked) {
+                $.toast({
+                    text: "You are a tentative black player.",
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
+            }
+            else {
+                $.toast({
+                    text: "You are a black player.",
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
+            }
+        }
+        else if (whitePlayer == HUMAN) {
+            if (altMove.checked) {
+                $.toast({
+                    text: "You are a tentative white player.",
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
+            }
+            else {
+                $.toast({
+                    text: "You are a white player.",
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
+            }
+        }
+        startGame()
     }
 
     var disableClick = false
@@ -666,7 +729,7 @@ $(window).on('load', function() {
             var data = new Uint8Array(e.data)
             var cmd = msgpack.unpack(data)
             switch (cmd) {
-            case START_ACCEPT:
+            case NEW_ID:
                 data = data.subarray(msgpack.unpackedLength())
                 var id = msgpack.unpack(data)
                 var url = window.location.protocol + "//" + window.location.host
@@ -681,6 +744,47 @@ $(window).on('load', function() {
                     hideAfter: false,
                 })
                 history.pushState(null, null, url)
+                break
+            case START_REQ:
+                $.toast({
+                    text: "Your oppornent is requesting replay. Accept?<br />" + '<input type="button" name="yes" id="yes" value="Yes">    <input type="button" name="no" id="no" value="No">',
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
+                $("#yes").on('click', function () {
+                    data = data.subarray(msgpack.unpackedLength())
+                    altMove.checked = msgpack.unpack(data)
+
+                    var a = msgpack.pack(START_RET)
+                    a = a.concat(msgpack.pack(true))
+                    var b = new Uint8Array(a)
+                    ws.send(b)
+                    $.toast().reset('all')
+                    restartGame()
+                })
+                $("#no").on('click', function () {
+                    var a = msgpack.pack(START_RET)
+                    a = a.concat(msgpack.pack(false))
+                    var b = new Uint8Array(a)
+                    ws.send(b)
+                    $.toast().reset('all')
+                })
+                break
+            case START_RET:
+                data = data.subarray(msgpack.unpackedLength())
+                var status = msgpack.unpack(data)
+                if (status == true) {
+                    restartGame()
+                }
+                else {
+                    $.toast({
+                        text: "Your oppornent rejected your request",
+                        hideAfter: false,
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                    })
+                }
                 break
             case T_BLACK_START:
                 blackPlayer = HUMAN
@@ -738,6 +842,7 @@ $(window).on('load', function() {
                 break
             case SWAP:
                 blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+                swapped = true
                 $.toast({
                     text: "Your oppornent choose swap black and white. Then you are white.",
                     hideAfter: false,
