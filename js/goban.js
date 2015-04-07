@@ -553,6 +553,9 @@ $(window).on('load', function() {
         alert("touchStart")
         drawTouchGuide(ctxTouch, adjustXY(e))
     })
+    $(input).bind('touchmove', function(e) {
+        e.preventDefault()
+    })
     $(input).bind('touchend', function(e) {
         alert("touchEnd")
         clearTouchGuide(ctxTouch)
