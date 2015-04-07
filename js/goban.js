@@ -586,6 +586,7 @@ $(window).on('load', function() {
             if (e.originalEvent.touches.length != 1) {
                 clearTouchGuide(ctxTouch, lastTouchPos)
                 touchMode = false
+                return
             }
             e.preventDefault()
             touchPos = adjustXY(e.originalEvent.touches[0])
