@@ -553,7 +553,6 @@ $(window).on('load', function() {
         drawTouchGuide(ctxTouch, adjustXY(e))
     })
     $(input).bind('touchend', function(e) {
-        alert("touchEnd")
         clearTouchGuide(ctxTouch)
     })
     function pingHandler() {
@@ -860,7 +859,7 @@ $(window).on('load', function() {
         ctx.arc(
             (pos.x + 1) * BASE,
             (pos.y + 1) * BASE,
-            STONE_SIZE,
+            BASE,
             0,
             Math.PI * 2,
             false)
