@@ -918,15 +918,15 @@ $(window).on('load', function() {
     }
     function drawTouchGuide(ctx, pos) {
         ctx.beginPath()
-        ctx.lineWidth = 3
-        ctx.strokeStyle = "#FF0066"
-        ctx.arc(
-            (pos.x + 1) * BASE,
-            (pos.y + 1) * BASE,
-            BASE,
-            0,
-            Math.PI * 2,
-            false)
+        ctx.lineWidth = 6
+        ctx.strokeStyle = "#AA0066"
+        ctx.moveTo(BASE * (pos.x + 1), BASE)
+        ctx.lineTo(BASE * (pos.x + 1), BASE * MAX)
+        ctx.moveTo(BASE, BASE * (pos.y + 1))
+        ctx.lineTo(BASE * MAX, BASE * (pos.y + 1))
+        ctx.closePath()
+        ctx.stroke()
+
         ctx.stroke()
     }
     function clearTouchGuide(ctx) {
