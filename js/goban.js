@@ -550,7 +550,7 @@ $(window).on('load', function() {
     })
 
     $(input).bind('touchstart', function(e) {
-        drawTouchGuide(ctxTouch, adjustXY(e.touches[0]))
+        drawTouchGuide(ctxTouch, adjustXY(e.originalEvent.touches[0]))
     })
     $(input).bind('touchend', function(e) {
         clearTouchGuide(ctxTouch)
