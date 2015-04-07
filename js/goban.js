@@ -166,6 +166,7 @@ $(window).on('load', function() {
     var yaku       = document.getElementById('yaku')
     var guide      = document.getElementById('guide')
     var altStone   = document.getElementById('alt_stone')
+    var touch      = document.getElementById('touch')
     var input      = document.getElementById('input')
     var start      = document.getElementById('start')
     var pass       = document.getElementById('pass')
@@ -181,6 +182,7 @@ $(window).on('load', function() {
     var ctxYaku     = yaku.getContext('2d')
     var ctxGuide    = guide.getContext('2d')
     var ctxAltStone = altStone.getContext('2d')
+    var ctxTouch    = touch.getContext('2d')
     var scoreView = document.getElementById("scoreView")
 
     const COM   = "COM"
@@ -547,6 +549,12 @@ $(window).on('load', function() {
         update(pos)
     })
 
+    $(input).on('touchstart', function(e) {
+        drawTouchGuide(ctxTouch, adjustXY(e))
+    }
+    $(input).on('touchend', function(e) {
+        clearTouchGuide(ctxTouch)
+    }
     function pingHandler() {
         if (ws) {
             var a = msgpack.pack(PING)
@@ -598,9 +606,19 @@ $(window).on('load', function() {
                 data = data.subarray(msgpack.unpackedLength())
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
+                    $.toast({
+                        text: "You are a tentative black player.",
+                        hideAfter: false,
+                        position: 'bottom-center'
+                    })
                 }
                 else {
                     altMove.checked = false
+                    $.toast({
+                        text: "You are a black player.",
+                        hideAfter: false,
+                        position: 'bottom-center'
+                    })
                 }
                 doFirstMove()
                 break
@@ -610,9 +628,19 @@ $(window).on('load', function() {
                 data = data.subarray(msgpack.unpackedLength())
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
+                    $.toast({
+                        text: "You are a tentative white player.",
+                        hideAfter: false,
+                        position: 'bottom-center'
+                    })
                 }
                 else {
                     altMove.checked = false
+                    $.toast({
+                        text: "You are a white player.",
+                        hideAfter: false,
+                        position: 'bottom-center'
+                    })
                 }
                 break
             case MOVE:
@@ -823,6 +851,22 @@ $(window).on('load', function() {
                 ctx.stroke()
             })
         }
+    }
+    function drawTouchGuide(ctx, pos) {
+        ctx.beginPath()
+        ctx.lineWidth = 3
+        ctx.strokeStyle = "#FF0066"
+        ctx.arc(
+            (pos.x + 1) * BASE,
+            (pos.y + 1) * BASE,
+            STONE_SIZE,
+            0,
+            Math.PI * 2,
+            false)
+        ctx.stroke()
+    }
+    function clearTouchGuide(ctx) {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     }
 
     function draw2ndGuide(ctx) {
