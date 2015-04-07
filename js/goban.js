@@ -584,14 +584,15 @@ $(window).on('load', function() {
         }
         if (touchMode) {
             if (e.originalEvent.touches.length != 1) {
-                clearTouchGuide(ctxTouch, lastTouchPos)
+                clearTouchGuide(ctxTouch)
                 touchMode = false
                 return
             }
             e.preventDefault()
             touchPos = adjustXY(e.originalEvent.touches[0])
             if (!touchPos.equals(lastTouchPos)) {
-                clearTouchGuide(ctxTouch, lastTouchPos)
+                lastTouchPos = touchPos
+                clearTouchGuide(ctxTouch)
                 drawTouchGuide(ctxTouch, touchPos)
             }
         }
@@ -603,7 +604,7 @@ $(window).on('load', function() {
         }
         if (touchMode) {
             e.preventDefault()
-            clearTouchGuide(ctxTouch, touchPos)
+            clearTouchGuide(ctxTouch)
             touchMode = false
             humanInput(touchPos)
         }
@@ -918,7 +919,7 @@ $(window).on('load', function() {
             false)
         ctx.stroke()
     }
-    function clearTouchGuide(ctx, pos) {
+    function clearTouchGuide(ctx) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     }
 
