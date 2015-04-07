@@ -580,7 +580,16 @@ $(window).on('load', function() {
     $(input).bind('touchmove', function(e) {
         if (touchId) {
             clearInterval(touchId)
-            touchId = null
+            touchId = setTimeout(
+                function() {
+                    touchPos = adjustXY(e.originalEvent.touches[0])
+                    lastTouchPos = touchPos
+                    drawTouchGuide(ctxTouch, touchPos)
+                    e.preventDefault()
+                    touchMode = true
+                    touchId = null
+                },
+                500)
         }
         if (touchMode) {
             if (e.originalEvent.touches.length != 1) {
@@ -653,6 +662,7 @@ $(window).on('load', function() {
                     hideAfter: false,
                     position: 'bottom-center'
                 })
+                history.pushState(null, null, url)
                 break
             case T_BLACK_START:
                 blackPlayer = HUMAN
