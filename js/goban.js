@@ -565,6 +565,7 @@ $(window).on('load', function() {
     $(input).bind('touchstart', function(e) {
         if (!playing) return
         disableClick = true
+        if (e.originalEvent.touches.length != 1) return
         touchId = setTimeout(
             function() {
                 touchPos = adjustXY(e.originalEvent.touches[0])
@@ -582,6 +583,10 @@ $(window).on('load', function() {
             touchId = null
         }
         if (touchMode) {
+            if (e.originalEvent.touches.length != 1) {
+                clearTouchGuide(ctxTouch, lastTouchPos)
+                touchMode = false
+            }
             e.preventDefault()
             touchPos = adjustXY(e.originalEvent.touches[0])
             if (!touchPos.equals(lastTouchPos)) {
