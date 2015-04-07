@@ -549,21 +549,12 @@ $(window).on('load', function() {
         update(pos)
     })
 
-    var touchGuideExists = false
     $(input).bind('touchstart', function(e) {
         if (!playing) return
         drawTouchGuide(ctxTouch, adjustXY(e.originalEvent.touches[0]))
-        touchGuideExists = true
-    })
-    $(input).bind('touchmove', function(e) {
-        if (!touchGuideExists) return
-        drawTouchGuide(ctxTouch, adjustXY(e.originalEvent.touches[0]))
-        touchGuideExists = false
     })
     $(input).bind('touchend', function(e) {
-        if (!touchGuideExists) return
         clearTouchGuide(ctxTouch)
-        touchGuideExists = false
     })
     function pingHandler() {
         if (ws) {
