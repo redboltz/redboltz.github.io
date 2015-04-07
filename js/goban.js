@@ -440,7 +440,9 @@ $(window).on('load', function() {
                 $.toast({
                     text: "Which color do you want to play?<br />" + '<input type="button" name="black" id="black" value="Black">    <input type="button" name="white" id="white" value="White">',
                     hideAfter: false,
-                    position: 'bottom-center'
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+
                 })
                 $("#black").on('click', function () {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
@@ -508,14 +510,29 @@ $(window).on('load', function() {
         if (result) {
             if (result.yaku == Score.Y_WIN) {
                 if (stone == BLACK) {
-                    alert("BLACK WIN")
+                    $.toast({
+                        text: "Black Win!",
+                        hideAfter: false,
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                    })
                 }
                 else if (stone == WHITE) {
-                    alert("WHITE WIN")
+                    $.toast({
+                        text: "White Win!",
+                        hideAfter: false,
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                    })
                 }
             }
             else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
-                alert("BLACK MOVE IS PROHIBITED, WHITE WIN")
+                $.toast({
+                    text: "White Win!<br /> Black move is prohibited.)",
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                })
             }
 
         }
@@ -658,9 +675,10 @@ $(window).on('load', function() {
                 }
                 url += "?id=" + id
                 $.toast({
-                    text: "Send the following URL to your oppornent.<br />" + url,
+                    text: "Send the URL to your oppornent.",
+                    stack: false,
+                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' },
                     hideAfter: false,
-                    position: 'bottom-center'
                 })
                 history.pushState(null, null, url)
                 break
@@ -673,7 +691,8 @@ $(window).on('load', function() {
                     $.toast({
                         text: "You are a tentative black player.",
                         hideAfter: false,
-                        position: 'bottom-center'
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
                     })
                 }
                 else {
@@ -681,7 +700,8 @@ $(window).on('load', function() {
                     $.toast({
                         text: "You are a black player.",
                         hideAfter: false,
-                        position: 'bottom-center'
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
                     })
                 }
                 doFirstMove()
@@ -695,7 +715,8 @@ $(window).on('load', function() {
                     $.toast({
                         text: "You are a tentative white player.",
                         hideAfter: false,
-                        position: 'bottom-center'
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
                     })
                 }
                 else {
@@ -703,7 +724,8 @@ $(window).on('load', function() {
                     $.toast({
                         text: "You are a white player.",
                         hideAfter: false,
-                        position: 'bottom-center'
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
                     })
                 }
                 break
@@ -719,7 +741,8 @@ $(window).on('load', function() {
                 $.toast({
                     text: "Your oppornent choose swap black and white. Then you are white.",
                     hideAfter: false,
-                    position: 'bottom-center'
+                        stack: false,
+                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
                 })
                 break
             }
@@ -919,7 +942,7 @@ $(window).on('load', function() {
     function drawTouchGuide(ctx, pos) {
         ctx.beginPath()
         ctx.lineWidth = 6
-        ctx.strokeStyle = "#0066FF"
+        ctx.strokeStyle = "#55CC55"
         ctx.moveTo(BASE * (pos.x + 1), BASE)
         ctx.lineTo(BASE * (pos.x + 1), BASE * MAX)
         ctx.moveTo(BASE, BASE * (pos.y + 1))
