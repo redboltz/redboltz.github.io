@@ -551,10 +551,10 @@ $(window).on('load', function() {
 
     $(input).on('touchstart', function(e) {
         drawTouchGuide(ctxTouch, adjustXY(e))
-    }
+    })
     $(input).on('touchend', function(e) {
         clearTouchGuide(ctxTouch)
-    }
+    })
     function pingHandler() {
         if (ws) {
             var a = msgpack.pack(PING)
