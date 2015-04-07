@@ -549,12 +549,38 @@ $(window).on('load', function() {
         update(pos)
     })
 
+    var touchId = null
+    var touchEvent = null
+    var touchMode = false
     $(input).bind('touchstart', function(e) {
         if (!playing) return
-        drawTouchGuide(ctxTouch, adjustXY(e.originalEvent.touches[0]))
+        touchEvent = e.originalEvent
+        touchId = setInterval(
+            function() {
+                drawTouchGuide(ctxTouch, adjustXY(touchEvent.touches[0]))
+                touchEvent.preventDefault()
+                touchMode = true
+                touchId = null
+            },
+            500)
+    })
+    $(input).bind('touchmove', function(e) {
+        if (touchId) {
+            clearInterval(touchId)
+            touchId = null
+        }
+        if (touchMode) {
+            e.ogirinalEvent.preventDefault()
+            clearTouchGuide(ctxTouch)
+            touchMode = false
+        }
     })
     $(input).bind('touchend', function(e) {
-        clearTouchGuide(ctxTouch)
+        if (touchMode) {
+            e.ogirinalEvent.preventDefault()
+            clearTouchGuide(ctxTouch)
+            touchMode = false
+        }
     })
     function pingHandler() {
         if (ws) {
