@@ -528,7 +528,7 @@ $(window).on('load', function() {
             }
             else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
                 $.toast({
-                    text: "White Win!<br /> Black move is prohibited.)",
+                    text: "White Win!<br /> Black move is prohibited.",
                     hideAfter: false,
                     stack: false,
                     position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
