@@ -913,12 +913,7 @@ $(window).on('load', function() {
         ctx.stroke()
     }
     function clearTouchGuide(ctx, pos) {
-        ctx.beginPath()
-        ctx.clearRect(
-            (pos.x + 1) * BASE - BASE,
-            (pos.y + 1) * BASE - BASE,
-            BASE * 2,
-            BASE * 2)
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     }
 
     function draw2ndGuide(ctx) {
