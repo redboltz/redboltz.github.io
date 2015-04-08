@@ -655,7 +655,7 @@ $(window).on('load', function() {
                 touchMode = true
                 touchId = null
             },
-            500)
+            100)
     })
     $(input).bind('touchmove', function(e) {
         if (touchId) {
