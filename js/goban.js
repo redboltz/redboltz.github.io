@@ -292,6 +292,9 @@ $(window).on('load', function() {
         symPos = []
         if (blackPlayer == HUMAN) {
             doFirstMove()
+            if (altMove.checked) {
+                guideToast('Put a white stone in the blue rect.')
+            }
         }
         else if (blackPlayer == NET_WAITING) {
             var id = getParameterByName("id")
@@ -370,12 +373,21 @@ $(window).on('load', function() {
 
         if (altMove.checked) {
             if (score.turn == 1) {
+                if (blackPlayer == HUMAN) {
+                    guideToast('Put a black stone in the blue rect.')
+                }
                 if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
             }
-            if (score.turn == 2) {
+            else if (score.turn == 2) {
                 if (pos.x < 5 || pos.x > 9 || pos.y < 5 || pos.y > 9) return
+                guideToast('Tentative white player choose black or white.')
             }
-            if (score.turn == 4) {
+            else if (score.turn == 3) {
+                if (blackPlayer == HUMAN) {
+                    guideToast('Put two black stones.<br />Then white player will remove one.')
+                }
+            }
+            else if (score.turn == 4) {
                 if (alt5first == null) {
                     alt5first = pos
                     putStoneDirect(ctxStone, pos, BLACK)
@@ -390,6 +402,9 @@ $(window).on('load', function() {
                         a = a.concat(msgpack.pack([pos.x, pos.y]))
                         var b = new Uint8Array(a)
                         ws.send(b)
+                    }
+                    if (blackPlayer == HUMAN) {
+                        guideToast('Put one more black stone.<br />Then white player will remove one.')
                     }
                     return
                 }
@@ -408,6 +423,12 @@ $(window).on('load', function() {
                         var b = new Uint8Array(a)
                         ws.send(b)
                     }
+                    if (blackPlayer == HUMAN) {
+                        guideToast('Wait the stone is removed by the white player.')
+                    }
+                    if (whitePlayer == HUMAN) {
+                        guideToast('Select the stone you want to leave.<br />Then put white stone.')
+                    }
                     return
                 }
                 if (pos.equals(alt5first)) {
@@ -421,6 +442,9 @@ $(window).on('load', function() {
                         var b = new Uint8Array(a)
                         ws.send(b)
                     }
+                    if (whitePlayer == HUMAN) {
+                        guideToast('Put a white stone.')
+                    }
                 }
                 else if (pos.equals(alt5second)) {
                     clearStone(ctxStone, alt5first)
@@ -433,11 +457,17 @@ $(window).on('load', function() {
                         var b = new Uint8Array(a)
                         ws.send(b)
                     }
+                    if (whitePlayer == HUMAN) {
+                        guideToast('Put a white stone.')
+                    }
                 }
                 else {
                     return
                 }
                 ctxAltStone.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+            }
+            else if (score.turn == 5) {
+                $.toast().reset('all')
             }
         }
         // Update Internal Model
@@ -467,14 +497,19 @@ $(window).on('load', function() {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
                     swapped = true
                     var a = msgpack.pack(SWAP)
+                    a = a.concat(swapped)
                     var b = new Uint8Array(a)
                     ws.send(b)
-                    $.toast().reset('all')
                     waitSwapOrNot = false
+                    guideToast('You decided that you are a black player.')
                 })
                 $("#white").on('click', function () {
-                    $.toast().reset('all')
+                    var a = msgpack.pack(SWAP)
+                    a = a.concat(swapped)
+                    var b = new Uint8Array(a)
+                    ws.send(b)
                     waitSwapOrNot = false
+                    guideToast('You decided that you are a white player.')
                 })
             }
             else {
@@ -530,29 +565,17 @@ $(window).on('load', function() {
         if (result) {
             if (result.yaku == Score.Y_WIN) {
                 if (stone == BLACK) {
-                    $.toast({
-                        text: "Black Win!",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('Black Win!')
                 }
                 else if (stone == WHITE) {
-                    $.toast({
-                        text: "White Win!",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('White Win!')
                 }
+                playing = false
+                $(gameType).prop('disabled', false)
+                $(altMove).prop('disabled', false)
             }
             else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
-                $.toast({
-                    text: "White Win!<br /> Black move is prohibited.",
-                    hideAfter: false,
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                guideToast('White Win! Because black move is prohibited.')
             }
 
         }
@@ -565,38 +588,18 @@ $(window).on('load', function() {
         }
         if (blackPlayer == HUMAN) {
             if (altMove.checked) {
-                $.toast({
-                    text: "You are a tentative black player.",
-                    hideAfter: false,
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                guideToast('You are a tentative black player.<br />Put a white stone in the blue rect.')
             }
             else {
-                $.toast({
-                    text: "You are a black player.",
-                    hideAfter: false,
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                guideToast('You are a black player.')
             }
         }
         else if (whitePlayer == HUMAN) {
             if (altMove.checked) {
-                $.toast({
-                    text: "You are a tentative white player.",
-                    hideAfter: false,
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                guideToast('You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
             }
             else {
-                $.toast({
-                    text: "You are a white player.",
-                    hideAfter: false,
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                guideToast('You are a white player.')
             }
         }
         startGame()
@@ -737,12 +740,7 @@ $(window).on('load', function() {
                     url += window.location.pathname
                 }
                 url += "?id=" + id
-                $.toast({
-                    text: "Send the URL to your oppornent.",
-                    stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' },
-                    hideAfter: false,
-                })
+                guideToast('Send the URL at the address bar to your oppornent.')
                 history.pushState(null, null, url)
                 break
             case START_REQ:
@@ -778,12 +776,7 @@ $(window).on('load', function() {
                     restartGame()
                 }
                 else {
-                    $.toast({
-                        text: "Your oppornent rejected your request",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('Your oppornent rejected your request.<br /><input type="button" name="ok" id="ok" value="OK"> ')
                 }
                 break
             case T_BLACK_START:
@@ -792,21 +785,11 @@ $(window).on('load', function() {
                 data = data.subarray(msgpack.unpackedLength())
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
-                    $.toast({
-                        text: "You are a tentative black player.",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('You are a tentative black player.<br />Put a white stone in the bule rect.')
                 }
                 else {
                     altMove.checked = false
-                    $.toast({
-                        text: "You are a black player.",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('You are a black player.')
                 }
                 doFirstMove()
                 break
@@ -816,21 +799,12 @@ $(window).on('load', function() {
                 data = data.subarray(msgpack.unpackedLength())
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
-                    $.toast({
-                        text: "You are a tentative white player.",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast()
+                    guideToast('You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
                 }
                 else {
                     altMove.checked = false
-                    $.toast({
-                        text: "You are a white player.",
-                        hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                    })
+                    guideToast('You are a white player.')
                 }
                 break
             case MOVE:
@@ -841,14 +815,15 @@ $(window).on('load', function() {
                 update(pos)
                 break
             case SWAP:
-                blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
-                swapped = true
-                $.toast({
-                    text: "Your oppornent choose swap black and white. Then you are white.",
-                    hideAfter: false,
-                        stack: false,
-                        position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
-                })
+                data = data.subarray(msgpack.unpackedLength())
+                if (msgpack.unpack(data)) {
+                    blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
+                    swapped = true
+                    guideToast('Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<bt />Put a white stone.')
+                }
+                else {
+                    guideToast("Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
+                }
                 break
             }
         }
@@ -1161,6 +1136,19 @@ $(window).on('load', function() {
             break
         }
         drawNormalGuide(ctx)
+    }
+
+    function guideToast(str) {
+        $.toast({
+            text: str + '<br /><input type="button" name="ok" id="ok" value="OK"> ',
+            hideAfter: false,
+            stack: false,
+            position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+
+        })
+        $("#ok").on('click', function () {
+            $.toast().reset('all')
+        })
     }
 
     // Internal Functions for Model
