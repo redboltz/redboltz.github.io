@@ -208,6 +208,20 @@ $(window).on('load', function() {
 
     var swapped = false
 
+    var lang = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ? "ja" : "en"
+
+    if (lang == "ja") {
+        $("#start").val("開始")
+        $("#pass").val("パス")
+        $("#resign").val("投了")
+        $("#BHvWH").text("先手（人間）vs後手（人間）")
+        $("#Network").text("人とネット対戦")
+        $("#BHvWC").text("先手（人間）vs後手（COM）")
+        $("#BCvWH").text("先手（COM）vs後手（人間）")
+        $("#text_alt_move").text("連珠ルール")
+        $("#text_show_number").text("石の上に数字表示")
+        $("#text_show_yaku").text("三などを表示")
+    }
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -255,12 +269,11 @@ $(window).on('load', function() {
         score.put(pos)
         putStone(ctxStone, pos)
         if (showNumber.checked) putNumber(ctxNumber, pos, score.turn)
-        var scoreText = sprintf("%3d: %s: %s", 1, "Black", pos.toString())
+        var scoreText = sprintf("%3d: %s: %s", 1, lang == "ja" ? "黒" : "Black", pos.toString())
         var $pre = $('<pre>').text(scoreText)
         var $newLi = $('<li>').append($pre).appendTo(scoreView)
         moveFocus($newLi)
         $(scoreView).parent().scrollTop($(scoreView)[0].scrollHeight)
-        drawGuide(ctxGuide)
         if (ws) {
             var a = msgpack.pack(MOVE)
             a = a.concat(msgpack.pack([pos.x, pos.y]))
@@ -293,7 +306,8 @@ $(window).on('load', function() {
         if (blackPlayer == HUMAN) {
             doFirstMove()
             if (altMove.checked) {
-                guideToast('Put a white stone in the blue rect.')
+                guideToast(lang == "ja" ? '青い四角の中に白を打ってください' : 'Put a white stone in the blue rect.')
+                draw2ndGuide(ctxGuide)
             }
         }
         else if (blackPlayer == NET_WAITING) {
@@ -360,7 +374,6 @@ $(window).on('load', function() {
     // Pass click
     $(pass).on('click', function() {
         score.pass()
-        drawGuide(ctxGuide)
     })
 
     // Score list click
@@ -375,17 +388,27 @@ $(window).on('load', function() {
         if (altMove.checked) {
             if (score.turn == 1) {
                 if (blackPlayer == HUMAN) {
-                    guideToast('Put a black stone in the blue rect.')
+                    guideToast(lang == "ja" ? '青い四角の中に黒を打ってください' : 'Put a black stone in the blue rect.')
+                    draw3rdGuide(ctxGuide)
                 }
                 if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
             }
             else if (score.turn == 2) {
+                clearGuide(ctxGuide)
                 if (pos.x < 5 || pos.x > 9 || pos.y < 5 || pos.y > 9) return
-                guideToast('Tentative white player choose black or white.')
+                if (blackPlayer == HUMAN) {
+                    if (whitePlayer == HUMAN) {
+                        guideToast(lang == "ja" ? '仮後は黒か白を宣言してください。<br />白になった人は白を打ってください' : 'Tentative white player choose black or white.<br />Then white player put a white stone.')
+                    }
+                    else if (whitePlayer == NET_HUMAN) {
+                        guideToast(lang == "ja" ? '仮後は黒か白を選んでいます<br />お待ちください' : 'Tentative white player is choosing black or white.<br />Wait a moment.')
+                    }
+                }
             }
             else if (score.turn == 3) {
+                $.toast().reset('all')
                 if (blackPlayer == HUMAN) {
-                    guideToast('Put two black stones.<br />Then white player will remove one.')
+                    guideToast(lang == "ja" ? '黒を2個打ってください<br />その後、後手はどちらかを取り除きます' : 'Put two black stones.<br />Then white player will remove one.')
                 }
             }
             else if (score.turn == 4) {
@@ -397,7 +420,6 @@ $(window).on('load', function() {
                     for (var i = 0; i < symPos.length; ++i) {
                         putNumberWithColor(ctxAltStone, symPos[i], "NG", "#FF1111")
                     }
-                    drawGuide(ctxGuide)
                     if (whitePlayer == NET_HUMAN) {
                         var a = msgpack.pack(MOVE)
                         a = a.concat(msgpack.pack([pos.x, pos.y]))
@@ -405,7 +427,7 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (blackPlayer == HUMAN) {
-                        guideToast('Put one more black stone.<br />Then white player will remove one.')
+                        guideToast(lang == "ja" ? 'もう一つ黒を打ってください<br />その後、後手はどちらかを取り除きます' : 'Put one more black stone.<br />Then white player will remove one.')
                     }
                     return
                 }
@@ -417,7 +439,6 @@ $(window).on('load', function() {
                     alt5second = pos
                     putStoneDirect(ctxStone, pos, BLACK)
                     putNumberWithColor(ctxAltStone, pos, "5B", "#00FF00")
-                    drawGuide(ctxGuide)
                     if (whitePlayer == NET_HUMAN) {
                         var a = msgpack.pack(MOVE)
                         a = a.concat(msgpack.pack([pos.x, pos.y]))
@@ -425,10 +446,10 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (blackPlayer == HUMAN) {
-                        guideToast('Wait the stone is removed by the white player.')
+                        guideToast(lang == "ja" ? '後手が石を一つ取り除くのを待ってください' : 'Wait the stone is removed by the white player.')
                     }
                     if (whitePlayer == HUMAN) {
-                        guideToast('Select the stone you want to leave.<br />Then put white stone.')
+                        guideToast(lang == "ja" ? '5A,5Bのうち、残したい石を選んでください' : 'Select the stone you want to leave.<br />Then put white stone.')
                     }
                     return
                 }
@@ -444,7 +465,10 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (whitePlayer == HUMAN) {
-                        guideToast('Put a white stone.')
+                        guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
+                    }
+                    if (blackPlayer == HUMAN) {
+                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Whait a white player's move.")
                     }
                 }
                 else if (pos.equals(alt5second)) {
@@ -459,7 +483,10 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (whitePlayer == HUMAN) {
-                        guideToast('Put a white stone.')
+                        guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
+                    }
+                    if (blackPlayer == HUMAN) {
+                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Whait a white player's move.")
                     }
                 }
                 else {
@@ -500,10 +527,10 @@ $(window).on('load', function() {
             else if (score.turn == 3 && blackPlayer == NET_HUMAN) {
                 waitSwapOrNot = true
                 $.toast({
-                    text: "Which color do you want to play?<br />" + '<input type="button" name="black" id="black" value="Black">    <input type="button" name="white" id="white" value="White">',
+                    text: lang == "ja" ? 'これ以降、黒と白どちらで指しますか？<br /><input type="button" name="black" id="black" value="　黒　">    <input type="button" name="white" id="white" value="　白　">' : 'Which color do you want to play?<br /><input type="button" name="black" id="black" value="Black">    <input type="button" name="white" id="white" value="White">',
                     hideAfter: false,
                     stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                    position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
 
                 })
                 $("#black").on('click', function () {
@@ -514,7 +541,7 @@ $(window).on('load', function() {
                     var b = new Uint8Array(a)
                     ws.send(b)
                     waitSwapOrNot = false
-                    guideToast('You decided that you are a black player.')
+                    guideToast(lang == "ja" ? '黒を選択しました<br / >相手が白を打つのをお待ちください' : "You decided that you are a black player.<br />Wait a white player's move.")
                 })
                 $("#white").on('click', function () {
                     var a = msgpack.pack(SWAP)
@@ -522,7 +549,7 @@ $(window).on('load', function() {
                     var b = new Uint8Array(a)
                     ws.send(b)
                     waitSwapOrNot = false
-                    guideToast('You decided that you are a white player.')
+                    guideToast(lang == "ja" ? '白を選択しました<br />白を打ってください' : 'You decided that you are a white player.<br />Put a white stone.')
                 })
             }
             else {
@@ -547,7 +574,7 @@ $(window).on('load', function() {
         }
         // Update Score View
         stone = score.getStone(pos)
-        var stoneString = stone == BLACK ? "Black" : "White"
+        var stoneString = stone == BLACK ? lang == "ja" ? "黒" : "Black" : lang == "ja" ? "白" : "White"
         var scoreText = sprintf("%3d: %s: %s", score.turn, stoneString, pos.toString())
         var $pre = $('<pre>').text(scoreText)
         var $newLi = $('<li>').append($pre).appendTo(scoreView)
@@ -578,21 +605,22 @@ $(window).on('load', function() {
         if (result) {
             if (result.yaku == Score.Y_WIN) {
                 if (stone == BLACK) {
-                    guideToast('Black Win!')
+                    guideToast(lang == "ja" ? '黒の勝ちです' : 'Black Win!')
                 }
                 else if (stone == WHITE) {
-                    guideToast('White Win!')
+                    guideToast(lang == "ja" ? '白の勝ちです' : 'White Win!')
                 }
                 playing = false
                 $(gameType).prop('disabled', false)
                 $(altMove).prop('disabled', false)
+                $(pass).prop('disabled', true)
+                $(resign).prop('disabled', true)
             }
             else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
-                guideToast('White Win! Because black move is prohibited.')
+                guideToast(lang == "ja" ? '白の勝ちです<br />黒は禁じ手を指しました' : 'White Win! Because black move is prohibited.')
             }
 
         }
-        drawGuide(ctxGuide)
     }
 
     function restartGame() {
@@ -601,18 +629,19 @@ $(window).on('load', function() {
         }
         if (blackPlayer == HUMAN) {
             if (altMove.checked) {
-                guideToast('You are a tentative black player.<br />Put a white stone in the blue rect.')
+                guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Put a white stone in the blue rect.')
+                draw2ndGuide(ctxGuide)
             }
             else {
-                guideToast('You are a black player.')
+                guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a black player.')
             }
         }
         else if (whitePlayer == HUMAN) {
             if (altMove.checked) {
-                guideToast('You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
+                guideToast(lang == "ja" ? 'あなたは仮後です<br />3つの石が仮先によって打たれるまで待ってください' : 'You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
             }
             else {
-                guideToast('You are a white player.')
+                guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a white player.')
             }
         }
         startGame()
@@ -753,15 +782,15 @@ $(window).on('load', function() {
                     url += window.location.pathname
                 }
                 url += "?id=" + id
-                guideToast('Send the URL at the address bar to your oppornent.')
+                guideToast(lang == "ja" ? '対戦相手にアドレスバーのURLを送ってください' : 'Send the URL at the address bar to your oppornent.')
                 history.pushState(null, null, url)
                 break
             case START_REQ:
                 $.toast({
-                    text: "Your oppornent is requesting replay. Accept?<br />" + '<input type="button" name="yes" id="yes" value="Yes">    <input type="button" name="no" id="no" value="No">',
+                    text: lang == "ja" ? '対戦相手が再戦を要求しています<br />受けますか？<br /><input type="button" name="yes" id="yes" value="はい">    <input type="button" name="no" id="no" value="いいえ">' : 'Your oppornent is requesting replay. Accept?<br /><input type="button" name="yes" id="yes" value="Yes">    <input type="button" name="no" id="no" value="No">',
                     hideAfter: false,
                     stack: false,
-                    position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+                    position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
                 })
                 $("#yes").on('click', function () {
                     data = data.subarray(msgpack.unpackedLength())
@@ -789,7 +818,7 @@ $(window).on('load', function() {
                     restartGame()
                 }
                 else {
-                    guideToast('Your oppornent rejected your request.<br /><input type="button" name="ok" id="ok" value="OK"> ')
+                    guideToast(lang == "ja" ? '相手は再戦を受け入れませんでした' : 'Your oppornent rejected your request.')
                 }
                 break
             case T_BLACK_START:
@@ -798,11 +827,11 @@ $(window).on('load', function() {
                 data = data.subarray(msgpack.unpackedLength())
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
-                    guideToast('You are a tentative black player.<br />Put a white stone in the bule rect.')
+                    guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Put a white stone in the bule rect.')
                 }
                 else {
                     altMove.checked = false
-                    guideToast('You are a black player.')
+                    guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a black player.')
                 }
                 doFirstMove()
                 break
@@ -813,11 +842,11 @@ $(window).on('load', function() {
                 if (msgpack.unpack(data)) {
                     altMove.checked = true
                     guideToast()
-                    guideToast('You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
+                    guideToast(lang == "ja" ? 'あなたは仮後です<br />3つの石が仮先によって打たれるまで待ってください' : 'You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
                 }
                 else {
                     altMove.checked = false
-                    guideToast('You are a white player.')
+                    guideToast(lang == "ja" ? 'あなたは白です' : 'You are a white player.')
                 }
                 break
             case MOVE:
@@ -832,16 +861,52 @@ $(window).on('load', function() {
                 if (msgpack.unpack(data)) {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
                     swapped = true
-                    guideToast('Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<br />Put a white stone.')
+                    guideToast(lang == "ja" ? '相手は黒で指すと宣言しました<br />あなたは白と確定しました<br />白を打ってください' : 'Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<bt />Put a white stone.')
                 }
                 else {
-                    guideToast("Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
+                    guideToast(lang == "ja" ? '相手は白で指すと宣言しました<br />あなたは黒と確定しました<br />相手が白を打つのを待ってください' : "Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
                 }
                 break
             }
         }
     }
+    function drawTouchGuide(ctx, pos) {
+        ctx.beginPath()
+        ctx.lineWidth = 6
+        ctx.strokeStyle = "#CC5555"
+        ctx.moveTo(BASE * (pos.x + 1), BASE)
+        ctx.lineTo(BASE * (pos.x + 1), BASE * MAX)
+        ctx.moveTo(BASE, BASE * (pos.y + 1))
+        ctx.lineTo(BASE * MAX, BASE * (pos.y + 1))
+        ctx.closePath()
+        ctx.stroke()
 
+        ctx.stroke()
+    }
+    function clearTouchGuide(ctx) {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    }
+    function draw2ndGuide(ctx) {
+        clearGuide(ctx)
+        ctx.beginPath()
+        ctx.lineWidth = 3
+        ctx.strokeStyle = "#0066FF"
+        var margin = BASE*0.3
+        ctx.rect((8-2)*BASE+margin, (8-2)*BASE+margin, BASE*4-margin*2, BASE*4-margin*2)
+        ctx.stroke()
+    }
+    function draw3rdGuide(ctx) {
+        clearGuide(ctx)
+        ctx.beginPath()
+        ctx.lineWidth = 3
+        ctx.strokeStyle = "#0066FF"
+        var margin = BASE*0.3
+        ctx.rect((8-3)*BASE+margin, (8-3)*BASE+margin, BASE*6-margin*2, BASE*6-margin*2)
+        ctx.stroke()
+    }
+    function clearGuide(ctx) {
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    }
     // Score View
     var lastLi
     $("#scorediv").on('keydown',function(e) {
@@ -1032,131 +1097,12 @@ $(window).on('load', function() {
             })
         }
     }
-    function drawTouchGuide(ctx, pos) {
-        ctx.beginPath()
-        ctx.lineWidth = 6
-        ctx.strokeStyle = "#55CC55"
-        ctx.moveTo(BASE * (pos.x + 1), BASE)
-        ctx.lineTo(BASE * (pos.x + 1), BASE * MAX)
-        ctx.moveTo(BASE, BASE * (pos.y + 1))
-        ctx.lineTo(BASE * MAX, BASE * (pos.y + 1))
-        ctx.closePath()
-        ctx.stroke()
-
-        ctx.stroke()
-    }
-    function clearTouchGuide(ctx) {
-        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-    }
-
-    function draw2ndGuide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Tentative BLACK player's turn: Put WHITE stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-        ctx.lineWidth = 3
-        ctx.strokeStyle = "#0066FF"
-        var margin = BASE*0.3
-        ctx.rect((8-2)*BASE+margin, (8-2)*BASE+margin, BASE*4-margin*2, BASE*4-margin*2)
-        ctx.stroke()
-    }
-    function draw3rdGuide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Tentative BLACK player's turn: Put BLACK stone in the rectangle", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-        ctx.lineWidth = 3
-        ctx.strokeStyle = "#0066FF"
-        var margin = BASE*0.3
-        ctx.rect((8-3)*BASE+margin, (8-3)*BASE+margin, BASE*6-margin*2, BASE*6-margin*2)
-        ctx.stroke()
-    }
-    function drawSwapGuide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#FCDC5F"
-        ctx.fillRect(0, 14*BASE, CANVAS_WIDTH, BASE*2)
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("Tentative WHITE player's turn: Choose BLACK or WHITE.", 8 * BASE, 14 * BASE + BASE / 2 + 12)
-        ctx.fillText("then WHITE player put WHITE stone.", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-    }
-    function draw5_1Guide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("BLACK player's turn: Put the 1st candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-    }
-    function draw5_2Guide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("BLACK player's turn: Put the 2nd candidate BLACK stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-    }
-    function draw5removeGuide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        ctx.fillText("WHITE player's turn: Choose the BLACK stone to decide", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-    }
-    function drawNormalGuide(ctx) {
-        ctx.beginPath()
-        ctx.textAlign = "center"
-        ctx.fillStyle = "#0066FF"
-        ctx.font = "16px 'Times New Roman'"
-        var stoneStr = score.move == BLACK ? "BLACK" : "WHITE"
-        ctx.fillText(stoneStr +" player's turn: Put " + stoneStr + " stone", 8 * BASE, 15 * BASE + BASE / 2 + 12)
-    }
-    function drawGuide(ctx) {
-        ctxGuide.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-        switch (score.turn) {
-        case 1:
-            if (altMove.checked) {
-                draw2ndGuide(ctx)
-                return
-            }
-            break
-        case 2:
-            if (altMove.checked) {
-                draw3rdGuide(ctx)
-                return
-            }
-            break
-        case 3:
-            if (altMove.checked) {
-                drawSwapGuide(ctx)
-                return
-            }
-            break
-        case 4:
-            if (altMove.checked) {
-                if (alt5first == null) {
-                    draw5_1Guide(ctx)
-                    return
-                }
-                if (alt5second == null) {
-                    draw5_2Guide(ctx)
-                    return
-                }
-                draw5removeGuide(ctx)
-                return
-            }
-            break
-        }
-        drawNormalGuide(ctx)
-    }
-
     function guideToast(str) {
         $.toast({
             text: str + '<br /><input type="button" name="ok" id="ok" value="OK"> ',
             hideAfter: false,
             stack: false,
-            position: { left : 50, right : 'auto', top : 100, bottom : 'auto' }
+            position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
 
         })
         $("#ok").on('click', function () {
@@ -1534,19 +1480,19 @@ $(window).on('load', function() {
 
             if (h2_p.equals(t2_rnp)) {
                 var direct3rd = [
-                    { "name":"Kansei",    "pos": new Position(7, 5) },
-                    { "name":"Keigetsu",  "pos": new Position(8, 5) },
-                    { "name":"Sosei",     "pos": new Position(9, 5) },
-                    { "name":"Kagetsu",   "pos": new Position(8, 6) },
-                    { "name":"Zangetsu",  "pos": new Position(9, 6) },
-                    { "name":"Ugetsu",    "pos": new Position(8, 7) },
-                    { "name":"Kinsei",    "pos": new Position(9, 7) },
-                    { "name":"Shougetsu", "pos": new Position(7, 8) },
-                    { "name":"Kyugetsu",  "pos": new Position(8, 8) },
-                    { "name":"Shingetsu", "pos": new Position(9, 8) },
-                    { "name":"Zuisei",    "pos": new Position(7, 9) },
-                    { "name":"Sangetsu",  "pos": new Position(8, 9) },
-                    { "name":"Yuusei",    "pos": new Position(9, 9) },
+                    { "name":lang == "ja" ? "寒星" : "Kansei",    "pos": new Position(7, 5) },
+                    { "name":lang == "ja" ? "渓月" : "Keigetsu",  "pos": new Position(8, 5) },
+                    { "name":lang == "ja" ? "疎星" : "Sosei",     "pos": new Position(9, 5) },
+                    { "name":lang == "ja" ? "花月" : "Kagetsu",   "pos": new Position(8, 6) },
+                    { "name":lang == "ja" ? "残月" : "Zangetsu",  "pos": new Position(9, 6) },
+                    { "name":lang == "ja" ? "雨月" : "Ugetsu",    "pos": new Position(8, 7) },
+                    { "name":lang == "ja" ? "金星" : "Kinsei",    "pos": new Position(9, 7) },
+                    { "name":lang == "ja" ? "松月" : "Shougetsu", "pos": new Position(7, 8) },
+                    { "name":lang == "ja" ? "丘月" : "Kyugetsu",  "pos": new Position(8, 8) },
+                    { "name":lang == "ja" ? "新月" : "Shingetsu", "pos": new Position(9, 8) },
+                    { "name":lang == "ja" ? "瑞星" : "Zuisei",    "pos": new Position(7, 9) },
+                    { "name":lang == "ja" ? "山月" : "Sangetsu",  "pos": new Position(8, 9) },
+                    { "name":lang == "ja" ? "遊星" : "Yuusei",    "pos": new Position(9, 9) },
                 ]
                 for (var i = 0; i < direct3rd.length; ++i) {
                     var t3_p = direct3rd[i].pos
@@ -1565,19 +1511,19 @@ $(window).on('load', function() {
                 var t2_rnp = revertNormalizePosition(t2_rp, xmin, xmax, ymin, ymax)
                 if (h2_p.equals(t2_rnp)) {
                     var indirect3rd = [
-                        { "name":"Chousei",   "pos": new Position(9, 5) },
-                        { "name":"Kyougetsu", "pos": new Position(9, 6) },
-                        { "name":"Kousei",    "pos": new Position(9, 7) },
-                        { "name":"Suigetsu",  "pos": new Position(9, 8) },
-                        { "name":"Ryusei",    "pos": new Position(9, 9) },
-                        { "name":"Ungetsu",   "pos": new Position(8, 7) },
-                        { "name":"Hogetsu",   "pos": new Position(8, 8) },
-                        { "name":"Rangetsu",  "pos": new Position(8, 9) },
-                        { "name":"Gingetsu",  "pos": new Position(7, 8) },
-                        { "name":"Myoujyou",  "pos": new Position(7, 9) },
-                        { "name":"Shagetsu",  "pos": new Position(6, 8) },
-                        { "name":"Meigetsu",  "pos": new Position(6, 9) },
-                        { "name":"Suisei",    "pos": new Position(5, 9) },
+                        { "name":lang == "ja" ? "長星" : "Chousei",   "pos": new Position(9, 5) },
+                        { "name":lang == "ja" ? "峡月" : "Kyougetsu", "pos": new Position(9, 6) },
+                        { "name":lang == "ja" ? "恒星" : "Kousei",    "pos": new Position(9, 7) },
+                        { "name":lang == "ja" ? "水月" : "Suigetsu",  "pos": new Position(9, 8) },
+                        { "name":lang == "ja" ? "流星" : "Ryusei",    "pos": new Position(9, 9) },
+                        { "name":lang == "ja" ? "雲月" : "Ungetsu",   "pos": new Position(8, 7) },
+                        { "name":lang == "ja" ? "浦月" : "Hogetsu",   "pos": new Position(8, 8) },
+                        { "name":lang == "ja" ? "嵐月" : "Rangetsu",  "pos": new Position(8, 9) },
+                        { "name":lang == "ja" ? "銀月" : "Gingetsu",  "pos": new Position(7, 8) },
+                        { "name":lang == "ja" ? "明星" : "Myoujyou",  "pos": new Position(7, 9) },
+                        { "name":lang == "ja" ? "斜月" : "Shagetsu",  "pos": new Position(6, 8) },
+                        { "name":lang == "ja" ? "名月" : "Meigetsu",  "pos": new Position(6, 9) },
+                        { "name":lang == "ja" ? "彗星" : "Suisei",    "pos": new Position(5, 9) },
                     ]
                     for (var i = 0; i < indirect3rd.length; ++i) {
                         var t3_p = indirect3rd[i].pos
