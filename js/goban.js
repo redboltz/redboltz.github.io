@@ -503,7 +503,7 @@ $(window).on('load', function() {
                     text: lang == "ja" ? 'これ以降、黒と白どちらで指しますか？<br /><input type="button" name="black" id="black" value="　黒　">    <input type="button" name="white" id="white" value="　白　">' : 'Which color do you want to play?<br /><input type="button" name="black" id="black" value="Black">    <input type="button" name="white" id="white" value="White">',
                     hideAfter: false,
                     stack: false,
-                    position: { left : 100, right : 'auto', top : 180, bottom : 'auto' }
+                    position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
 
                 })
                 $("#black").on('click', function () {
@@ -761,7 +761,7 @@ $(window).on('load', function() {
                     text: lang == "ja" ? '対戦相手が再戦を要求しています<br />受けますか？<br /><input type="button" name="yes" id="yes" value="はい">    <input type="button" name="no" id="no" value="いいえ">' : 'Your oppornent is requesting replay. Accept?<br /><input type="button" name="yes" id="yes" value="Yes">    <input type="button" name="no" id="no" value="No">',
                     hideAfter: false,
                     stack: false,
-                    position: { left : 100, right : 'auto', top : 180, bottom : 'auto' }
+                    position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
                 })
                 $("#yes").on('click', function () {
                     data = data.subarray(msgpack.unpackedLength())
@@ -1073,7 +1073,7 @@ $(window).on('load', function() {
             text: str + '<br /><input type="button" name="ok" id="ok" value="OK"> ',
             hideAfter: false,
             stack: false,
-            position: { left : 100, right : 'auto', top : 180, bottom : 'auto' }
+            position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
 
         })
         $("#ok").on('click', function () {
