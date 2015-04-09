@@ -683,6 +683,7 @@ $(window).on('load', function() {
     })
 
     var touchId = null
+    var touchCancelId = null
     var touchMode = false
     var touchPos = null
     var lastTouchPos = null
@@ -699,6 +700,12 @@ $(window).on('load', function() {
                 e.preventDefault()
                 touchMode = true
                 touchId = null
+                touchId = setTimeout(
+                    function() {
+                        guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
+                        touchCancelId = null
+                    },
+                    2000)
             },
             100)
     })
