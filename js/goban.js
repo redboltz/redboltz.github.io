@@ -335,6 +335,7 @@ $(window).on('load', function() {
 
     // Start click
     $(start).on('click', function() {
+        $.toast().reset('all')
         if ((blackPlayer == HUMAN && whitePlayer == NET_HUMAN) ||
             (blackPlayer == NET_HUMAN && whitePlayer == HUMAN)) {
             var id = getParameterByName("id")
@@ -468,6 +469,18 @@ $(window).on('load', function() {
             }
             else if (score.turn == 5) {
                 $.toast().reset('all')
+            }
+        }
+        else {
+            if (score.turn == 1) {
+                if (whitePlayer == HUMAN) {
+                    $.toast().reset('all')
+                }
+            }
+            else if (score.turn == 2) {
+                if (blackPlayer == HUMAN) {
+                    $.toast().reset('all')
+                }
             }
         }
         // Update Internal Model
@@ -819,7 +832,7 @@ $(window).on('load', function() {
                 if (msgpack.unpack(data)) {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
                     swapped = true
-                    guideToast('Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<bt />Put a white stone.')
+                    guideToast('Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<br />Put a white stone.')
                 }
                 else {
                     guideToast("Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
