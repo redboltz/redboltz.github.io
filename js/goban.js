@@ -700,7 +700,7 @@ $(window).on('load', function() {
                 e.preventDefault()
                 touchMode = true
                 touchId = null
-                touchId = setTimeout(
+                touchCancelId = setTimeout(
                     function() {
                         guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
                         touchCancelId = null
@@ -739,9 +739,14 @@ $(window).on('load', function() {
         }
     })
     $(input).bind('touchend', function(e) {
+        $.toast().reset('all')
         if (touchId) {
             clearInterval(touchId)
             touchId = null
+        }
+        if (touchCancelId) {
+            clearInterval(touchCancelId)
+            touchCancelId = null
         }
         if (touchMode) {
             e.preventDefault()
