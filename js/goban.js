@@ -467,8 +467,8 @@ $(window).on('load', function() {
                     if (whitePlayer == HUMAN) {
                         guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
                     }
-                    if (blackPlayer == HUMAN) {
-                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Whait a white player's move.")
+                    if (blackPlayer == HUMAN && whitePlayer == NET_HUMAN) {
+                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Wait a white player's move.")
                     }
                 }
                 else if (pos.equals(alt5second)) {
@@ -485,8 +485,8 @@ $(window).on('load', function() {
                     if (whitePlayer == HUMAN) {
                         guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
                     }
-                    if (blackPlayer == HUMAN) {
-                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Whait a white player's move.")
+                    if (blackPlayer == HUMAN && whitePlayer == NET_HUMAN) {
+                        guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Wait a white player's move.")
                     }
                 }
                 else {
