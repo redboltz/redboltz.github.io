@@ -702,7 +702,7 @@ $(window).on('load', function() {
                 touchId = null
                 touchCancelId = setTimeout(
                     function() {
-                        guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
+                        guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せばキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
                         touchCancelId = null
                     },
                     2000)
