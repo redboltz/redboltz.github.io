@@ -840,34 +840,38 @@ $(window).on('load', function() {
                 }
                 break
             case T_BLACK_START:
-                blackPlayer = HUMAN
-                whitePlayer = NET_HUMAN
-                data = data.subarray(msgpack.unpackedLength())
-                if (msgpack.unpack(data)) {
-                    altMove.checked = true
-                    guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Put a white stone in the bule rect.')
+                if (blackPlayer == NET_WAITING || whitePlayer == NET_WAITING) {
+                    blackPlayer = HUMAN
+                    whitePlayer = NET_HUMAN
+                    data = data.subarray(msgpack.unpackedLength())
+                    if (msgpack.unpack(data)) {
+                        altMove.checked = true
+                        guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Put a white stone in the bule rect.')
+                    }
+                    else {
+                        altMove.checked = false
+                        guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a black player.')
+                    }
+                    draw2ndGuide(ctxGuide)
+                    doFirstMove()
                 }
-                else {
-                    altMove.checked = false
-                    guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a black player.')
-                }
-                draw2ndGuide(ctxGuide)
-                doFirstMove()
                 break
             case T_WHITE_START:
-                blackPlayer = NET_HUMAN
-                whitePlayer = HUMAN
-                data = data.subarray(msgpack.unpackedLength())
-                if (msgpack.unpack(data)) {
-                    altMove.checked = true
-                    guideToast()
-                    guideToast(lang == "ja" ? 'あなたは仮後です<br />3つの石が仮先によって打たれるまで待ってください' : 'You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
+                if (blackPlayer == NET_WAITING || whitePlayer == NET_WAITING) {
+                    blackPlayer = NET_HUMAN
+                    whitePlayer = HUMAN
+                    data = data.subarray(msgpack.unpackedLength())
+                    if (msgpack.unpack(data)) {
+                        altMove.checked = true
+                        guideToast()
+                        guideToast(lang == "ja" ? 'あなたは仮後です<br />3つの石が仮先によって打たれるまで待ってください' : 'You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
+                    }
+                    else {
+                        altMove.checked = false
+                        guideToast(lang == "ja" ? 'あなたは白です' : 'You are a white player.')
+                    }
+                    clearGuide(ctxGuide)
                 }
-                else {
-                    altMove.checked = false
-                    guideToast(lang == "ja" ? 'あなたは白です' : 'You are a white player.')
-                }
-                clearGuide(ctxGuide)
                 break
             case MOVE:
                 var len = msgpack.unpackedLength()
