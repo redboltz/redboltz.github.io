@@ -207,6 +207,8 @@ $(window).on('load', function() {
 
     var ws = null
 
+    var baseUrl = null
+
     var swapped = false
 
     var lang = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ? "ja" : "en"
@@ -224,6 +226,12 @@ $(window).on('load', function() {
         $("#text_show_number").text("石の上に数字表示")
         $("#text_show_yaku").text("三などを表示")
     }
+
+    var baseUrl = window.location.protocol + "//" + window.location.host
+    if (window.location.pathname != "") {
+        baseUrl += window.location.pathname
+    }
+
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -825,10 +833,7 @@ $(window).on('load', function() {
             case NEW_ID:
                 data = data.subarray(msgpack.unpackedLength())
                 var id = msgpack.unpack(data)
-                var url = window.location.protocol + "//" + window.location.host
-                if (window.location.pathname != "") {
-                    url += window.location.pathname
-                }
+                var url = baseUrl
                 url += "?id=" + id
                 guideToast(lang == "ja" ? '対戦相手にアドレスバーのURLを送ってください' : 'Send the URL at the address bar to your oppornent.')
                 history.pushState(null, null, url)
@@ -871,6 +876,7 @@ $(window).on('load', function() {
                 break
             case T_BLACK_START:
                 if (blackPlayer == NET_WAITING || whitePlayer == NET_WAITING) {
+                    history.pushState(null, null, baseUrl)
                     blackPlayer = HUMAN
                     whitePlayer = NET_HUMAN
                     data = data.subarray(msgpack.unpackedLength())
@@ -888,6 +894,7 @@ $(window).on('load', function() {
                 break
             case T_WHITE_START:
                 if (blackPlayer == NET_WAITING || whitePlayer == NET_WAITING) {
+                    history.pushState(null, null, baseUrl)
                     blackPlayer = NET_HUMAN
                     whitePlayer = HUMAN
                     data = data.subarray(msgpack.unpackedLength())
