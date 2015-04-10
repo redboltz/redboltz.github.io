@@ -369,6 +369,11 @@ $(window).on('load', function() {
         $(resign).prop('disabled', true)
         $(gameType).prop('disabled', false)
         $(altMove).prop('disabled', false)
+        guideToast(lang == "ja" ? '投了しました' : 'You resigned.')
+        var a = msgpack.pack(RESIGN)
+        a = a.concat(msgpack.pack(altMove.checked))
+        var b = new Uint8Array(a)
+        ws.send(b)
     })
 
     // Pass click
@@ -643,6 +648,7 @@ $(window).on('load', function() {
             else {
                 guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a white player.')
             }
+            clearGuide(ctxGuide)
         }
         startGame()
     }
@@ -845,6 +851,7 @@ $(window).on('load', function() {
                     altMove.checked = false
                     guideToast(lang == "ja" ? 'あなたは黒です' : 'You are a black player.')
                 }
+                draw2ndGuide(ctxGuide)
                 doFirstMove()
                 break
             case T_WHITE_START:
@@ -860,6 +867,7 @@ $(window).on('load', function() {
                     altMove.checked = false
                     guideToast(lang == "ja" ? 'あなたは白です' : 'You are a white player.')
                 }
+                clearGuide(ctxGuide)
                 break
             case MOVE:
                 var len = msgpack.unpackedLength()
@@ -879,6 +887,13 @@ $(window).on('load', function() {
                     guideToast(lang == "ja" ? '相手は白で指すと宣言しました<br />あなたは黒と確定しました<br />相手が白を打つのを待ってください' : "Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
                 }
                 break
+            case RESIGN:
+                guideToast(lang == "ja" ? '相手が投了しました' : 'Your oppornent has been resigned.')
+                playing = false
+                $(resign).prop('disabled', true)
+                $(gameType).prop('disabled', false)
+                $(altMove).prop('disabled', false)
+                break;
             }
         }
     }
