@@ -172,6 +172,7 @@ $(window).on('load', function() {
     var start      = document.getElementById('start')
     var pass       = document.getElementById('pass')
     var resign     = document.getElementById('resign')
+    var draw       = document.getElementById('draw')
     var altMove    = document.getElementById('alt_move')
     var showNumber = document.getElementById('show_number')
     var showYaku   = document.getElementById('show_yaku')
@@ -214,6 +215,7 @@ $(window).on('load', function() {
         $("#start").val("開始")
         $("#pass").val("パス")
         $("#resign").val("投了")
+        $("#draw").val("引き分け提案")
         $("#BHvWH").text("先手（人間）vs後手（人間）")
         $("#Network").text("人とネット対戦")
         $("#BHvWC").text("先手（人間）vs後手（COM）")
@@ -226,9 +228,7 @@ $(window).on('load', function() {
 
     $(pass).prop('disabled', true)
     $(resign).prop('disabled', true)
-
-
-
+    $(draw).prop('disabled', true)
 
     // Checkboxes
     $(showNumber).on('change', function(e) {
@@ -306,8 +306,13 @@ $(window).on('load', function() {
         if (blackPlayer == HUMAN) {
             doFirstMove()
             if (altMove.checked) {
-                //guideToast(lang == "ja" ? '青い四角の中に白を打ってください' : 'Put a white stone in the blue rect.')
+                if (whitePlayer == HUMAN) {
+                    guideToast(lang == "ja" ? '青い四角の中に白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'Put a white stone in the blue rect.')
+                }
                 draw2ndGuide(ctxGuide)
+            }
+            else {
+                guideToast(lang == "ja" ? '白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'Put a white stone.')
             }
         }
         else if (blackPlayer == NET_WAITING) {
@@ -376,9 +381,25 @@ $(window).on('load', function() {
         ws.send(b)
     })
 
+    // Draw click
+    $(draw).on('click', function() {
+        if (ws) {
+            var a = msgpack.pack(DRAW_REQ)
+            var b = new Uint8Array(a)
+            ws.send(b)
+            guideToast(lang == "ja" ? '引き分けの提案を行いました<br />返事をお待ちください' : 'Send a draw request.<br />Please wait the responce.')
+        }
+    })
+
     // Pass click
     $(pass).on('click', function() {
         score.pass()
+        guideToast(lang == "ja" ? 'パスしました' : 'You passed.')
+        if (ws) {
+            var a = msgpack.pack(PASS)
+            var b = new Uint8Array(a)
+            ws.send(b)
+        }
     })
 
     // Score list click
@@ -501,10 +522,12 @@ $(window).on('load', function() {
             }
             else if (score.turn == 5) {
                 $.toast().reset('all')
+                $(draw).prop('disabled', false)
             }
         }
         else {
             if (score.turn == 1) {
+                $(draw).prop('disabled', false)
                 if (whitePlayer == HUMAN) {
                     $.toast().reset('all')
                 }
@@ -620,9 +643,16 @@ $(window).on('load', function() {
                 $(altMove).prop('disabled', false)
                 $(pass).prop('disabled', true)
                 $(resign).prop('disabled', true)
+                $(draw).prop('disabled', true)
             }
             else if (stone == BLACK && (result.yaku == Score.Y_6 || result.yaku == Score.Y_44 || result.yaku == Score.Y_33)) {
                 guideToast(lang == "ja" ? '白の勝ちです<br />黒は禁じ手を指しました' : 'White Win! Because black move is prohibited.')
+                playing = false
+                $(gameType).prop('disabled', false)
+                $(altMove).prop('disabled', false)
+                $(pass).prop('disabled', true)
+                $(resign).prop('disabled', true)
+                $(draw).prop('disabled', true)
             }
 
         }
@@ -895,9 +925,51 @@ $(window).on('load', function() {
                 guideToast(lang == "ja" ? '相手が投了しました' : 'Your oppornent has been resigned.')
                 playing = false
                 $(resign).prop('disabled', true)
+                $(draw).prop('disabled', true)
                 $(gameType).prop('disabled', false)
                 $(altMove).prop('disabled', false)
                 break;
+            case DRAW_REQ:
+                $.toast({
+                    text: lang == "ja" ? '対戦相手が引き分けを提案してきました<br />受け入れますか？<br /><input type="button" name="yes" id="yes" value="はい">    <input type="button" name="no" id="no" value="いいえ">' : 'Your oppornent is requesting draw. Accept?<br /><input type="button" name="yes" id="yes" value="Yes">    <input type="button" name="no" id="no" value="No">',
+                    hideAfter: false,
+                    stack: false,
+                    position: { left : 100, right : 'auto', top : 100, bottom : 'auto' }
+                })
+                $("#yes").on('click', function () {
+                    var a = msgpack.pack(DRAW_ACCEPT)
+                    var b = new Uint8Array(a)
+                    ws.send(b)
+                    $.toast().reset('all')
+                    guideToast(lang == "ja" ? '引き分けです' : 'Draw.')
+                    playing = false
+                    $(resign).prop('disabled', true)
+                    $(draw).prop('disabled', true)
+                    $(gameType).prop('disabled', false)
+                    $(altMove).prop('disabled', false)
+                })
+                $("#no").on('click', function () {
+                    var a = msgpack.pack(DRAW_REJECT)
+                    var b = new Uint8Array(a)
+                    ws.send(b)
+                    guideToast(lang == "ja" ? '引き分けでを拒否しました' : 'You rejected the draw request.')
+                })
+                break
+            case DRAW_ACCEPT:
+                guideToast(lang == "ja" ? '相手が引き分けを受け入れました' : 'Your oppornent accepted the draw request.')
+                playing = false
+                $(resign).prop('disabled', true)
+                $(draw).prop('disabled', true)
+                $(gameType).prop('disabled', false)
+                $(altMove).prop('disabled', false)
+                break
+            case DRAW_REJECT:
+                guideToast(lang == "ja" ? '相手が引き分けを拒否しました' : 'Your oppornent rejected the draw request.')
+                break
+            case PASS:
+                guideToast(lang == "ja" ? '相手がパスしました<br />あなたの番です' : "Your oppornent passed.<br />It's your turn.")
+                score.pass()
+                break
             }
         }
     }
