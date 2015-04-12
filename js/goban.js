@@ -210,6 +210,7 @@ $(window).on('load', function() {
     var baseUrl = null
 
     var swapped = false
+    var blockDialog = false
 
     var lang = (window.navigator.userLanguage || window.navigator.language || window.navigator.browserLanguage).substr(0,2) == "ja" ? "ja" : "en"
 
@@ -295,6 +296,8 @@ $(window).on('load', function() {
         swapped = false
         alt5first = null
         alt5second = null
+        blockDialog = false
+
         $(resign).prop('disabled', false)
         $(gameType).prop('disabled', true)
         $(altMove).prop('disabled', true)
@@ -320,7 +323,7 @@ $(window).on('load', function() {
                 draw2ndGuide(ctxGuide)
             }
             else {
-                guideToast(lang == "ja" ? '白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Put a white stone.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
+                guideToast(lang == "ja" ? '白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Place a white stone.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
                 clearGuide(ctxGuide)
             }
         }
@@ -399,6 +402,7 @@ $(window).on('load', function() {
             var b = new Uint8Array(a)
             ws.send(b)
             guideToast(lang == "ja" ? '引き分けの提案を行いました<br />返事をお待ちください' : 'Send a draw request.<br />Please wait the responce.')
+            blockDialog = true
         }
     })
 
@@ -426,7 +430,7 @@ $(window).on('load', function() {
             if (score.turn == 1) {
                 if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
                 if (blackPlayer == HUMAN) {
-                    guideToast(lang == "ja" ? '青い四角の中に黒を打ってください' : 'Put a black stone in the blue rect.')
+                    guideToast(lang == "ja" ? '青い四角の中に黒を打ってください' : 'Place a black stone in the blue rect.')
                     draw3rdGuide(ctxGuide)
                 }
             }
@@ -439,13 +443,14 @@ $(window).on('load', function() {
                     }
                     else if (whitePlayer == NET_HUMAN) {
                         guideToast(lang == "ja" ? '仮後は黒か白を選んでいます<br />お待ちください' : 'Tentative white player is choosing black or white.<br />Wait a moment.')
+                        blockDialog = true
                     }
                 }
             }
             else if (score.turn == 3) {
                 $.toast().reset('all')
                 if (blackPlayer == HUMAN) {
-                    guideToast(lang == "ja" ? '黒を2個打ってください<br />その後、後手はどちらかを取り除きます' : 'Put two black stones.<br />Then white player will remove one.')
+                    guideToast(lang == "ja" ? '黒を2個打ってください<br />その後、後手はどちらかを取り除きます' : 'Place two black stones.<br />Then white player will remove one.')
                 }
             }
             else if (score.turn == 4) {
@@ -464,7 +469,7 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (blackPlayer == HUMAN) {
-                        guideToast(lang == "ja" ? 'もう一つ黒を打ってください<br />その後、後手はどちらかを取り除きます' : 'Put one more black stone.<br />Then white player will remove one.')
+                        guideToast(lang == "ja" ? 'もう一つ黒を打ってください<br />その後、後手はどちらかを取り除きます' : 'Place one more black stone.<br />Then white player will remove one.')
                     }
                     return
                 }
@@ -502,7 +507,7 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (whitePlayer == HUMAN) {
-                        guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
+                        guideToast(lang == "ja" ? '白を打ってください' : 'Place a white stone.')
                     }
                     if (blackPlayer == HUMAN && whitePlayer == NET_HUMAN) {
                         guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Wait a white player's move.")
@@ -520,7 +525,7 @@ $(window).on('load', function() {
                         ws.send(b)
                     }
                     if (whitePlayer == HUMAN) {
-                        guideToast(lang == "ja" ? '白を打ってください' : 'Put a white stone.')
+                        guideToast(lang == "ja" ? '白を打ってください' : 'Place a white stone.')
                     }
                     if (blackPlayer == HUMAN && whitePlayer == NET_HUMAN) {
                         guideToast(lang == "ja" ? '相手が白を打つのを待ってください' : "Wait a white player's move.")
@@ -581,6 +586,7 @@ $(window).on('load', function() {
                     ws.send(b)
                     waitSwapOrNot = false
                     guideToast(lang == "ja" ? '黒を選択しました<br / >相手が白を打つのをお待ちください' : "You decided that you are a black player.<br />Wait a white player's move.")
+                    blockDialog = false
                 })
                 $("#white").on('click', function () {
                     var a = msgpack.pack(SWAP)
@@ -588,8 +594,10 @@ $(window).on('load', function() {
                     var b = new Uint8Array(a)
                     ws.send(b)
                     waitSwapOrNot = false
-                    guideToast(lang == "ja" ? '白を選択しました<br />白を打ってください' : 'You decided that you are a white player.<br />Put a white stone.')
+                    guideToast(lang == "ja" ? '白を選択しました<br />白を打ってください' : 'You decided that you are a white player.<br />Place a white stone.')
+                    blockDialog = false
                 })
+                blockDialog = true
             }
             else {
                 if ((score.move == BLACK && blackPlayer == NET_HUMAN) ||
@@ -675,7 +683,7 @@ $(window).on('load', function() {
         }
         if (blackPlayer == HUMAN) {
             if (altMove.checked) {
-                guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a tentative black player.<br />Put a white stone in the blue rect.')
+                guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a tentative black player.<br />Place a white stone in the blue rect.')
                 draw2ndGuide(ctxGuide)
             }
             else {
@@ -687,7 +695,7 @@ $(window).on('load', function() {
                 guideToast(lang == "ja" ? 'あなたは仮後です<br />仮先が3つ石を打つまで待ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a tentative white player.<br />Wait 3 stone will be put by tentative black player.')
             }
             else {
-                guideToast(lang == "ja" ? 'あなたは白です<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a white player.')
+                guideToast(lang == "ja" ? 'あなたは白です<br />白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a white player.')
             }
             clearGuide(ctxGuide)
         }
@@ -749,8 +757,10 @@ $(window).on('load', function() {
                 touchId = null
                 touchCancelId = setTimeout(
                     function() {
-                        guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せばキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
-                        touchCancelId = null
+                        if (blockDialog == false) {
+                            guideToast(lang == "ja" ? 'マルチタップあるいは石の上で指を離せばキャンセルできます' : 'You can cancel this move using double tap or release your finger on a stone.')
+                            touchCancelId = null
+                        }
                     },
                     2000)
             },
@@ -786,7 +796,9 @@ $(window).on('load', function() {
         }
     })
     $(input).bind('touchend', function(e) {
-        $.toast().reset('all')
+        if (blockDialog == false) {
+            $.toast().reset('all')
+        }
         clearTouchGuide(ctxTouch)
         if (touchId) {
             clearInterval(touchId)
@@ -865,7 +877,9 @@ $(window).on('load', function() {
                     var b = new Uint8Array(a)
                     ws.send(b)
                     $.toast().reset('all')
+                    blockDialog = false
                 })
+                blockDialog = true
                 break
             case START_RET:
                 data = data.subarray(msgpack.unpackedLength())
@@ -875,6 +889,7 @@ $(window).on('load', function() {
                 }
                 else {
                     guideToast(lang == "ja" ? '相手は再戦を受け入れませんでした' : 'Your oppornent rejected your request.')
+                    blockDialog = false
                 }
                 break
             case T_BLACK_START:
@@ -885,7 +900,7 @@ $(window).on('load', function() {
                     data = data.subarray(msgpack.unpackedLength())
                     if (msgpack.unpack(data)) {
                         altMove.checked = true
-                        guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Put a white stone in the bule rect.')
+                        guideToast(lang == "ja" ? 'あなたは仮先です<br />白を青い四角の中に打ってください' : 'You are a tentative black player.<br />Place a white stone in the bule rect.')
                         draw2ndGuide(ctxGuide)
                     }
                     else {
@@ -908,7 +923,7 @@ $(window).on('load', function() {
                     }
                     else {
                         altMove.checked = false
-                        guideToast(lang == "ja" ? 'あなたは白です<br />白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a white player.<br />Put a white stone.<br />This dialog is automatically closed when you put a stone.')
+                        guideToast(lang == "ja" ? 'あなたは白です<br />白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a white player.<br />Place a white stone.<br />This dialog is automatically closed when you put a stone.')
                     }
                     clearGuide(ctxGuide)
                 }
@@ -925,7 +940,7 @@ $(window).on('load', function() {
                 if (msgpack.unpack(data)) {
                     blackPlayer = [whitePlayer, whitePlayer = blackPlayer][0]
                     swapped = true
-                    guideToast(lang == "ja" ? '相手は黒で指すと宣言しました<br />あなたは白と確定しました<br />白を打ってください' : 'Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<bt />Put a white stone.')
+                    guideToast(lang == "ja" ? '相手は黒で指すと宣言しました<br />あなたは白と確定しました<br />白を打ってください' : 'Your oppornent chose swapping black and white.<br />Then you are decided as a white player.<bt />Place a white stone.')
                 }
                 else {
                     guideToast(lang == "ja" ? '相手は白で指すと宣言しました<br />あなたは黒と確定しました<br />相手が白を打つのを待ってください' : "Your oppornent didn't choose swapping.<br />Then you are decided as a black player.<br />Wait a white player's move.")
