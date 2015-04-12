@@ -315,12 +315,12 @@ $(window).on('load', function() {
             doFirstMove()
             if (altMove.checked) {
                 if (whitePlayer == HUMAN) {
-                    guideToast(lang == "ja" ? '青い四角の中に白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'Put a white stone in the blue rect.')
+                    guideToast(lang == "ja" ? '青い四角の中に白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Place a white stone in the blue rect.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
                 }
                 draw2ndGuide(ctxGuide)
             }
             else {
-                guideToast(lang == "ja" ? '白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'Put a white stone.')
+                guideToast(lang == "ja" ? '白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Put a white stone.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
                 clearGuide(ctxGuide)
             }
         }
