@@ -321,6 +321,7 @@ $(window).on('load', function() {
             }
             else {
                 guideToast(lang == "ja" ? '白を打ってください<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'Put a white stone.')
+                clearGuide(ctxGuide)
             }
         }
         else if (blackPlayer == NET_WAITING) {
@@ -383,10 +384,12 @@ $(window).on('load', function() {
         $(gameType).prop('disabled', false)
         $(altMove).prop('disabled', false)
         guideToast(lang == "ja" ? '投了しました' : 'You resigned.')
-        var a = msgpack.pack(RESIGN)
-        a = a.concat(msgpack.pack(altMove.checked))
-        var b = new Uint8Array(a)
-        ws.send(b)
+        if (ws) {
+            var a = msgpack.pack(RESIGN)
+            a = a.concat(msgpack.pack(altMove.checked))
+            var b = new Uint8Array(a)
+            ws.send(b)
+        }
     })
 
     // Draw click
@@ -421,15 +424,15 @@ $(window).on('load', function() {
 
         if (altMove.checked) {
             if (score.turn == 1) {
+                if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
                 if (blackPlayer == HUMAN) {
                     guideToast(lang == "ja" ? '青い四角の中に黒を打ってください' : 'Put a black stone in the blue rect.')
                     draw3rdGuide(ctxGuide)
                 }
-                if (pos.x < 6 || pos.x > 8 || pos.y < 6 || pos.y > 8) return
             }
             else if (score.turn == 2) {
-                clearGuide(ctxGuide)
                 if (pos.x < 5 || pos.x > 9 || pos.y < 5 || pos.y > 9) return
+                clearGuide(ctxGuide)
                 if (blackPlayer == HUMAN) {
                     if (whitePlayer == HUMAN) {
                         guideToast(lang == "ja" ? '仮後は黒か白を宣言してください。<br />白になった人は白を打ってください' : 'Tentative white player choose black or white.<br />Then white player put a white stone.')
