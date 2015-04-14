@@ -233,6 +233,7 @@ $(window).on('load', function() {
         baseUrl += window.location.pathname
     }
 
+
     drawBoard(goban.getContext('2d'))
 
     $(pass).prop('disabled', true)
@@ -242,10 +243,23 @@ $(window).on('load', function() {
     // Checkboxes
     $(showNumber).on('change', function(e) {
         ctxNumber.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-        if (showNumber.checked)
+        if (showNumber.checked) {
+            $.cookie('showNumber', 'true', { expires: 3650 })
             for (i = 0; i < score.turn; ++i)
                 putNumber(ctxNumber, score.getPosition(i), i + 1)
+        }
+        else {
+            $.cookie('showNumber', 'false', { expires: 3650 })
+        }
     })
+    var ckShowNumber = $.cookie('showNumber')
+    if (ckShowNumber && ckShowNumber =='true') {
+        showNumber.checked = true
+    }
+    else {
+        showNumber.checked = false
+    }
+
     $(showYaku).on('change', function(e) {
         ctxYaku.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
         if (showYaku.checked) putYaku(ctxYaku, yakuPositions)
