@@ -295,9 +295,7 @@ $(window).on('load', function() {
     }
 
     // Dropdown
-    $(gameType).on('change', function(e) {
-        $.cookie('gameType', this.selectedIndex.toString(), { expires: 3650 })
-        var id = this.options[this.selectedIndex].id
+    function selectGameType(id) {
         if (id == "BHvWH") {
             blackPlayer = HUMAN
             whitePlayer = HUMAN
@@ -314,10 +312,15 @@ $(window).on('load', function() {
             blackPlayer = COM
             whitePlayer = HUMAN
         }
+    }
+    $(gameType).on('change', function(e) {
+        selectGameType(this.options[this.selectedIndex].id)
+        $.cookie('gameType', this.selectedIndex.toString(), { expires: 3650 })
     })
     var ckSelectIndex = $.cookie('gameType')
     if (ckSelectIndex) {
         gameType.selectedIndex = parseInt(ckSelectIndex)
+        selectGameType(gameType.options[gameType.selectedIndex].id)
     }
 
     function doFirstMove() {
