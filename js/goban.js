@@ -262,11 +262,41 @@ $(window).on('load', function() {
 
     $(showYaku).on('change', function(e) {
         ctxYaku.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
-        if (showYaku.checked) putYaku(ctxYaku, yakuPositions)
+        if (showYaku.checked) {
+            $.cookie('showYaku', 'true', { expires: 3650 })
+            putYaku(ctxYaku, yakuPositions)
+        }
+        else {
+            $.cookie('showYaku', 'false', { expires: 3650 })
+        }
     })
+    var ckShowYaku = $.cookie('showYaku')
+    if (ckShowYaku && ckShowYaku =='true') {
+        showYaku.checked = true
+    }
+    else {
+        showYaku.checked = false
+    }
+
+    $(altMove).on('change', function(e) {
+        if (altMove.checked) {
+            $.cookie('altMove', 'true', { expires: 3650 })
+        }
+        else {
+            $.cookie('altMove', 'false', { expires: 3650 })
+        }
+    })
+    var ckAltMove = $.cookie('altMove')
+    if (ckAltMove && ckAltMove =='true') {
+        altMove.checked = true
+    }
+    else {
+        altMove.checked = false
+    }
 
     // Dropdown
     $(gameType).on('change', function(e) {
+        $.cookie('gameType', this.selectedIndex, { expires: 3650 })
         var id = this.options[this.selectedIndex].id
         if (id == "BHvWH") {
             blackPlayer = HUMAN
@@ -285,6 +315,10 @@ $(window).on('load', function() {
             whitePlayer = HUMAN
         }
     })
+    var ckSelectIndex = $.cookie('gameType')
+    if (ckSelectIndex) {
+        this.selectedIndex = ckSelectIndex
+    }
 
     function doFirstMove() {
         waitSwapOrNot = false
