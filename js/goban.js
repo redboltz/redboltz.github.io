@@ -317,7 +317,7 @@ $(window).on('load', function() {
     })
     var ckSelectIndex = $.cookie('gameType')
     if (ckSelectIndex) {
-        this.selectedIndex = parseInt(ckSelectIndex)
+        gameType.selectedIndex = parseInt(ckSelectIndex)
     }
 
     function doFirstMove() {
