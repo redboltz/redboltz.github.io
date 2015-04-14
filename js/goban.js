@@ -253,7 +253,7 @@ $(window).on('load', function() {
         }
     })
     var ckShowNumber = $.cookie('showNumber')
-    if (ckShowNumber && ckShowNumber =='true') {
+    if (!ckShowNumber || ckShowNumber =='true') {
         showNumber.checked = true
     }
     else {
@@ -271,7 +271,7 @@ $(window).on('load', function() {
         }
     })
     var ckShowYaku = $.cookie('showYaku')
-    if (ckShowYaku && ckShowYaku =='true') {
+    if (!ckShowYaku || ckShowYaku =='true') {
         showYaku.checked = true
     }
     else {
