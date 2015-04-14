@@ -221,8 +221,8 @@ $(window).on('load', function() {
         $("#draw").val("引き分け提案")
         $("#BHvWH").text("先手（人間）vs後手（人間）")
         $("#Network").text("人とネット対戦")
-        $("#BHvWC").text("先手（人間）vs後手（COM）")
-        $("#BCvWH").text("先手（COM）vs後手（人間）")
+        $("#BHvWC").text("先手（人間）vs後手（COM）未実装")
+        $("#BCvWH").text("先手（COM）vs後手（人間）未実装")
         $("#text_alt_move").html('<a href="http://ja.wikipedia.org/wiki/%E9%80%A3%E7%8F%A0#.E7.8F.BE.E8.A1.8C.E3.81.AE.E7.94.A8.E8.AA.9E.E3.81.A8.E5.9F.BA.E6.9C.AC.E3.83.AB.E3.83.BC.E3.83.AB" target="_blank">連珠ルール</a>')
         $("#text_show_number").text("石の上に数字表示")
         $("#text_show_yaku").text("三などを表示")
@@ -299,6 +299,8 @@ $(window).on('load', function() {
         if (id == "BHvWH") {
             blackPlayer = HUMAN
             whitePlayer = HUMAN
+            ws.close()
+            ws = null
         }
         else if (id == "Network") {
             blackPlayer = NET_WAITING
@@ -307,10 +309,14 @@ $(window).on('load', function() {
         else if (id == "BHvWC") {
             blackPlayer = HUMAN
             whitePlayer = COM
+            ws.close()
+            ws = null
         }
         else if (id == "BCvWH") {
             blackPlayer = COM
             whitePlayer = HUMAN
+            ws.close()
+            ws = null
         }
     }
     $(gameType).on('change', function(e) {
