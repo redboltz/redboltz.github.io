@@ -914,6 +914,7 @@ $(window).on('load', function() {
                 $("#yes").on('click', function () {
                     data = data.subarray(msgpack.unpackedLength())
                     altMove.checked = msgpack.unpack(data)
+                    $.cookie('altMove', altMove.checked ? 'true' : 'false', { expires: 3650 })
 
                     var a = msgpack.pack(START_RET)
                     a = a.concat(msgpack.pack(true))
@@ -958,6 +959,7 @@ $(window).on('load', function() {
                         altMove.checked = false
                         guideToast(lang == "ja" ? 'あなたは黒です<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : 'You are a black player.')
                     }
+                    $.cookie('altMove', altMove.checked ? 'true' : 'false', { expires: 3650 })
                     doFirstMove()
                 }
                 break
