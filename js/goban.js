@@ -223,7 +223,7 @@ $(window).on('load', function() {
         $("#Network").text("人とネット対戦")
         $("#BHvWC").text("先手（人間）vs後手（COM）")
         $("#BCvWH").text("先手（COM）vs後手（人間）")
-        $("#text_alt_move").text("連珠ルール")
+        $("#text_alt_move").html('<a href="http://ja.wikipedia.org/wiki/%E9%80%A3%E7%8F%A0#.E7.8F.BE.E8.A1.8C.E3.81.AE.E7.94.A8.E8.AA.9E.E3.81.A8.E5.9F.BA.E6.9C.AC.E3.83.AB.E3.83.BC.E3.83.AB" target="_blank">連珠ルール</a>')
         $("#text_show_number").text("石の上に数字表示")
         $("#text_show_yaku").text("三などを表示")
     }
