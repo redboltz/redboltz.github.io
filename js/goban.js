@@ -1349,10 +1349,10 @@ $(window).on('load', function() {
             }
         }
 
-        var cy4 = count[Score.Y_4]
-        var cy44 = count[Score.Y_44]
-        var cy4r = count[Score.Y_4R]
-        var cy3 = count[Score.Y_3]
+        var cy4 = count[Score.Y_4] ? count[Score.Y_4] : 0
+        var cy44 = count[Score.Y_44] ? count[Score.Y_44] : 0
+        var cy4r = count[Score.Y_4R] ? count[Score.Y_4R] : 0
+        var cy3 = count[Score.Y_3] ?  count[Score.Y_3] : 0
 
         if (cy4 + cy4r + cy44 >= 2) {
             var positions = {}
