@@ -1,4 +1,4 @@
-const WS_URL = "wss://www.redboltz.net:10080"
+const WS_URL = "wss://www.redboltz.net"
 const BLACK  = "BLACK"
 const WHITE  = "WHITE"
 const BORDER = "BORDER"
