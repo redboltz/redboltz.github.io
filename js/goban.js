@@ -380,8 +380,10 @@ $(window).on('load', function() {
                 draw2ndGuide(ctxGuide)
             }
             else {
-                guideToast(lang == "ja" ? '白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Place a white stone.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
-                clearGuide(ctxGuide)
+                if (whitePlayer == HUMAN) {
+                    guideToast(lang == "ja" ? '白を打ってください<br />スマホで石を打つには、画面を長押しして<br />十字カーソルの位置を合わせ指を離します<br />OKをクリックしなくても石を打てば<br />このメッセージは消えます' : "Place a white stone.<br />When you use a smart phone, long press on the board, then adjust a cross cursour, and then release.<br />You don't need to tap OK button. This dialog is automatically closed when you place a stone.")
+                    clearGuide(ctxGuide)
+                }
             }
         }
         else if (blackPlayer == NET_WAITING) {
