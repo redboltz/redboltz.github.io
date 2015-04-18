@@ -1304,7 +1304,7 @@ $(window).on('load', function() {
         var stone = score.getStone(pos)
         if (stone != BLACK) return false
         var ret = checkYakuWithoutDir(pos, dir)
-        if (ret.yaku == Score.Y_6 || ret.yaku == Score.Y_44 || ret.yaku == Score.Y_33) return true
+        if (ret.yaku == Score.Y_6 || ret.yaku == Score.Y_44 || ret.yaku == Score.Y_33 || ret.yaku == Score.Y_4) return true
         return false
     }
 
