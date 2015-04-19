@@ -1514,6 +1514,11 @@ $(window).on('load', function() {
                 }
             }
             else if (detect3) {
+                $.each(result, function(i, v) {
+                    if (Position.radialDistance(pos, v) > 3) {
+                        delete result[v]
+                    }
+                })
                 return { "yaku":Score.Y_3, "positions":result }
             }
             return { "yaku":Score.Y_NONE, "positions":{} }
