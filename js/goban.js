@@ -299,8 +299,10 @@ $(window).on('load', function() {
         if (id == "BHvWH") {
             blackPlayer = HUMAN
             whitePlayer = HUMAN
-            ws.close()
-            ws = null
+            if (ws) {
+                ws.close()
+                ws = null
+            }
         }
         else if (id == "Network") {
             blackPlayer = NET_WAITING
@@ -309,14 +311,18 @@ $(window).on('load', function() {
         else if (id == "BHvWC") {
             blackPlayer = HUMAN
             whitePlayer = COM
-            ws.close()
-            ws = null
+            if (ws) {
+                ws.close()
+                ws = null
+            }
         }
         else if (id == "BCvWH") {
             blackPlayer = COM
             whitePlayer = HUMAN
-            ws.close()
-            ws = null
+            if (ws) {
+                ws.close()
+                ws = null
+            }
         }
     }
     $(gameType).on('change', function(e) {
