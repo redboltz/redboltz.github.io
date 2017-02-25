@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['get_5fcontrol_5fpacket_5ftype',['get_control_packet_type',['../namespacemqtt.html#ab80944d8cdaa17f80dd0672a717da12c',1,'mqtt']]],
-  ['get_5fqos',['get_qos',['../namespacemqtt_1_1publish.html#abb9575b9c63ffaebcdcbd19472b76e52',1,'mqtt::publish']]]
+  ['for_5feach_5fstore',['for_each_store',['../classmqtt_1_1endpoint.html#a0c010c110cebb405cd33aabeddf5e10f',1,'mqtt::endpoint']]],
+  ['force_5fdisconnect',['force_disconnect',['../classmqtt_1_1endpoint.html#ada2e5fc04cc1162365d8c63b29dd016c',1,'mqtt::endpoint']]]
 ];

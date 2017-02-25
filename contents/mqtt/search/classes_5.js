@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['will',['will',['../classmqtt_1_1will.html',1,'mqtt']]],
-  ['will_5fmessage_5flength_5ferror',['will_message_length_error',['../structmqtt_1_1will__message__length__error.html',1,'mqtt']]]
+  ['read_5fbytes_5ftransferred_5ferror',['read_bytes_transferred_error',['../structmqtt_1_1read__bytes__transferred__error.html',1,'mqtt']]],
+  ['remaining_5flength_5ferror',['remaining_length_error',['../structmqtt_1_1remaining__length__error.html',1,'mqtt']]]
 ];

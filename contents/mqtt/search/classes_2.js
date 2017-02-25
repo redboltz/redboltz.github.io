@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['password_5flength_5ferror',['password_length_error',['../structmqtt_1_1password__length__error.html',1,'mqtt']]]
+  ['endpoint',['endpoint',['../classmqtt_1_1endpoint.html',1,'mqtt']]],
+  ['endpoint_3c_20socket_2c_20strand_20_3e',['endpoint&lt; Socket, Strand &gt;',['../classmqtt_1_1endpoint.html',1,'mqtt']]]
 ];

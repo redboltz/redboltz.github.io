@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['close_5fhandler',['close_handler',['../classmqtt_1_1client.html#a28fb3b7f02e3a5b9e496e3b7ceef16d3',1,'mqtt::client']]],
-  ['connack_5fhandler',['connack_handler',['../classmqtt_1_1client.html#a3379a78f5df2e3a151df62810a1aede8',1,'mqtt::client']]]
+  ['async_5fhandler_5ft',['async_handler_t',['../classmqtt_1_1client.html#aa75a4869c38a0fffd8a3951262870ece',1,'mqtt::client::async_handler_t()'],['../classmqtt_1_1endpoint.html#a63b9e9bbefcc4b42a15938ff068e43d7',1,'mqtt::endpoint::async_handler_t()']]]
 ];
