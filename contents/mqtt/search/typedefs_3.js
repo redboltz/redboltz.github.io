@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['error_5fhandler',['error_handler',['../classmqtt_1_1client.html#afa3da08bd3d3e54a7d2d6e85ca3c3635',1,'mqtt::client::error_handler()'],['../classmqtt_1_1endpoint.html#aecb3fdaee0e81d37bebb9a151e039ccf',1,'mqtt::endpoint::error_handler()']]]
+  ['endpoint_5ft',['endpoint_t',['../classmqtt_1_1server.html#ad1986ba4cfd37db3ed32e6f45dd3f0ce',1,'mqtt::server::endpoint_t()'],['../classmqtt_1_1server__tls.html#a0586afc70aff2070be0d8471241f2137',1,'mqtt::server_tls::endpoint_t()'],['../classmqtt_1_1server__tls.html#a330f598f9ea3a162dafaf0d074ea23c0',1,'mqtt::server_tls::endpoint_t()']]],
+  ['error_5fhandler',['error_handler',['../classmqtt_1_1client.html#afa3da08bd3d3e54a7d2d6e85ca3c3635',1,'mqtt::client::error_handler()'],['../classmqtt_1_1endpoint.html#aecb3fdaee0e81d37bebb9a151e039ccf',1,'mqtt::endpoint::error_handler()'],['../classmqtt_1_1endpoint.html#aecb3fdaee0e81d37bebb9a151e039ccf',1,'mqtt::endpoint::error_handler()'],['../classmqtt_1_1server.html#a61f99e83e10d5d15ba22d12567ac2821',1,'mqtt::server::error_handler()'],['../classmqtt_1_1server__tls.html#a5c164c0a9c70e4d98b7e4a2355731269',1,'mqtt::server_tls::error_handler()'],['../classmqtt_1_1server__tls.html#a5c164c0a9c70e4d98b7e4a2355731269',1,'mqtt::server_tls::error_handler()']]]
 ];

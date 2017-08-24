@@ -1,0 +1,4 @@
+<map id="mqtt::bytes_transferred_error" name="mqtt::bytes_transferred_error">
+<area shape="rect" id="node3" href="$structmqtt_1_1read__bytes__transferred__error.html" title="mqtt::read_bytes_transferred\l_error" alt="" coords="5,169,217,211"/>
+<area shape="rect" id="node4" href="$structmqtt_1_1write__bytes__transferred__error.html" title="mqtt::write_bytes_transferred\l_error" alt="" coords="242,169,458,211"/>
+</map>

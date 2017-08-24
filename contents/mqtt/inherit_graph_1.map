@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classmqtt_1_1endpoint.html" title="mqtt::endpoint\&lt; Socket,\l Strand \&gt;" alt="" coords="253,5,435,47"/>
+<area shape="rect" id="node4" href="$classmqtt_1_1endpoint.html" title="mqtt::endpoint\&lt; Socket,\l Strand, Mutex, LockGuard \&gt;" alt="" coords="240,71,448,112"/>
+<area shape="rect" id="node3" href="$classmqtt_1_1client.html" title="mqtt::client\&lt; Socket,\l Strand \&gt;" alt="" coords="496,5,656,47"/>
+</map>

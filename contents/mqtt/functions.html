@@ -61,6 +61,10 @@ $(function() {
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>accept_handler
+: <a class="el" href="classmqtt_1_1server.html#ab44384ac6be87d1192c43fc9f29ca713">mqtt::server&lt; Strand, Mutex, LockGuard &gt;</a>
+, <a class="el" href="classmqtt_1_1server__tls.html#aebdc79dca6ab40d1ddb2eda2f3e998f8">mqtt::server_tls&lt; Strand, Mutex, LockGuard &gt;</a>
+</li>
 <li>acquire_unique_packet_id()
 : <a class="el" href="classmqtt_1_1endpoint.html#a8fc2939608b042f80104fbfb94f60b63">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
@@ -77,7 +81,7 @@ $(function() {
 : <a class="el" href="classmqtt_1_1endpoint.html#a8747ac11764c03edcfd6b8c8e7e48ea8">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>acquired_async_subscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#a4467560f50758d5be2771c943ca57362">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#af10777f10a4adfeea508cc34329ca6d3">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>acquired_async_unsubscribe()
 : <a class="el" href="classmqtt_1_1endpoint.html#a92663eaa9038f1e45a18dce6144ede09">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
@@ -95,10 +99,13 @@ $(function() {
 : <a class="el" href="classmqtt_1_1endpoint.html#a0746f42de01fd00fb19325ed36c06bcf">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>acquired_subscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#a127291cea49367f0be3d6e5ff4b25a54">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#acf2169c1b2716f0856bca976752f255f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>acquired_unsubscribe()
 : <a class="el" href="classmqtt_1_1endpoint.html#a8204e49d556fa517b1743ebb9f33e03c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+</li>
+<li>add_verify_path()
+: <a class="el" href="classmqtt_1_1client.html#a4f88d8b6948ad00f518f88cadd935646">mqtt::client&lt; Socket, Strand &gt;</a>
 </li>
 <li>async_accept()
 : <a class="el" href="classmqtt_1_1ws__endpoint.html#a9d0ac83c268fa436652759690845ed57">mqtt::ws_endpoint&lt; Socket &gt;</a>
@@ -133,7 +140,7 @@ $(function() {
 : <a class="el" href="classmqtt_1_1endpoint.html#a3f544b9f7fbf8759705a1c2cd5a73806">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_publish()
-: <a class="el" href="classmqtt_1_1endpoint.html#a22f9afa6ff14808036e69eec8b91ad9c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#a9be37fcf6346a73fa386b67d429ea44e">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_publish_at_least_once()
 : <a class="el" href="classmqtt_1_1endpoint.html#a73f09fbd7cf18123f1e897400fdb023a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
@@ -157,415 +164,22 @@ $(function() {
 : <a class="el" href="classmqtt_1_1ws__endpoint.html#a7507fd3ede964e7fe40035ddec8df21d">mqtt::ws_endpoint&lt; Socket &gt;</a>
 </li>
 <li>async_read_control_packet_type()
-: <a class="el" href="classmqtt_1_1endpoint.html#a480e1eda72cf9b7895a78d96fccae85c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#ac3cb2a834ae671a8a7b727a5e59ead2c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_suback()
-: <a class="el" href="classmqtt_1_1endpoint.html#a25b209a0452e933289cb3b72c55a1f76">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#a41e563c28cd4588eb9cb3ba6c8ba0605">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_subscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#aa456b3191a05384dca0b9ed2c76442e8">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#a96332b86a1bfd1fb25eac840466d90da">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_unsuback()
 : <a class="el" href="classmqtt_1_1endpoint.html#aa0e96e19f39cfc3a1b5dbbee4d4f02a2">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_unsubscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8d4499fa72e042cb0272a657b64a7ed6">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#a5141f47024f3fe791ca1ee9b91b11468">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
 </li>
 <li>async_write()
 : <a class="el" href="classmqtt_1_1ws__endpoint.html#ad456835471301678218cef3c38dc4b0e">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_b"></a>- b -</h3><ul>
-<li>bytes_transferred_error()
-: <a class="el" href="structmqtt_1_1bytes__transferred__error.html#a19f9cd206b2ea94730e00430a60e9307">mqtt::bytes_transferred_error</a>
-</li>
-</ul>
-
-
-<h3><a id="index_c"></a>- c -</h3><ul>
-<li>clear_stored_publish()
-: <a class="el" href="classmqtt_1_1endpoint.html#a78a1bab156b7281193e9f6015fec546a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>close()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#ab4141e46c05b64f449ba434344d22942">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-<li>close_handler
-: <a class="el" href="classmqtt_1_1client.html#a2e50b7c00a283e0554ec6259bf4ebf45">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a364af867678842e91c1b32dec2a41367">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>connack()
-: <a class="el" href="classmqtt_1_1endpoint.html#acdd80a5218013143a28ebb9623d7760f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>connack_handler
-: <a class="el" href="classmqtt_1_1client.html#a2ee2b2f2dbbb381b7e31e8e02fcd8a1f">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a6e2db4cf296282078f39ea56402b0ef5">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>connect()
-: <a class="el" href="classmqtt_1_1client.html#acb242ef276aa0897d6b4be148b54fb57">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#afe841052b0b07878b8f41d35e56a0828">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>connect_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#a09735fb1fb557054eb5e64c4fcdb51e5">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>connected()
-: <a class="el" href="classmqtt_1_1endpoint.html#aaf91466fe31d4a409cf1406102363995">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_d"></a>- d -</h3><ul>
-<li>disconnect()
-: <a class="el" href="classmqtt_1_1client.html#aa5b1db7f8017c5d6d1a0b99287208278">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a7a66426c7ca0cb1df2fec65422520f8f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>disconnect_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#abd7c3f10ad78e6c698d6bbfef6711c3b">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>dispatch()
-: <a class="el" href="structmqtt_1_1null__strand.html#a0db36679a512d3d5c9604bd1b5d58069">mqtt::null_strand</a>
-</li>
-</ul>
-
-
-<h3><a id="index_e"></a>- e -</h3><ul>
-<li>endpoint()
-: <a class="el" href="classmqtt_1_1endpoint.html#adbe67ee0ca6a224565117954514faba7">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>error_handler
-: <a class="el" href="classmqtt_1_1client.html#afa3da08bd3d3e54a7d2d6e85ca3c3635">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#aecb3fdaee0e81d37bebb9a151e039ccf">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_f"></a>- f -</h3><ul>
-<li>for_each_store()
-: <a class="el" href="classmqtt_1_1endpoint.html#a0c010c110cebb405cd33aabeddf5e10f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>force_disconnect()
-: <a class="el" href="classmqtt_1_1endpoint.html#ada2e5fc04cc1162365d8c63b29dd016c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_g"></a>- g -</h3><ul>
-<li>get_io_service()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#a15f4c39ad2a34e337fbdccdbe6491b7c">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_h"></a>- h -</h3><ul>
-<li>handle_close_or_error()
-: <a class="el" href="classmqtt_1_1endpoint.html#a5fa15ba94d7f94f37b7bd8dc35fd3c5a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_l"></a>- l -</h3><ul>
-<li>lowest_layer()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#aad911ae8ff9df3239bb6b43d77f24562">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_m"></a>- m -</h3><ul>
-<li>make_client
-: <a class="el" href="classmqtt_1_1client.html#a6498403beef9a00c53d437a467567c22">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>make_client_no_strand
-: <a class="el" href="classmqtt_1_1client.html#abb6ea23f6066e49c85ed9baf121ef81a">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>make_tls_client
-: <a class="el" href="classmqtt_1_1client.html#ae611df8525bbfa5c1b6dee8f1eda5be4">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>make_tls_client_no_strand
-: <a class="el" href="classmqtt_1_1client.html#a616187976acaa8949ed6d6f7f28cdd2f">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>message()
-: <a class="el" href="classmqtt_1_1will.html#ae8344e84212dd111d2bd252e745086e0">mqtt::will</a>
-</li>
-<li>msg
-: <a class="el" href="structmqtt_1_1bytes__transferred__error.html#a07eb4412df431716c13390ec04085e2f">mqtt::bytes_transferred_error</a>
-</li>
-</ul>
-
-
-<h3><a id="index_n"></a>- n -</h3><ul>
-<li>next_layer()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#ad36df046e3f062cf8c0ada0f1ce60dca">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-<li>null_strand()
-: <a class="el" href="structmqtt_1_1null__strand.html#a4b37268dedbc8c4599045fc58c1b4dd3">mqtt::null_strand</a>
-</li>
-</ul>
-
-
-<h3><a id="index_o"></a>- o -</h3><ul>
-<li>operator=()
-: <a class="el" href="classmqtt_1_1endpoint.html#a717c3ffaa30c1102b5d293c97533324f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_p"></a>- p -</h3><ul>
-<li>pingreq()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8421e3230f596187014080dabf78f75e">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pingreq_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#a6c370dcf0b186feb08dce27aeffdaf92">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pingresp()
-: <a class="el" href="classmqtt_1_1endpoint.html#a100ce8fd880e5e5ebeba6e70b33bcc2a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pingresp_handler
-: <a class="el" href="classmqtt_1_1client.html#aa78a7a6a8eaf69b2ca7ac3af5bf779c6">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a0c3ac60054f4c091c07ddc54b565fbac">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>post()
-: <a class="el" href="structmqtt_1_1null__strand.html#a72161de2a44ead859458f41ee38c9aba">mqtt::null_strand</a>
-</li>
-<li>pub_res_sent_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#ad19bd5db5bf78fc249c4846716fb1b11">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>puback()
-: <a class="el" href="classmqtt_1_1endpoint.html#a777bcc7a429a14d280f02cf6568c7041">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>puback_handler
-: <a class="el" href="classmqtt_1_1client.html#ae3c80f9203a45f9cb5f59facf7091dc3">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#aebda47243d8f43b27b4ec3e5d1361ba9">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubcomp()
-: <a class="el" href="classmqtt_1_1endpoint.html#ab65a0434feaff1f020f75b174b63c8a8">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubcomp_handler
-: <a class="el" href="classmqtt_1_1client.html#ad7b336e193a7ddcc12013661f6524a46">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a18af7ad4e07dbe398a0d75eb4c4ccfcd">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish()
-: <a class="el" href="classmqtt_1_1endpoint.html#a328b9a76013c7181420797c9ab9d2214">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish_at_least_once()
-: <a class="el" href="classmqtt_1_1endpoint.html#a4739bf14e854b1e14f6b8d02bcb2876f">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish_at_most_once()
-: <a class="el" href="classmqtt_1_1endpoint.html#ad1cfde06227d8ef3e4ac7c391dd4649e">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish_dup()
-: <a class="el" href="classmqtt_1_1endpoint.html#ad661ea2957ceda98efd0cc2a486bbd42">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish_exactly_once()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8ff02dfe9d10e5bd92779b22ad5b866e">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>publish_handler
-: <a class="el" href="classmqtt_1_1client.html#aec03dd5b42adcedf304d5d305fa8792b">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#af733e4f7cf8c99f81f9df87e3136f4fc">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubrec()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8f38026671e867a67dc539aa1b4ea149">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubrec_handler
-: <a class="el" href="classmqtt_1_1client.html#a72e8278e34c837068eedbbfc02addbd0">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a2c7b758532793dd312300f2865bc33d7">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubrel()
-: <a class="el" href="classmqtt_1_1endpoint.html#a2e3cb58db8b272192922190cc259936c">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>pubrel_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#ac8fa6923cbee75e2ae2e15e240eee4e9">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_q"></a>- q -</h3><ul>
-<li>qos()
-: <a class="el" href="classmqtt_1_1will.html#ac928199ce1df2e0bbd0fe9483cb44da6">mqtt::will</a>
-</li>
-</ul>
-
-
-<h3><a id="index_r"></a>- r -</h3><ul>
-<li>read_bytes_transferred_error()
-: <a class="el" href="structmqtt_1_1read__bytes__transferred__error.html#a136317f5c4be335a2ef1e3603f95d4b0">mqtt::read_bytes_transferred_error</a>
-</li>
-<li>register_packet_id()
-: <a class="el" href="classmqtt_1_1endpoint.html#ab688d9c2c343e4facde63a33f51e25a8">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>release_packet_id()
-: <a class="el" href="classmqtt_1_1endpoint.html#a98f88ab5de17646da38f5a2431721159">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>retain()
-: <a class="el" href="classmqtt_1_1will.html#a8a4f6f36658868cccd18f0d43b719881">mqtt::will</a>
-</li>
-</ul>
-
-
-<h3><a id="index_s"></a>- s -</h3><ul>
-<li>set_auto_pub_response()
-: <a class="el" href="classmqtt_1_1endpoint.html#a7ff3b8838f85a217a690e5adcd0d1c7a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_ca_cert_file()
-: <a class="el" href="classmqtt_1_1client.html#a04ed9e0a121b1186025721138885bdbf">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>set_clean_session()
-: <a class="el" href="classmqtt_1_1endpoint.html#a3bceb4fd28a4842b56a09cb5e5fecbe7">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_client_cert_file()
-: <a class="el" href="classmqtt_1_1client.html#a35df2c5a717aade7d3343aec633bf4c7">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>set_client_id()
-: <a class="el" href="classmqtt_1_1endpoint.html#a5291b48d933fa8f48db17903de48f7cb">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_client_key_file()
-: <a class="el" href="classmqtt_1_1client.html#ab0df2313806c4318b328ff6b779d799c">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>set_close_handler()
-: <a class="el" href="classmqtt_1_1client.html#ad96cad7578014ca719b4b15fe155dc71">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#ae2324d7ba670c34bd0ea9c59139d38fb">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_connack_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a21a75def55f0ef79ec36401a1c401695">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_connect()
-: <a class="el" href="classmqtt_1_1endpoint.html#aeb1f225431a73fd4af23ef5fde573015">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_connect_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#af5b7b3797009df1b4c58bef6f1c4e4b9">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_disconnect_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#adf74f6b98a43f065551647889d9bf507">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_error_handler()
-: <a class="el" href="classmqtt_1_1client.html#a161de6cb6723027f8d5d52db52aa744a">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a5be7c8d8c65f6e101088dc9f0db6261d">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_keep_alive_sec()
-: <a class="el" href="classmqtt_1_1client.html#a274d9c9b53d3be066d0c0885a907763b">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>set_keep_alive_sec_ping_ms()
-: <a class="el" href="classmqtt_1_1client.html#aa4889f666719e1508c947acf5bbb6be9">mqtt::client&lt; Socket, Strand &gt;</a>
-</li>
-<li>set_option()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#a73a1c57d84a445c942f61b705db80eb9">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-<li>set_password()
-: <a class="el" href="classmqtt_1_1endpoint.html#a6c44bf215bc14d93a5ef1802130f9602">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pingreq_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a46d2440d99026210a3df92ad2d98e197">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pingresp_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8fd064ab73c70309c164d7660b8b4c2b">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pub_res_sent_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a29aeb6d564015de6a35c9fec7180910d">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_puback_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a57ff41688bb7c646e49b9b453082a0b3">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pubcomp_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#ae85b61e3a087e6668797ad269b52467e">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_publish_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#ac0a85da3750bf33f92ebf754128d25a0">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pubrec_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a8bb309bc9a2b42206b3a4b77f31a7d64">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_pubrel_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a96c65a8e44cb53fc11fd87a37b3e6f14">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_suback_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#ad7f0eb0d98dcc1dc7feda6b8ba8dbca6">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_subscribe_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a336a1b0be761cea662fa58e68889e71a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_unsuback_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#a2e543946cd51cdcd7c2114b10302d272">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_unsubscribe_handler()
-: <a class="el" href="classmqtt_1_1endpoint.html#ae8b56791dd5a42146af701bac9a89498">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_user_name()
-: <a class="el" href="classmqtt_1_1endpoint.html#a4334acb6ead803c6248f6f3d7795a4dc">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>set_will()
-: <a class="el" href="classmqtt_1_1endpoint.html#a5d430aa25b01e26cb33cefea88d7dc35">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>socket()
-: <a class="el" href="classmqtt_1_1endpoint.html#a739ee2cca2ee28fccf8e8d4e5c5c390a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>start_session()
-: <a class="el" href="classmqtt_1_1endpoint.html#a3a2a0ec0c64d6d29ba8ca85a92a07a91">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>suback()
-: <a class="el" href="classmqtt_1_1endpoint.html#aeca85b157b4e04da873c908bf0a0ea85">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>suback_handler
-: <a class="el" href="classmqtt_1_1client.html#aa7b8a0c189f214973c0a12d0f6c5054a">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#a8523cd39c11406669dd46bde2ba5b3f0">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>subscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#a272ea8a134a7cb833716839fe5022509">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>subscribe_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#a2f2c91b53ab913165efe9e2d87b7607a">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_t"></a>- t -</h3><ul>
-<li>topic()
-: <a class="el" href="classmqtt_1_1will.html#af99340ba23884c6a3779ef9d5cd439f0">mqtt::will</a>
-</li>
-</ul>
-
-
-<h3><a id="index_u"></a>- u -</h3><ul>
-<li>unsuback()
-: <a class="el" href="classmqtt_1_1endpoint.html#a97641bb6d27784043e3dc62b3b022018">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>unsuback_handler
-: <a class="el" href="classmqtt_1_1client.html#a82da786650625e1b5c7e51caeed18a8c">mqtt::client&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classmqtt_1_1endpoint.html#ab5df280004bb38ce2aff3b0dd415f807">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>unsubscribe()
-: <a class="el" href="classmqtt_1_1endpoint.html#a55f2c14597dced6b072408053386d3a5">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-<li>unsubscribe_handler
-: <a class="el" href="classmqtt_1_1endpoint.html#af63219b61745484e9bb0fe07a764a9a9">mqtt::endpoint&lt; Socket, Strand, Mutex, LockGuard &gt;</a>
-</li>
-</ul>
-
-
-<h3><a id="index_w"></a>- w -</h3><ul>
-<li>what()
-: <a class="el" href="structmqtt_1_1bytes__transferred__error.html#aa7c7863c43664f382be4f560084bcad1">mqtt::bytes_transferred_error</a>
-, <a class="el" href="structmqtt_1_1packet__id__exhausted__error.html#a25ace204cc29435dd2f75475daf67ad4">mqtt::packet_id_exhausted_error</a>
-, <a class="el" href="structmqtt_1_1password__length__error.html#a33fc109f29021d9a2fc3fd2e105fec24">mqtt::password_length_error</a>
-, <a class="el" href="structmqtt_1_1protocol__error.html#a98d22d9053dd9b860a615654278e16e2">mqtt::protocol_error</a>
-, <a class="el" href="structmqtt_1_1remaining__length__error.html#adf8ce5a2d6e54ddbb1818fa940bfd5c6">mqtt::remaining_length_error</a>
-, <a class="el" href="structmqtt_1_1utf8string__contents__error.html#a4da694dc27703f8870f916a34b4f0016">mqtt::utf8string_contents_error</a>
-, <a class="el" href="structmqtt_1_1utf8string__length__error.html#a759b8751285faa516ec0a072efdb91c0">mqtt::utf8string_length_error</a>
-, <a class="el" href="structmqtt_1_1will__message__length__error.html#afe39ce11d344ea95194e92a734c21166">mqtt::will_message_length_error</a>
-</li>
-<li>will()
-: <a class="el" href="classmqtt_1_1will.html#adf29cd57b33fcc6a8be318a6273b5c85">mqtt::will</a>
-</li>
-<li>wrap()
-: <a class="el" href="structmqtt_1_1null__strand.html#a13674a1b6dcb9a9549f281befdb811d6">mqtt::null_strand</a>
-</li>
-<li>write()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#a5bfc4b265c6466c868766cf3594c4035">mqtt::ws_endpoint&lt; Socket &gt;</a>
-</li>
-<li>write_bytes_transferred_error()
-: <a class="el" href="structmqtt_1_1write__bytes__transferred__error.html#a99fe95c6982fb628497ba7b106441c4f">mqtt::write_bytes_transferred_error</a>
-</li>
-<li>ws_endpoint()
-: <a class="el" href="classmqtt_1_1ws__endpoint.html#a7865f62c8436bbb2f927ec449e0943cf">mqtt::ws_endpoint&lt; Socket &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->

@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$structmqtt_1_1bytes__transferred__error.html" title="mqtt::bytes_transferred\l_error" alt="" coords="151,37,327,79"/>
+<area shape="rect" id="node5" href="$structmqtt_1_1packet__id__exhausted__error.html" title="mqtt::packet_id_exhausted\l_error" alt="" coords="140,103,339,144"/>
+<area shape="rect" id="node6" href="$structmqtt_1_1password__length__error.html" title="mqtt::password_length\l_error" alt="" coords="154,168,325,209"/>
+<area shape="rect" id="node7" href="$structmqtt_1_1protocol__error.html" title="mqtt::protocol_error" alt="" coords="163,234,315,261"/>
+<area shape="rect" id="node8" href="$structmqtt_1_1remaining__length__error.html" title="mqtt::remaining_length\l_error" alt="" coords="152,285,327,327"/>
+<area shape="rect" id="node9" href="$structmqtt_1_1utf8string__contents__error.html" title="mqtt::utf8string_contents\l_error" alt="" coords="146,351,333,392"/>
+<area shape="rect" id="node10" href="$structmqtt_1_1utf8string__length__error.html" title="mqtt::utf8string_length\l_error" alt="" coords="153,416,325,457"/>
+<area shape="rect" id="node11" href="$structmqtt_1_1will__message__length__error.html" title="mqtt::will_message\l_length_error" alt="" coords="164,481,315,523"/>
+<area shape="rect" id="node3" href="$structmqtt_1_1read__bytes__transferred__error.html" title="mqtt::read_bytes_transferred\l_error" alt="" coords="389,5,601,47"/>
+<area shape="rect" id="node4" href="$structmqtt_1_1write__bytes__transferred__error.html" title="mqtt::write_bytes_transferred\l_error" alt="" coords="387,71,603,112"/>
+</map>
