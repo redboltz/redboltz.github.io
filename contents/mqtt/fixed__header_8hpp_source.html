@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: /home/kondo/work/mqtt_client_cpp/include/mqtt/fixed_header.hpp Source File</title>
+<title>mqtt_cpp: /home/kondo/work/mqtt_cpp/include/mqtt/fixed_header.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -68,7 +68,7 @@ $(function() {
 <div class="contents">
 <a href="fixed__header_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright Takatoshi Kondo 2015</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// Distributed under the Boost Software License, Version 1.0.</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// (See accompanying file LICENSE_1_0.txt or copy at</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// http://www.boost.org/LICENSE_1_0.txt)</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#if !defined(MQTT_FIXED_HEADER_HPP)</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define MQTT_FIXED_HEADER_HPP</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="control__packet__type_8hpp.html">mqtt/control_packet_type.hpp</a>&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacemqtt.html">mqtt</a> {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">inline</span> constexpr</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespacemqtt.html#a12b956e07fe129db97dc980bf387783f">   16</a></span>&#160;std::uint8_t <a class="code" href="namespacemqtt.html#a12b956e07fe129db97dc980bf387783f">make_fixed_header</a>(std::uint8_t type, std::uint8_t flags) {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">return</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        (static_cast&lt;std::uint8_t&gt;(type) &lt;&lt; 4) |</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        (flags &amp; 0x0f);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace mqtt</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif // MQTT_FIXED_HEADER_HPP</span></div><div class="ttc" id="namespacemqtt_html_a12b956e07fe129db97dc980bf387783f"><div class="ttname"><a href="namespacemqtt.html#a12b956e07fe129db97dc980bf387783f">mqtt::make_fixed_header</a></div><div class="ttdeci">constexpr std::uint8_t make_fixed_header(std::uint8_t type, std::uint8_t flags)</div><div class="ttdef"><b>Definition:</b> fixed_header.hpp:16</div></div>
 <div class="ttc" id="control__packet__type_8hpp_html"><div class="ttname"><a href="control__packet__type_8hpp.html">control_packet_type.hpp</a></div></div>
-<div class="ttc" id="namespacemqtt_html"><div class="ttname"><a href="namespacemqtt.html">mqtt</a></div><div class="ttdef"><b>Definition:</b> client.hpp:37</div></div>
+<div class="ttc" id="namespacemqtt_html"><div class="ttname"><a href="namespacemqtt.html">mqtt</a></div><div class="ttdef"><b>Definition:</b> client.hpp:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

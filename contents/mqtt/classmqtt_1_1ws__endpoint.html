@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: mqtt::ws_endpoint&lt; Socket &gt; Class Template Reference</title>
+<title>mqtt_cpp: mqtt::ws_endpoint&lt; Socket, Strand &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -66,7 +66,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classmqtt_1_1ws__endpoint-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">mqtt::ws_endpoint&lt; Socket &gt; Class Template Reference</div>  </div>
+<div class="title">mqtt::ws_endpoint&lt; Socket, Strand &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -74,47 +74,53 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7865f62c8436bbb2f927ec449e0943cf"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a7865f62c8436bbb2f927ec449e0943cf"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a7865f62c8436bbb2f927ec449e0943cf">ws_endpoint</a> (as::io_service &amp;ios, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a7865f62c8436bbb2f927ec449e0943cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab01cea44dd1a025e0f8199a21ff62a7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ab01cea44dd1a025e0f8199a21ff62a7f">close</a> (boost::system::error_code &amp;ec)</td></tr>
-<tr class="separator:ab01cea44dd1a025e0f8199a21ff62a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15f4c39ad2a34e337fbdccdbe6491b7c"><td class="memItemLeft" align="right" valign="top">as::io_service &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a15f4c39ad2a34e337fbdccdbe6491b7c">get_io_service</a> ()</td></tr>
-<tr class="separator:a15f4c39ad2a34e337fbdccdbe6491b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad911ae8ff9df3239bb6b43d77f24562"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#aad911ae8ff9df3239bb6b43d77f24562">lowest_layer</a> ()</td></tr>
-<tr class="separator:aad911ae8ff9df3239bb6b43d77f24562"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad36df046e3f062cf8c0ada0f1ce60dca"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ad36df046e3f062cf8c0ada0f1ce60dca">next_layer</a> ()</td></tr>
-<tr class="separator:ad36df046e3f062cf8c0ada0f1ce60dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73a1c57d84a445c942f61b705db80eb9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a73a1c57d84a445c942f61b705db80eb9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a73a1c57d84a445c942f61b705db80eb9">set_option</a> (T &amp;&amp;t)</td></tr>
-<tr class="separator:a73a1c57d84a445c942f61b705db80eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0ac83c268fa436652759690845ed57"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence , typename AcceptHandler &gt; </td></tr>
-<tr class="memitem:a9d0ac83c268fa436652759690845ed57"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a9d0ac83c268fa436652759690845ed57">async_accept</a> (ConstBufferSequence const &amp;buffers, AcceptHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a9d0ac83c268fa436652759690845ed57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21eb2f18727a9a36bde83438212904f0"><td class="memTemplParams" colspan="2">template&lt;typename HandshakeHandler &gt; </td></tr>
-<tr class="memitem:a21eb2f18727a9a36bde83438212904f0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a21eb2f18727a9a36bde83438212904f0">async_handshake</a> (boost::string_ref const &amp;host, boost::string_ref const &amp;resource, HandshakeHandler &amp;&amp;h)</td></tr>
-<tr class="separator:a21eb2f18727a9a36bde83438212904f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7507fd3ede964e7fe40035ddec8df21d"><td class="memTemplParams" colspan="2">template&lt;typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
-<tr class="memitem:a7507fd3ede964e7fe40035ddec8df21d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a7507fd3ede964e7fe40035ddec8df21d">async_read</a> (MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a7507fd3ede964e7fe40035ddec8df21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bfc4b265c6466c868766cf3594c4035"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:a5bfc4b265c6466c868766cf3594c4035"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a5bfc4b265c6466c868766cf3594c4035">write</a> (ConstBufferSequence const &amp;buffers)</td></tr>
-<tr class="separator:a5bfc4b265c6466c868766cf3594c4035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab315eacd4d256192ecec8fbc2a4302a0"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:ab315eacd4d256192ecec8fbc2a4302a0"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ab315eacd4d256192ecec8fbc2a4302a0">write</a> (ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
-<tr class="separator:ab315eacd4d256192ecec8fbc2a4302a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad456835471301678218cef3c38dc4b0e"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
-<tr class="memitem:ad456835471301678218cef3c38dc4b0e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ad456835471301678218cef3c38dc4b0e">async_write</a> (ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:ad456835471301678218cef3c38dc4b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146dd56e654f0e81f4029962b85c4cdc"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a146dd56e654f0e81f4029962b85c4cdc"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a146dd56e654f0e81f4029962b85c4cdc">ws_endpoint</a> (as::io_service &amp;ios, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a146dd56e654f0e81f4029962b85c4cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9d2e2c3970535c25ba2fa529cb42256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ac9d2e2c3970535c25ba2fa529cb42256">close</a> (boost::system::error_code &amp;ec)</td></tr>
+<tr class="separator:ac9d2e2c3970535c25ba2fa529cb42256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8033c114fc1c6f1ac319476bc32218b"><td class="memItemLeft" align="right" valign="top">as::io_service &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#aa8033c114fc1c6f1ac319476bc32218b">get_io_service</a> ()</td></tr>
+<tr class="separator:aa8033c114fc1c6f1ac319476bc32218b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a803914b413a8ec2096b35bce4dadca73"><td class="memItemLeft" align="right" valign="top">boost::beast::websocket::stream&lt; Socket &gt;::lowest_layer_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a803914b413a8ec2096b35bce4dadca73">lowest_layer</a> ()</td></tr>
+<tr class="separator:a803914b413a8ec2096b35bce4dadca73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9f423025c1f90d0885ed05f5875e336"><td class="memItemLeft" align="right" valign="top">boost::beast::websocket::stream&lt; Socket &gt;::next_layer_type &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#aa9f423025c1f90d0885ed05f5875e336">next_layer</a> ()</td></tr>
+<tr class="separator:aa9f423025c1f90d0885ed05f5875e336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cd37ae6db1dfd410828111cb2219008"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0cd37ae6db1dfd410828111cb2219008"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a0cd37ae6db1dfd410828111cb2219008">set_option</a> (T &amp;&amp;t)</td></tr>
+<tr class="separator:a0cd37ae6db1dfd410828111cb2219008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d6800ed57019ebed4ee95e877aeda5"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence , typename AcceptHandler &gt; </td></tr>
+<tr class="memitem:ad8d6800ed57019ebed4ee95e877aeda5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ad8d6800ed57019ebed4ee95e877aeda5">async_accept</a> (ConstBufferSequence const &amp;buffers, AcceptHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:ad8d6800ed57019ebed4ee95e877aeda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993f9cce821bfb43770ca8b679161df5"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence , typename ResponseDecorator , typename AcceptHandler &gt; </td></tr>
+<tr class="memitem:a993f9cce821bfb43770ca8b679161df5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a993f9cce821bfb43770ca8b679161df5">async_accept_ex</a> (ConstBufferSequence const &amp;buffers, ResponseDecorator const &amp;decorator, AcceptHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a993f9cce821bfb43770ca8b679161df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e8b657135b41fc8ef660b1bff43e47"><td class="memTemplParams" colspan="2">template&lt;typename HandshakeHandler &gt; </td></tr>
+<tr class="memitem:ad6e8b657135b41fc8ef660b1bff43e47"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#ad6e8b657135b41fc8ef660b1bff43e47">async_handshake</a> (boost::string_view const &amp;host, boost::string_view const &amp;resource, HandshakeHandler &amp;&amp;h)</td></tr>
+<tr class="separator:ad6e8b657135b41fc8ef660b1bff43e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b12d28cd695475dd246e1af513a2d01"><td class="memTemplParams" colspan="2">template&lt;typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
+<tr class="memitem:a6b12d28cd695475dd246e1af513a2d01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a6b12d28cd695475dd246e1af513a2d01">async_read</a> (MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a6b12d28cd695475dd246e1af513a2d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1434c8b89e24b3038c75fee76c497159"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a1434c8b89e24b3038c75fee76c497159"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a1434c8b89e24b3038c75fee76c497159">write</a> (ConstBufferSequence const &amp;buffers)</td></tr>
+<tr class="separator:a1434c8b89e24b3038c75fee76c497159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb19ec2a51eaf6e340210d04e8a607e"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:abbb19ec2a51eaf6e340210d04e8a607e"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#abbb19ec2a51eaf6e340210d04e8a607e">write</a> (ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
+<tr class="separator:abbb19ec2a51eaf6e340210d04e8a607e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90fb10b1ad7489dbb6e08060ba5bd61d"><td class="memTemplParams" colspan="2">template&lt;typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
+<tr class="memitem:a90fb10b1ad7489dbb6e08060ba5bd61d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a90fb10b1ad7489dbb6e08060ba5bd61d">async_write</a> (ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a90fb10b1ad7489dbb6e08060ba5bd61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2d9597b8c86ef833cbe104a4b977dc"><td class="memTemplParams" colspan="2">template&lt;typename PostHandler &gt; </td></tr>
+<tr class="memitem:a5f2d9597b8c86ef833cbe104a4b977dc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html#a5f2d9597b8c86ef833cbe104a4b977dc">post</a> (PostHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a5f2d9597b8c86ef833cbe104a4b977dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7865f62c8436bbb2f927ec449e0943cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7865f62c8436bbb2f927ec449e0943cf">&#9670;&nbsp;</a></span>ws_endpoint()</h2>
+<a id="a146dd56e654f0e81f4029962b85c4cdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a146dd56e654f0e81f4029962b85c4cdc">&#9670;&nbsp;</a></span>ws_endpoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args&gt; </div>
 <table class="mlabels">
@@ -122,7 +128,7 @@ template&lt;typename... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a> </td>
+          <td class="memname"><a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a> </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -149,13 +155,13 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9d0ac83c268fa436652759690845ed57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d0ac83c268fa436652759690845ed57">&#9670;&nbsp;</a></span>async_accept()</h2>
+<a id="ad8d6800ed57019ebed4ee95e877aeda5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d6800ed57019ebed4ee95e877aeda5">&#9670;&nbsp;</a></span>async_accept()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename ConstBufferSequence , typename AcceptHandler &gt; </div>
 <table class="mlabels">
@@ -163,7 +169,7 @@ template&lt;typename ConstBufferSequence , typename AcceptHandler &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::async_accept </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::async_accept </td>
           <td>(</td>
           <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
           <td class="paramname"><em>buffers</em>, </td>
@@ -189,13 +195,59 @@ template&lt;typename ConstBufferSequence , typename AcceptHandler &gt; </div>
 
 </div>
 </div>
-<a id="a21eb2f18727a9a36bde83438212904f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21eb2f18727a9a36bde83438212904f0">&#9670;&nbsp;</a></span>async_handshake()</h2>
+<a id="a993f9cce821bfb43770ca8b679161df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a993f9cce821bfb43770ca8b679161df5">&#9670;&nbsp;</a></span>async_accept_ex()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
+<div class="memtemplate">
+template&lt;typename ConstBufferSequence , typename ResponseDecorator , typename AcceptHandler &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::async_accept_ex </td>
+          <td>(</td>
+          <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ResponseDecorator const &amp;&#160;</td>
+          <td class="paramname"><em>decorator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AcceptHandler &amp;&amp;&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6e8b657135b41fc8ef660b1bff43e47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e8b657135b41fc8ef660b1bff43e47">&#9670;&nbsp;</a></span>async_handshake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename HandshakeHandler &gt; </div>
 <table class="mlabels">
@@ -203,15 +255,15 @@ template&lt;typename HandshakeHandler &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::async_handshake </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::async_handshake </td>
           <td>(</td>
-          <td class="paramtype">boost::string_ref const &amp;&#160;</td>
+          <td class="paramtype">boost::string_view const &amp;&#160;</td>
           <td class="paramname"><em>host</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">boost::string_ref const &amp;&#160;</td>
+          <td class="paramtype">boost::string_view const &amp;&#160;</td>
           <td class="paramname"><em>resource</em>, </td>
         </tr>
         <tr>
@@ -235,13 +287,13 @@ template&lt;typename HandshakeHandler &gt; </div>
 
 </div>
 </div>
-<a id="a7507fd3ede964e7fe40035ddec8df21d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7507fd3ede964e7fe40035ddec8df21d">&#9670;&nbsp;</a></span>async_read()</h2>
+<a id="a6b12d28cd695475dd246e1af513a2d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b12d28cd695475dd246e1af513a2d01">&#9670;&nbsp;</a></span>async_read()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename MutableBufferSequence , typename ReadHandler &gt; </div>
 <table class="mlabels">
@@ -249,7 +301,7 @@ template&lt;typename MutableBufferSequence , typename ReadHandler &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::async_read </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::async_read </td>
           <td>(</td>
           <td class="paramtype">MutableBufferSequence const &amp;&#160;</td>
           <td class="paramname"><em>buffers</em>, </td>
@@ -275,13 +327,13 @@ template&lt;typename MutableBufferSequence , typename ReadHandler &gt; </div>
 
 </div>
 </div>
-<a id="ad456835471301678218cef3c38dc4b0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad456835471301678218cef3c38dc4b0e">&#9670;&nbsp;</a></span>async_write()</h2>
+<a id="a90fb10b1ad7489dbb6e08060ba5bd61d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90fb10b1ad7489dbb6e08060ba5bd61d">&#9670;&nbsp;</a></span>async_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename ConstBufferSequence , typename WriteHandler &gt; </div>
 <table class="mlabels">
@@ -289,7 +341,7 @@ template&lt;typename ConstBufferSequence , typename WriteHandler &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::async_write </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::async_write </td>
           <td>(</td>
           <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
           <td class="paramname"><em>buffers</em>, </td>
@@ -315,19 +367,19 @@ template&lt;typename ConstBufferSequence , typename WriteHandler &gt; </div>
 
 </div>
 </div>
-<a id="ab01cea44dd1a025e0f8199a21ff62a7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab01cea44dd1a025e0f8199a21ff62a7f">&#9670;&nbsp;</a></span>close()</h2>
+<a id="ac9d2e2c3970535c25ba2fa529cb42256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9d2e2c3970535c25ba2fa529cb42256">&#9670;&nbsp;</a></span>close()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::close </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::close </td>
           <td>(</td>
           <td class="paramtype">boost::system::error_code &amp;&#160;</td>
           <td class="paramname"><em>ec</em></td><td>)</td>
@@ -343,19 +395,19 @@ template&lt;typename Socket&gt; </div>
 
 </div>
 </div>
-<a id="a15f4c39ad2a34e337fbdccdbe6491b7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15f4c39ad2a34e337fbdccdbe6491b7c">&#9670;&nbsp;</a></span>get_io_service()</h2>
+<a id="aa8033c114fc1c6f1ac319476bc32218b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8033c114fc1c6f1ac319476bc32218b">&#9670;&nbsp;</a></span>get_io_service()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">as::io_service&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::get_io_service </td>
+          <td class="memname">as::io_service&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::get_io_service </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -370,19 +422,19 @@ template&lt;typename Socket&gt; </div>
 
 </div>
 </div>
-<a id="aad911ae8ff9df3239bb6b43d77f24562"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad911ae8ff9df3239bb6b43d77f24562">&#9670;&nbsp;</a></span>lowest_layer()</h2>
+<a id="a803914b413a8ec2096b35bce4dadca73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803914b413a8ec2096b35bce4dadca73">&#9670;&nbsp;</a></span>lowest_layer()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::lowest_layer </td>
+          <td class="memname">boost::beast::websocket::stream&lt;Socket&gt;::lowest_layer_type&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::lowest_layer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -397,19 +449,19 @@ template&lt;typename Socket&gt; </div>
 
 </div>
 </div>
-<a id="ad36df046e3f062cf8c0ada0f1ce60dca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad36df046e3f062cf8c0ada0f1ce60dca">&#9670;&nbsp;</a></span>next_layer()</h2>
+<a id="aa9f423025c1f90d0885ed05f5875e336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9f423025c1f90d0885ed05f5875e336">&#9670;&nbsp;</a></span>next_layer()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::next_layer </td>
+          <td class="memname">boost::beast::websocket::stream&lt;Socket&gt;::next_layer_type&amp; <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::next_layer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -424,13 +476,43 @@ template&lt;typename Socket&gt; </div>
 
 </div>
 </div>
-<a id="a73a1c57d84a445c942f61b705db80eb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73a1c57d84a445c942f61b705db80eb9">&#9670;&nbsp;</a></span>set_option()</h2>
+<a id="a5f2d9597b8c86ef833cbe104a4b977dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2d9597b8c86ef833cbe104a4b977dc">&#9670;&nbsp;</a></span>post()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
+<div class="memtemplate">
+template&lt;typename PostHandler &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::post </td>
+          <td>(</td>
+          <td class="paramtype">PostHandler &amp;&amp;&#160;</td>
+          <td class="paramname"><em>handler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cd37ae6db1dfd410828111cb2219008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cd37ae6db1dfd410828111cb2219008">&#9670;&nbsp;</a></span>set_option()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
 <table class="mlabels">
@@ -438,7 +520,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::set_option </td>
+          <td class="memname">void <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::set_option </td>
           <td>(</td>
           <td class="paramtype">T &amp;&amp;&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -454,13 +536,13 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a5bfc4b265c6466c868766cf3594c4035"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5bfc4b265c6466c868766cf3594c4035">&#9670;&nbsp;</a></span>write() <span class="overload">[1/2]</span></h2>
+<a id="a1434c8b89e24b3038c75fee76c497159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1434c8b89e24b3038c75fee76c497159">&#9670;&nbsp;</a></span>write() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename ConstBufferSequence &gt; </div>
 <table class="mlabels">
@@ -468,7 +550,7 @@ template&lt;typename ConstBufferSequence &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::write </td>
+          <td class="memname">std::size_t <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::write </td>
           <td>(</td>
           <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
           <td class="paramname"><em>buffers</em></td><td>)</td>
@@ -484,13 +566,13 @@ template&lt;typename ConstBufferSequence &gt; </div>
 
 </div>
 </div>
-<a id="ab315eacd4d256192ecec8fbc2a4302a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab315eacd4d256192ecec8fbc2a4302a0">&#9670;&nbsp;</a></span>write() <span class="overload">[2/2]</span></h2>
+<a id="abbb19ec2a51eaf6e340210d04e8a607e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb19ec2a51eaf6e340210d04e8a607e">&#9670;&nbsp;</a></span>write() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket&gt; </div>
+template&lt;typename Socket, typename Strand&gt; </div>
 <div class="memtemplate">
 template&lt;typename ConstBufferSequence &gt; </div>
 <table class="mlabels">
@@ -498,7 +580,7 @@ template&lt;typename ConstBufferSequence &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket &gt;::write </td>
+          <td class="memname">std::size_t <a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint</a>&lt; Socket, Strand &gt;::write </td>
           <td>(</td>
           <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
           <td class="paramname"><em>buffers</em>, </td>
@@ -525,7 +607,7 @@ template&lt;typename ConstBufferSequence &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/kondo/work/mqtt_client_cpp/include/mqtt/<a class="el" href="ws__endpoint_8hpp_source.html">ws_endpoint.hpp</a></li>
+<li>/home/kondo/work/mqtt_cpp/include/mqtt/<a class="el" href="ws__endpoint_8hpp_source.html">ws_endpoint.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

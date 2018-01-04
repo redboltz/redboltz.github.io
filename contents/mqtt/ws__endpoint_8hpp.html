@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: /home/kondo/work/mqtt_client_cpp/include/mqtt/ws_endpoint.hpp File Reference</title>
+<title>mqtt_cpp: /home/kondo/work/mqtt_cpp/include/mqtt/ws_endpoint.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -70,23 +70,15 @@ $(function() {
 <div class="title">ws_endpoint.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;beast/websocket/ssl.hpp&gt;</code><br />
-<code>#include &lt;beast/websocket.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;boost/beast/websocket/ssl.hpp&gt;</code><br />
+<code>#include &lt;boost/beast/websocket.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="utility_8hpp_source.html">mqtt/utility.hpp</a>&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for ws_endpoint.hpp:</div>
-<div class="dyncontent">
-<div class="center"><img src="ws__endpoint_8hpp__incl.png" border="0" usemap="#_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2ws__endpoint_8hpp" alt=""/></div>
-<map name="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2ws__endpoint_8hpp" id="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2ws__endpoint_8hpp">
-<area shape="rect" id="node4" href="utility_8hpp.html" title="mqtt/utility.hpp" alt="" coords="397,109,519,136"/>
-</map>
-</div>
 </div>
 <p><a href="ws__endpoint_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint&lt; Socket &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1ws__endpoint.html">mqtt::ws_endpoint&lt; Socket, Strand &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -96,18 +88,18 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aab3914a8258861d04e517a625d7baee7"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
-<tr class="memitem:aab3914a8258861d04e517a625d7baee7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#aab3914a8258861d04e517a625d7baee7">mqtt::async_read</a> (ws_endpoint&lt; Socket &gt; &amp;ep, MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:aab3914a8258861d04e517a625d7baee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad088ded8146309f3ad3f44d54db2da05"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:ad088ded8146309f3ad3f44d54db2da05"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ad088ded8146309f3ad3f44d54db2da05">mqtt::write</a> (ws_endpoint&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers)</td></tr>
-<tr class="separator:ad088ded8146309f3ad3f44d54db2da05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a3f57a59e600dfbc9bff29f19c130fb2e">mqtt::write</a> (ws_endpoint&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
-<tr class="separator:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
-<tr class="memitem:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a5916cae6fe3ef7fe21ab7f370b522b01">mqtt::async_write</a> (ws_endpoint&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
+<tr class="memitem:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac6011efbb0b0e58236553d2f85b51e3b">mqtt::async_read</a> (ws_endpoint&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d5f7218ecbcf04f860ea527debe5bfe">mqtt::write</a> (ws_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers)</td></tr>
+<tr class="separator:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e352931196ee64c88b909e1bed3bd1"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a56e352931196ee64c88b909e1bed3bd1"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a56e352931196ee64c88b909e1bed3bd1">mqtt::write</a> (ws_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
+<tr class="separator:a56e352931196ee64c88b909e1bed3bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
+<tr class="memitem:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a7d5a4c70639574ffbd516e49d9ebbb5c">mqtt::async_write</a> (ws_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

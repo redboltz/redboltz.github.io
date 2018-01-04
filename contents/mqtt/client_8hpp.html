@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: /home/kondo/work/mqtt_client_cpp/include/mqtt/client.hpp File Reference</title>
+<title>mqtt_cpp: /home/kondo/work/mqtt_cpp/include/mqtt/client.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -84,44 +84,15 @@ $(function() {
 <code>#include &lt;boost/multi_index/member.hpp&gt;</code><br />
 <code>#include &lt;boost/multi_index/composite_key.hpp&gt;</code><br />
 <code>#include &lt;boost/asio/ssl.hpp&gt;</code><br />
+<code>#include &lt;<a class="el" href="tcp__endpoint_8hpp_source.html">mqtt/tcp_endpoint.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="endpoint_8hpp_source.html">mqtt/endpoint.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="null__strand_8hpp_source.html">mqtt/null_strand.hpp</a>&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for client.hpp:</div>
-<div class="dyncontent">
-<div class="center"><img src="client_8hpp__incl.png" border="0" usemap="#_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hpp" alt=""/></div>
-<map name="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hpp" id="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hpp">
-<area shape="rect" id="node16" href="endpoint_8hpp.html" title="mqtt/endpoint.hpp" alt="" coords="2217,109,2360,136"/>
-<area shape="rect" id="node39" href="null__strand_8hpp.html" title="mqtt/null_strand.hpp" alt="" coords="131,109,289,136"/>
-<area shape="rect" id="node24" href="fixed__header_8hpp.html" title="mqtt/fixed_header.hpp" alt="" coords="2881,191,3049,218"/>
-<area shape="rect" id="node27" href="remaining__length_8hpp.html" title="mqtt/remaining_length.hpp" alt="" coords="2557,191,2756,218"/>
-<area shape="rect" id="node28" href="exception_8hpp.html" title="mqtt/exception.hpp" alt="" coords="2246,281,2395,307"/>
-<area shape="rect" id="node31" href="utf8encoded__strings_8hpp.html" title="mqtt/utf8encoded_strings.hpp" alt="" coords="3821,191,4039,218"/>
-<area shape="rect" id="node32" href="connect__flags_8hpp.html" title="mqtt/connect_flags.hpp" alt="" coords="2756,281,2931,307"/>
-<area shape="rect" id="node33" href="encoded__length_8hpp.html" title="mqtt/encoded_length.hpp" alt="" coords="3256,191,3444,218"/>
-<area shape="rect" id="node34" href="will_8hpp.html" title="mqtt/will.hpp" alt="" coords="3124,191,3232,218"/>
-<area shape="rect" id="node35" href="qos_8hpp.html" title="mqtt/qos.hpp" alt="" coords="3184,281,3292,307"/>
-<area shape="rect" id="node36" href="session__present_8hpp.html" title="mqtt/session_present.hpp" alt="" coords="3468,191,3659,218"/>
-<area shape="rect" id="node37" href="publish_8hpp.html" title="mqtt/publish.hpp" alt="" coords="2420,281,2552,307"/>
-<area shape="rect" id="node38" href="connect__return__code_8hpp.html" title="mqtt/connect_return\l_code.hpp" alt="" coords="2577,273,2731,315"/>
-<area shape="rect" id="node26" href="control__packet__type_8hpp.html" title="mqtt/control_packet\l_type.hpp" alt="" coords="2955,273,3108,315"/>
-<area shape="rect" id="node40" href="utility_8hpp.html" title="mqtt/utility.hpp" alt="" coords="5,191,127,218"/>
-</map>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="client_8hpp__dep__incl.png" border="0" usemap="#_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hppdep" alt=""/></div>
-<map name="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hppdep" id="_2home_2kondo_2work_2mqtt__client__cpp_2include_2mqtt_2client_8hppdep">
-<area shape="rect" id="node2" href="mqtt__client__cpp_8hpp.html" title="/home/kondo/work/mqtt\l_client_cpp/include/mqtt\l_client_cpp.hpp" alt="" coords="5,109,187,165"/>
-</map>
-</div>
 </div>
 <p><a href="client_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1client.html">mqtt::client&lt; Socket, Strand &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1client.html">mqtt::client&lt; Socket &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -131,22 +102,22 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a29378408b0c8a448f381d69fffcf9819"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a29378408b0c8a448f381d69fffcf9819">mqtt::make_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:a29378408b0c8a448f381d69fffcf9819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af768c0ca800b870d425593e4ff487633"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#af768c0ca800b870d425593e4ff487633">mqtt::make_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:af768c0ca800b870d425593e4ff487633"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c8422bc8c48fa5643720234709a64a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ip::tcp::socket, null_strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ab9c8422bc8c48fa5643720234709a64a">mqtt::make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:ab9c8422bc8c48fa5643720234709a64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2797c6eb02c20679624a8193bee629bc"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ip::tcp::socket, null_strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a2797c6eb02c20679624a8193bee629bc">mqtt::make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a2797c6eb02c20679624a8193bee629bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78203f2c812eaadd3c29a98f394c1d13"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a78203f2c812eaadd3c29a98f394c1d13">mqtt::make_tls_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:a78203f2c812eaadd3c29a98f394c1d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4de6ea63b36671f1dcd3664c388d4706"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a4de6ea63b36671f1dcd3664c388d4706">mqtt::make_tls_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a4de6ea63b36671f1dcd3664c388d4706"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac27d68163728cf3987a024b9463b7749"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, null_strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac27d68163728cf3987a024b9463b7749">mqtt::make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:ac27d68163728cf3987a024b9463b7749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a062b196bd4e51c62ca6ade4fed57c611"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, null_strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a062b196bd4e51c62ca6ade4fed57c611">mqtt::make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a062b196bd4e51c62ca6ade4fed57c611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d2a93abf21075966cc73397671fc6f2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d2a93abf21075966cc73397671fc6f2">mqtt::make_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a6d2a93abf21075966cc73397671fc6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add25f918cc17ddb2a6eb02a21b51fe42"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#add25f918cc17ddb2a6eb02a21b51fe42">mqtt::make_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:add25f918cc17ddb2a6eb02a21b51fe42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3892c113577e2e43f6214a7ac2072d74"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ip::tcp::socket, null_strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a3892c113577e2e43f6214a7ac2072d74">mqtt::make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a3892c113577e2e43f6214a7ac2072d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a79b29fc168373b03a1dff39b2c748"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ip::tcp::socket, null_strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac6a79b29fc168373b03a1dff39b2c748">mqtt::make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:ac6a79b29fc168373b03a1dff39b2c748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dde9a2469f1d74badd2470213bcf140"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a2dde9a2469f1d74badd2470213bcf140">mqtt::make_tls_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a2dde9a2469f1d74badd2470213bcf140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d42ec9a56d9f9724bdd97023ea85f8b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d42ec9a56d9f9724bdd97023ea85f8b">mqtt::make_tls_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:a6d42ec9a56d9f9724bdd97023ea85f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df033aeaa489785c156094f733e4348"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, null_strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a4df033aeaa489785c156094f733e4348">mqtt::make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a4df033aeaa489785c156094f733e4348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09f6c196852dc4e4c002ff3384fc723"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; client&lt; tcp_endpoint&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, null_strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#aa09f6c196852dc4e4c002ff3384fc723">mqtt::make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:aa09f6c196852dc4e4c002ff3384fc723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

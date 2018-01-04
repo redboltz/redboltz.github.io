@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['utf8encoded_5fstrings_2ehpp',['utf8encoded_strings.hpp',['../utf8encoded__strings_8hpp.html',1,'']]],
-  ['utility_2ehpp',['utility.hpp',['../utility_8hpp.html',1,'']]]
+  ['tcp_5fendpoint_2ehpp',['tcp_endpoint.hpp',['../tcp__endpoint_8hpp.html',1,'']]]
 ];

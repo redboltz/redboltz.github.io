@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: mqtt::server&lt; Strand, Mutex, LockGuard &gt; Class Template Reference</title>
+<title>mqtt_cpp: mqtt::server&lt; Strand, Mutex, LockGuard &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -75,11 +75,11 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:afdee996801241bf2ba67d4877500c74f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#afdee996801241bf2ba67d4877500c74f">socket_t</a> = as::ip::tcp::socket</td></tr>
-<tr class="separator:afdee996801241bf2ba67d4877500c74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1986ba4cfd37db3ed32e6f45dd3f0ce"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#ad1986ba4cfd37db3ed32e6f45dd3f0ce">endpoint_t</a> = <a class="el" href="classmqtt_1_1endpoint.html">endpoint</a>&lt; <a class="el" href="classmqtt_1_1server.html#afdee996801241bf2ba67d4877500c74f">socket_t</a>, Strand, Mutex, LockGuard &gt;</td></tr>
-<tr class="separator:ad1986ba4cfd37db3ed32e6f45dd3f0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab44384ac6be87d1192c43fc9f29ca713"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#ab44384ac6be87d1192c43fc9f29ca713">accept_handler</a> = std::function&lt; void(<a class="el" href="classmqtt_1_1server.html#ad1986ba4cfd37db3ed32e6f45dd3f0ce">endpoint_t</a> &amp;ep)&gt;</td></tr>
+<tr class="memitem:ada8c3cf6688bf51cef9e12141e309d9f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#ada8c3cf6688bf51cef9e12141e309d9f">socket_t</a> = <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ip::tcp::socket, Strand &gt;</td></tr>
+<tr class="separator:ada8c3cf6688bf51cef9e12141e309d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad843796fbf687dd0bc6599d17f3f38bd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#ad843796fbf687dd0bc6599d17f3f38bd">endpoint_t</a> = <a class="el" href="classmqtt_1_1endpoint.html">endpoint</a>&lt; <a class="el" href="classmqtt_1_1server.html#ada8c3cf6688bf51cef9e12141e309d9f">socket_t</a>, Mutex, LockGuard &gt;</td></tr>
+<tr class="separator:ad843796fbf687dd0bc6599d17f3f38bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab44384ac6be87d1192c43fc9f29ca713"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#ab44384ac6be87d1192c43fc9f29ca713">accept_handler</a> = std::function&lt; void(<a class="el" href="classmqtt_1_1server.html#ad843796fbf687dd0bc6599d17f3f38bd">endpoint_t</a> &amp;ep)&gt;</td></tr>
 <tr class="separator:ab44384ac6be87d1192c43fc9f29ca713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61f99e83e10d5d15ba22d12567ac2821"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server.html#a61f99e83e10d5d15ba22d12567ac2821">error_handler</a> = std::function&lt; void(boost::system::error_code const  &amp;ec)&gt;</td></tr>
 <tr class="separator:a61f99e83e10d5d15ba22d12567ac2821"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,15 +118,15 @@ Public Member Functions</h2></td></tr>
 template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#ab44384ac6be87d1192c43fc9f29ca713">accept_handler</a> =  std::function&lt;void(<a class="el" href="classmqtt_1_1server.html#ad1986ba4cfd37db3ed32e6f45dd3f0ce">endpoint_t</a>&amp; ep)&gt;</td>
+          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#ab44384ac6be87d1192c43fc9f29ca713">accept_handler</a> =  std::function&lt;void(<a class="el" href="classmqtt_1_1server.html#ad843796fbf687dd0bc6599d17f3f38bd">endpoint_t</a>&amp; ep)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad1986ba4cfd37db3ed32e6f45dd3f0ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1986ba4cfd37db3ed32e6f45dd3f0ce">&#9670;&nbsp;</a></span>endpoint_t</h2>
+<a id="ad843796fbf687dd0bc6599d17f3f38bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad843796fbf687dd0bc6599d17f3f38bd">&#9670;&nbsp;</a></span>endpoint_t</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +134,7 @@ template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mu
 template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#ad1986ba4cfd37db3ed32e6f45dd3f0ce">endpoint_t</a> =  <a class="el" href="classmqtt_1_1endpoint.html">endpoint</a>&lt;<a class="el" href="classmqtt_1_1server.html#afdee996801241bf2ba67d4877500c74f">socket_t</a>, Strand, Mutex, LockGuard&gt;</td>
+          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#ad843796fbf687dd0bc6599d17f3f38bd">endpoint_t</a> =  <a class="el" href="classmqtt_1_1endpoint.html">endpoint</a>&lt;<a class="el" href="classmqtt_1_1server.html#ada8c3cf6688bf51cef9e12141e309d9f">socket_t</a>, Mutex, LockGuard&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -163,8 +163,8 @@ template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mu
 
 </div>
 </div>
-<a id="afdee996801241bf2ba67d4877500c74f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdee996801241bf2ba67d4877500c74f">&#9670;&nbsp;</a></span>socket_t</h2>
+<a id="ada8c3cf6688bf51cef9e12141e309d9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada8c3cf6688bf51cef9e12141e309d9f">&#9670;&nbsp;</a></span>socket_t</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +172,7 @@ template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mu
 template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#afdee996801241bf2ba67d4877500c74f">socket_t</a> =  as::ip::tcp::socket</td>
+          <td class="memname">using <a class="el" href="classmqtt_1_1server.html">mqtt::server</a>&lt; Strand, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1server.html#ada8c3cf6688bf51cef9e12141e309d9f">socket_t</a> =  <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ip::tcp::socket, Strand&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -484,7 +484,7 @@ template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mu
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/kondo/work/mqtt_client_cpp/include/mqtt/<a class="el" href="server_8hpp_source.html">server.hpp</a></li>
+<li>/home/kondo/work/mqtt_cpp/include/mqtt/<a class="el" href="server_8hpp_source.html">server.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

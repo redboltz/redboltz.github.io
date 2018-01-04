@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>mqtt_client_cpp: mqtt Namespace Reference</title>
+<title>mqtt_cpp: mqtt Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">mqtt_client_cpp
+   <div id="projectname">mqtt_cpp
    </div>
   </td>
  </tr>
@@ -106,6 +106,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server__tls.html">server_tls</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmqtt_1_1utf8string__contents__error.html">utf8string_contents_error</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmqtt_1_1utf8string__length__error.html">utf8string_length_error</a></td></tr>
@@ -121,22 +123,22 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a29378408b0c8a448f381d69fffcf9819"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a29378408b0c8a448f381d69fffcf9819">make_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:a29378408b0c8a448f381d69fffcf9819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af768c0ca800b870d425593e4ff487633"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#af768c0ca800b870d425593e4ff487633">make_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:af768c0ca800b870d425593e4ff487633"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c8422bc8c48fa5643720234709a64a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ab9c8422bc8c48fa5643720234709a64a">make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:ab9c8422bc8c48fa5643720234709a64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2797c6eb02c20679624a8193bee629bc"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a2797c6eb02c20679624a8193bee629bc">make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a2797c6eb02c20679624a8193bee629bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78203f2c812eaadd3c29a98f394c1d13"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a78203f2c812eaadd3c29a98f394c1d13">make_tls_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:a78203f2c812eaadd3c29a98f394c1d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4de6ea63b36671f1dcd3664c388d4706"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a4de6ea63b36671f1dcd3664c388d4706">make_tls_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a4de6ea63b36671f1dcd3664c388d4706"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac27d68163728cf3987a024b9463b7749"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac27d68163728cf3987a024b9463b7749">make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
-<tr class="separator:ac27d68163728cf3987a024b9463b7749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a062b196bd4e51c62ca6ade4fed57c611"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a062b196bd4e51c62ca6ade4fed57c611">make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
-<tr class="separator:a062b196bd4e51c62ca6ade4fed57c611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d2a93abf21075966cc73397671fc6f2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d2a93abf21075966cc73397671fc6f2">make_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a6d2a93abf21075966cc73397671fc6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add25f918cc17ddb2a6eb02a21b51fe42"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ip::tcp::socket, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#add25f918cc17ddb2a6eb02a21b51fe42">make_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:add25f918cc17ddb2a6eb02a21b51fe42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3892c113577e2e43f6214a7ac2072d74"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a3892c113577e2e43f6214a7ac2072d74">make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a3892c113577e2e43f6214a7ac2072d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a79b29fc168373b03a1dff39b2c748"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac6a79b29fc168373b03a1dff39b2c748">make_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:ac6a79b29fc168373b03a1dff39b2c748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dde9a2469f1d74badd2470213bcf140"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a2dde9a2469f1d74badd2470213bcf140">make_tls_client</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a2dde9a2469f1d74badd2470213bcf140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d42ec9a56d9f9724bdd97023ea85f8b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, as::io_service::strand &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d42ec9a56d9f9724bdd97023ea85f8b">make_tls_client</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:a6d42ec9a56d9f9724bdd97023ea85f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df033aeaa489785c156094f733e4348"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a4df033aeaa489785c156094f733e4348">make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::string port)</td></tr>
+<tr class="separator:a4df033aeaa489785c156094f733e4348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09f6c196852dc4e4c002ff3384fc723"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classmqtt_1_1client.html">client</a>&lt; <a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; as::ssl::stream&lt; as::ip::tcp::socket &gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#aa09f6c196852dc4e4c002ff3384fc723">make_tls_client_no_strand</a> (as::io_service &amp;ios, std::string host, std::uint16_t port)</td></tr>
+<tr class="separator:aa09f6c196852dc4e4c002ff3384fc723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80944d8cdaa17f80dd0672a717da12c"><td class="memItemLeft" align="right" valign="top">constexpr std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ab80944d8cdaa17f80dd0672a717da12c">get_control_packet_type</a> (std::uint8_t v)</td></tr>
 <tr class="separator:ab80944d8cdaa17f80dd0672a717da12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab19bb48922fc865ecb50d20593c0a551"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ab19bb48922fc865ecb50d20593c0a551">encoded_length</a> (std::string const &amp;str)</td></tr>
@@ -154,27 +156,39 @@ Functions</h2></td></tr>
 <tr class="separator:a3ec039366e42ddb6a23c0f2012fe00a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32048aa0bc72ce0b6c7bd16b42a83de9"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a32048aa0bc72ce0b6c7bd16b42a83de9">connect_return_code_to_str</a> (std::uint8_t v)</td></tr>
 <tr class="separator:a32048aa0bc72ce0b6c7bd16b42a83de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3914a8258861d04e517a625d7baee7"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
-<tr class="memitem:aab3914a8258861d04e517a625d7baee7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#aab3914a8258861d04e517a625d7baee7">async_read</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;ep, MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:aab3914a8258861d04e517a625d7baee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad088ded8146309f3ad3f44d54db2da05"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:ad088ded8146309f3ad3f44d54db2da05"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ad088ded8146309f3ad3f44d54db2da05">write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers)</td></tr>
-<tr class="separator:ad088ded8146309f3ad3f44d54db2da05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a3f57a59e600dfbc9bff29f19c130fb2e">write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
-<tr class="separator:a3f57a59e600dfbc9bff29f19c130fb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
-<tr class="memitem:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a5916cae6fe3ef7fe21ab7f370b522b01">async_write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;ep, ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a5916cae6fe3ef7fe21ab7f370b522b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a810ea980d74d5c3c1b880d51d3739fad"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
+<tr class="memitem:a810ea980d74d5c3c1b880d51d3739fad"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a810ea980d74d5c3c1b880d51d3739fad">async_read</a> (<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a810ea980d74d5c3c1b880d51d3739fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af36582cb78e84710fba1f84501ffc72e"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:af36582cb78e84710fba1f84501ffc72e"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#af36582cb78e84710fba1f84501ffc72e">write</a> (<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers)</td></tr>
+<tr class="separator:af36582cb78e84710fba1f84501ffc72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a118c94906a64d11283c975e15d7614b5"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a118c94906a64d11283c975e15d7614b5"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a118c94906a64d11283c975e15d7614b5">write</a> (<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
+<tr class="separator:a118c94906a64d11283c975e15d7614b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba5dd13fec046d50172583d67adff559"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
+<tr class="memitem:aba5dd13fec046d50172583d67adff559"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#aba5dd13fec046d50172583d67adff559">async_write</a> (<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:aba5dd13fec046d50172583d67adff559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
+<tr class="memitem:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#ac6011efbb0b0e58236553d2f85b51e3b">async_read</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:ac6011efbb0b0e58236553d2f85b51e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a6d5f7218ecbcf04f860ea527debe5bfe">write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers)</td></tr>
+<tr class="separator:a6d5f7218ecbcf04f860ea527debe5bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e352931196ee64c88b909e1bed3bd1"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
+<tr class="memitem:a56e352931196ee64c88b909e1bed3bd1"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a56e352931196ee64c88b909e1bed3bd1">write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</td></tr>
+<tr class="separator:a56e352931196ee64c88b909e1bed3bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
+<tr class="memitem:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemqtt.html#a7d5a4c70639574ffbd516e49d9ebbb5c">async_write</a> (<a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
+<tr class="separator:a7d5a4c70639574ffbd516e49d9ebbb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aab3914a8258861d04e517a625d7baee7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab3914a8258861d04e517a625d7baee7">&#9670;&nbsp;</a></span>async_read()</h2>
+<a id="a810ea980d74d5c3c1b880d51d3739fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a810ea980d74d5c3c1b880d51d3739fad">&#9670;&nbsp;</a></span>async_read() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket , typename MutableBufferSequence , typename ReadHandler &gt; </div>
+template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -182,7 +196,7 @@ template&lt;typename Socket , typename MutableBufferSequence , typename ReadHand
         <tr>
           <td class="memname">void mqtt::async_read </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
           <td class="paramname"><em>ep</em>, </td>
         </tr>
         <tr>
@@ -212,13 +226,57 @@ template&lt;typename Socket , typename MutableBufferSequence , typename ReadHand
 
 </div>
 </div>
-<a id="a5916cae6fe3ef7fe21ab7f370b522b01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5916cae6fe3ef7fe21ab7f370b522b01">&#9670;&nbsp;</a></span>async_write()</h2>
+<a id="ac6011efbb0b0e58236553d2f85b51e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6011efbb0b0e58236553d2f85b51e3b">&#9670;&nbsp;</a></span>async_read() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket , typename ConstBufferSequence , typename WriteHandler &gt; </div>
+template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mqtt::async_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MutableBufferSequence const &amp;&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ReadHandler &amp;&amp;&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba5dd13fec046d50172583d67adff559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba5dd13fec046d50172583d67adff559">&#9670;&nbsp;</a></span>async_write() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -226,7 +284,51 @@ template&lt;typename Socket , typename ConstBufferSequence , typename WriteHandl
         <tr>
           <td class="memname">void mqtt::async_write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WriteHandler &amp;&amp;&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d5a4c70639574ffbd516e49d9ebbb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d5a4c70639574ffbd516e49d9ebbb5c">&#9670;&nbsp;</a></span>async_write() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mqtt::async_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
           <td class="paramname"><em>ep</em>, </td>
         </tr>
         <tr>
@@ -398,8 +500,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a29378408b0c8a448f381d69fffcf9819"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29378408b0c8a448f381d69fffcf9819">&#9670;&nbsp;</a></span>make_client() <span class="overload">[1/2]</span></h2>
+<a id="a6d2a93abf21075966cc73397671fc6f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d2a93abf21075966cc73397671fc6f2">&#9670;&nbsp;</a></span>make_client() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,7 +510,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ip::tcp::socket, as::io_service::strand&gt; &gt; mqtt::make_client </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ip::tcp::socket, as::io_service::strand&gt; &gt; &gt; mqtt::make_client </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -449,8 +551,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="af768c0ca800b870d425593e4ff487633"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af768c0ca800b870d425593e4ff487633">&#9670;&nbsp;</a></span>make_client() <span class="overload">[2/2]</span></h2>
+<a id="add25f918cc17ddb2a6eb02a21b51fe42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add25f918cc17ddb2a6eb02a21b51fe42">&#9670;&nbsp;</a></span>make_client() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,7 +561,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ip::tcp::socket, as::io_service::strand&gt; &gt; mqtt::make_client </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ip::tcp::socket, as::io_service::strand&gt; &gt; &gt; mqtt::make_client </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -491,8 +593,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab9c8422bc8c48fa5643720234709a64a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9c8422bc8c48fa5643720234709a64a">&#9670;&nbsp;</a></span>make_client_no_strand() <span class="overload">[1/2]</span></h2>
+<a id="a3892c113577e2e43f6214a7ac2072d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3892c113577e2e43f6214a7ac2072d74">&#9670;&nbsp;</a></span>make_client_no_strand() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -501,7 +603,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; mqtt::make_client_no_strand </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; &gt; mqtt::make_client_no_strand </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -542,8 +644,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a2797c6eb02c20679624a8193bee629bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2797c6eb02c20679624a8193bee629bc">&#9670;&nbsp;</a></span>make_client_no_strand() <span class="overload">[2/2]</span></h2>
+<a id="ac6a79b29fc168373b03a1dff39b2c748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6a79b29fc168373b03a1dff39b2c748">&#9670;&nbsp;</a></span>make_client_no_strand() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -552,7 +654,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; mqtt::make_client_no_strand </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ip::tcp::socket, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; &gt; mqtt::make_client_no_strand </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -620,8 +722,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a78203f2c812eaadd3c29a98f394c1d13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78203f2c812eaadd3c29a98f394c1d13">&#9670;&nbsp;</a></span>make_tls_client() <span class="overload">[1/2]</span></h2>
+<a id="a2dde9a2469f1d74badd2470213bcf140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dde9a2469f1d74badd2470213bcf140">&#9670;&nbsp;</a></span>make_tls_client() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -630,7 +732,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, as::io_service::strand&gt; &gt; mqtt::make_tls_client </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, as::io_service::strand&gt; &gt; &gt; mqtt::make_tls_client </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -671,8 +773,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4de6ea63b36671f1dcd3664c388d4706"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4de6ea63b36671f1dcd3664c388d4706">&#9670;&nbsp;</a></span>make_tls_client() <span class="overload">[2/2]</span></h2>
+<a id="a6d42ec9a56d9f9724bdd97023ea85f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d42ec9a56d9f9724bdd97023ea85f8b">&#9670;&nbsp;</a></span>make_tls_client() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -681,7 +783,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, as::io_service::strand&gt; &gt; mqtt::make_tls_client </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, as::io_service::strand&gt; &gt; &gt; mqtt::make_tls_client </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -713,8 +815,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ac27d68163728cf3987a024b9463b7749"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac27d68163728cf3987a024b9463b7749">&#9670;&nbsp;</a></span>make_tls_client_no_strand() <span class="overload">[1/2]</span></h2>
+<a id="a4df033aeaa489785c156094f733e4348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4df033aeaa489785c156094f733e4348">&#9670;&nbsp;</a></span>make_tls_client_no_strand() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -723,7 +825,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; mqtt::make_tls_client_no_strand </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; &gt; mqtt::make_tls_client_no_strand </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -764,8 +866,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a062b196bd4e51c62ca6ade4fed57c611"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a062b196bd4e51c62ca6ade4fed57c611">&#9670;&nbsp;</a></span>make_tls_client_no_strand() <span class="overload">[2/2]</span></h2>
+<a id="aa09f6c196852dc4e4c002ff3384fc723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa09f6c196852dc4e4c002ff3384fc723">&#9670;&nbsp;</a></span>make_tls_client_no_strand() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -774,7 +876,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; mqtt::make_tls_client_no_strand </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classmqtt_1_1client.html">client</a>&lt;<a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt;as::ssl::stream&lt;as::ip::tcp::socket&gt;, <a class="el" href="structmqtt_1_1null__strand.html">null_strand</a>&gt; &gt; &gt; mqtt::make_tls_client_no_strand </td>
           <td>(</td>
           <td class="paramtype">as::io_service &amp;&#160;</td>
           <td class="paramname"><em>ios</em>, </td>
@@ -858,13 +960,13 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ad088ded8146309f3ad3f44d54db2da05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad088ded8146309f3ad3f44d54db2da05">&#9670;&nbsp;</a></span>write() <span class="overload">[1/2]</span></h2>
+<a id="af36582cb78e84710fba1f84501ffc72e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af36582cb78e84710fba1f84501ffc72e">&#9670;&nbsp;</a></span>write() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket , typename ConstBufferSequence &gt; </div>
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -872,7 +974,7 @@ template&lt;typename Socket , typename ConstBufferSequence &gt; </div>
         <tr>
           <td class="memname">std::size_t mqtt::write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
           <td class="paramname"><em>ep</em>, </td>
         </tr>
         <tr>
@@ -896,13 +998,13 @@ template&lt;typename Socket , typename ConstBufferSequence &gt; </div>
 
 </div>
 </div>
-<a id="a3f57a59e600dfbc9bff29f19c130fb2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f57a59e600dfbc9bff29f19c130fb2e">&#9670;&nbsp;</a></span>write() <span class="overload">[2/2]</span></h2>
+<a id="a118c94906a64d11283c975e15d7614b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a118c94906a64d11283c975e15d7614b5">&#9670;&nbsp;</a></span>write() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Socket , typename ConstBufferSequence &gt; </div>
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -910,7 +1012,89 @@ template&lt;typename Socket , typename ConstBufferSequence &gt; </div>
         <tr>
           <td class="memname">std::size_t mqtt::write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1tcp__endpoint.html">tcp_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::system::error_code &amp;&#160;</td>
+          <td class="paramname"><em>ec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d5f7218ecbcf04f860ea527debe5bfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5f7218ecbcf04f860ea527debe5bfe">&#9670;&nbsp;</a></span>write() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t mqtt::write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ConstBufferSequence const &amp;&#160;</td>
+          <td class="paramname"><em>buffers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56e352931196ee64c88b909e1bed3bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56e352931196ee64c88b909e1bed3bd1">&#9670;&nbsp;</a></span>write() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t mqtt::write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1ws__endpoint.html">ws_endpoint</a>&lt; Socket, Strand &gt; &amp;&#160;</td>
           <td class="paramname"><em>ep</em>, </td>
         </tr>
         <tr>
