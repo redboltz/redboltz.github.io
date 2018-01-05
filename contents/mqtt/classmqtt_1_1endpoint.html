@@ -121,6 +121,12 @@ Public Types</h2></td></tr>
 <tr class="separator:a72955c0d18dba21b99bb63569d0272fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a237958267803c9866f76ea7ce589cb59"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a237958267803c9866f76ea7ce589cb59">disconnect_handler</a> = std::function&lt; void()&gt;</td></tr>
 <tr class="separator:a237958267803c9866f76ea7ce589cb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e0fe1bffe35a0f3e5426b21f825586"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a48e0fe1bffe35a0f3e5426b21f825586">serialize_publish_handler</a> = std::function&lt; void(std::uint16_t, char const  *, std::size_t)&gt;</td></tr>
+<tr class="separator:a48e0fe1bffe35a0f3e5426b21f825586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3024a20954122cb70b187094411e1250"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a3024a20954122cb70b187094411e1250">serialize_pubrel_handler</a> = std::function&lt; void(std::uint16_t, char const  *, std::size_t)&gt;</td></tr>
+<tr class="separator:a3024a20954122cb70b187094411e1250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529d482d78e4733dfe88d729fd8a4778"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a529d482d78e4733dfe88d729fd8a4778">serialize_remove_handler</a> = std::function&lt; void(std::uint16_t)&gt;</td></tr>
+<tr class="separator:a529d482d78e4733dfe88d729fd8a4778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -205,6 +211,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac462694eb41e63598c3d6cbc3fbbbdc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#ac462694eb41e63598c3d6cbc3fbbbdc5">set_disconnect_handler</a> (<a class="el" href="classmqtt_1_1endpoint.html#a237958267803c9866f76ea7ce589cb59">disconnect_handler</a> h=<a class="el" href="classmqtt_1_1endpoint.html#a237958267803c9866f76ea7ce589cb59">disconnect_handler</a>())</td></tr>
 <tr class="memdesc:ac462694eb41e63598c3d6cbc3fbbbdc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set disconnect handler.  <a href="#ac462694eb41e63598c3d6cbc3fbbbdc5">More...</a><br /></td></tr>
 <tr class="separator:ac462694eb41e63598c3d6cbc3fbbbdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a051193db6f0bd16f4ec8c6c05547f33a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a051193db6f0bd16f4ec8c6c05547f33a">set_serialize_handlers</a> (<a class="el" href="classmqtt_1_1endpoint.html#a48e0fe1bffe35a0f3e5426b21f825586">serialize_publish_handler</a> h_publish, <a class="el" href="classmqtt_1_1endpoint.html#a3024a20954122cb70b187094411e1250">serialize_pubrel_handler</a> h_pubrel, <a class="el" href="classmqtt_1_1endpoint.html#a529d482d78e4733dfe88d729fd8a4778">serialize_remove_handler</a> h_remove)</td></tr>
+<tr class="memdesc:a051193db6f0bd16f4ec8c6c05547f33a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set serialize handlers.  <a href="#a051193db6f0bd16f4ec8c6c05547f33a">More...</a><br /></td></tr>
+<tr class="separator:a051193db6f0bd16f4ec8c6c05547f33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f8cc98b19fa6efb4859afcc7974af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#ae6f8cc98b19fa6efb4859afcc7974af4">set_serialize_handlers</a> ()</td></tr>
+<tr class="memdesc:ae6f8cc98b19fa6efb4859afcc7974af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear serialize handlers.  <a href="#ae6f8cc98b19fa6efb4859afcc7974af4">More...</a><br /></td></tr>
+<tr class="separator:ae6f8cc98b19fa6efb4859afcc7974af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b8d691bd7c6ad79231945d7cba63dd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a0b8d691bd7c6ad79231945d7cba63dd8">start_session</a> (<a class="el" href="classmqtt_1_1endpoint.html#a0b6d41af55d98695f2c0006d7c8760f8">async_handler_t</a> const &amp;func=<a class="el" href="classmqtt_1_1endpoint.html#a0b6d41af55d98695f2c0006d7c8760f8">async_handler_t</a>())</td></tr>
 <tr class="memdesc:a0b8d691bd7c6ad79231945d7cba63dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">start session with a connected endpoint.  <a href="#a0b8d691bd7c6ad79231945d7cba63dd8">More...</a><br /></td></tr>
 <tr class="separator:a0b8d691bd7c6ad79231945d7cba63dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -483,6 +495,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a362ac3ec46a40bc0831629791032654a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a362ac3ec46a40bc0831629791032654a">release_packet_id</a> (std::uint16_t packet_id)</td></tr>
 <tr class="memdesc:a362ac3ec46a40bc0831629791032654a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release packet_id.  packet_id packet id to release. only the packet_id gotten by acquire_unique_packet_id, or register_packet_id is permitted.  <a href="#a362ac3ec46a40bc0831629791032654a">More...</a><br /></td></tr>
 <tr class="separator:a362ac3ec46a40bc0831629791032654a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bde9adba07d37d1a9acc01d872c6a82"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
+<tr class="memitem:a6bde9adba07d37d1a9acc01d872c6a82"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classmqtt_1_1endpoint.html#a6bde9adba07d37d1a9acc01d872c6a82">restore_serialized_message</a> (std::uint16_t packet_id, Iterator b, Iterator e)</td></tr>
+<tr class="memdesc:a6bde9adba07d37d1a9acc01d872c6a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore serialized publish and pubrel messages. This function shouold be called before connect.  packet_id packet id of the message  b iterator begin of the message  e iterator end of the message.  <a href="#a6bde9adba07d37d1a9acc01d872c6a82">More...</a><br /></td></tr>
+<tr class="separator:a6bde9adba07d37d1a9acc01d872c6a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -834,6 +850,76 @@ template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename.
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>if the handler returns true, then continue receiving, otherwise quit. </dd></dl>
+
+</div>
+</div>
+<a id="a48e0fe1bffe35a0f3e5426b21f825586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48e0fe1bffe35a0f3e5426b21f825586">&#9670;&nbsp;</a></span>serialize_publish_handler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1endpoint.html#a48e0fe1bffe35a0f3e5426b21f825586">serialize_publish_handler</a> =  std::function&lt;void(std::uint16_t, char const*, std::size_t)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Serialize publish handler You can serialize the publish message. To restore the message, use <a class="el" href="classmqtt_1_1endpoint.html#a6bde9adba07d37d1a9acc01d872c6a82" title="Restore serialized publish and pubrel messages. This function shouold be called before connect...">restore_serialized_message()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet_id</td><td>packet identifier of the serializing message </td></tr>
+    <tr><td class="paramname">data</td><td>pointer to the serializing message </td></tr>
+    <tr><td class="paramname">size</td><td>size of the serializing message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3024a20954122cb70b187094411e1250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3024a20954122cb70b187094411e1250">&#9670;&nbsp;</a></span>serialize_pubrel_handler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1endpoint.html#a3024a20954122cb70b187094411e1250">serialize_pubrel_handler</a> =  std::function&lt;void(std::uint16_t, char const*, std::size_t)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Serialize pubrel handler You can serialize the pubrel message. If your storage has already had the publish message that has the same packet_id, then you need to replace the publish message to pubrel message. To restore the message, use <a class="el" href="classmqtt_1_1endpoint.html#a6bde9adba07d37d1a9acc01d872c6a82" title="Restore serialized publish and pubrel messages. This function shouold be called before connect...">restore_serialized_message()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet_id</td><td>packet identifier of the serializing message </td></tr>
+    <tr><td class="paramname">data</td><td>pointer to the serializing message </td></tr>
+    <tr><td class="paramname">size</td><td>size of the serializing message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a529d482d78e4733dfe88d729fd8a4778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529d482d78e4733dfe88d729fd8a4778">&#9670;&nbsp;</a></span>serialize_remove_handler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::<a class="el" href="classmqtt_1_1endpoint.html#a529d482d78e4733dfe88d729fd8a4778">serialize_remove_handler</a> =  std::function&lt;void(std::uint16_t)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove serialized message </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet_id</td><td>packet identifier of the removing message </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -5106,6 +5192,54 @@ template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename.
 
 </div>
 </div>
+<a id="a6bde9adba07d37d1a9acc01d872c6a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bde9adba07d37d1a9acc01d872c6a82">&#9670;&nbsp;</a></span>restore_serialized_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+<div class="memtemplate">
+template&lt;typename Iterator &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::restore_serialized_message </td>
+          <td>(</td>
+          <td class="paramtype">std::uint16_t&#160;</td>
+          <td class="paramname"><em>packet_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iterator&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iterator&#160;</td>
+          <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restore serialized publish and pubrel messages. This function shouold be called before connect.  packet_id packet id of the message  b iterator begin of the message  e iterator end of the message. </p>
+
+</div>
+</div>
 <a id="a9b261bea1cab969cca812a2ddd503b29"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9b261bea1cab969cca812a2ddd503b29">&#9670;&nbsp;</a></span>set_auto_pub_response()</h2>
 
@@ -5756,6 +5890,89 @@ template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename.
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a051193db6f0bd16f4ec8c6c05547f33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a051193db6f0bd16f4ec8c6c05547f33a">&#9670;&nbsp;</a></span>set_serialize_handlers() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::set_serialize_handlers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1endpoint.html#a48e0fe1bffe35a0f3e5426b21f825586">serialize_publish_handler</a>&#160;</td>
+          <td class="paramname"><em>h_publish</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1endpoint.html#a3024a20954122cb70b187094411e1250">serialize_pubrel_handler</a>&#160;</td>
+          <td class="paramname"><em>h_pubrel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmqtt_1_1endpoint.html#a529d482d78e4733dfe88d729fd8a4778">serialize_remove_handler</a>&#160;</td>
+          <td class="paramname"><em>h_remove</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set serialize handlers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">h_publish</td><td>serialize handler for publish message </td></tr>
+    <tr><td class="paramname">h_pubrel</td><td>serialize handler for pubrel message </td></tr>
+    <tr><td class="paramname">h_remove</td><td>remove handler for serialized message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae6f8cc98b19fa6efb4859afcc7974af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f8cc98b19fa6efb4859afcc7974af4">&#9670;&nbsp;</a></span>set_serialize_handlers() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Socket, typename Mutex = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmqtt_1_1endpoint.html">mqtt::endpoint</a>&lt; Socket, Mutex, LockGuard &gt;::set_serialize_handlers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear serialize handlers. </p>
 
 </div>
 </div>

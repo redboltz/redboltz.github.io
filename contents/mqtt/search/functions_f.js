@@ -5,5 +5,6 @@ var searchData=
   ['release_5fpacket_5fid',['release_packet_id',['../classmqtt_1_1endpoint.html#a362ac3ec46a40bc0831629791032654a',1,'mqtt::endpoint']]],
   ['remaining_5fbytes',['remaining_bytes',['../namespacemqtt.html#a5da051c58b6c187a540e68822ef35caa',1,'mqtt']]],
   ['remaining_5flength',['remaining_length',['../namespacemqtt.html#aca02f83807fbe2a21419cf6013cfc4aa',1,'mqtt']]],
+  ['restore_5fserialized_5fmessage',['restore_serialized_message',['../classmqtt_1_1endpoint.html#a6bde9adba07d37d1a9acc01d872c6a82',1,'mqtt::endpoint']]],
   ['retain',['retain',['../classmqtt_1_1will.html#a8a4f6f36658868cccd18f0d43b719881',1,'mqtt::will']]]
 ];

@@ -7,5 +7,6 @@ var searchData=
   ['remaining_5flength',['remaining_length',['../namespacemqtt.html#aca02f83807fbe2a21419cf6013cfc4aa',1,'mqtt']]],
   ['remaining_5flength_2ehpp',['remaining_length.hpp',['../remaining__length_8hpp.html',1,'']]],
   ['remaining_5flength_5ferror',['remaining_length_error',['../structmqtt_1_1remaining__length__error.html',1,'mqtt']]],
+  ['restore_5fserialized_5fmessage',['restore_serialized_message',['../classmqtt_1_1endpoint.html#a6bde9adba07d37d1a9acc01d872c6a82',1,'mqtt::endpoint']]],
   ['retain',['retain',['../classmqtt_1_1will.html#a8a4f6f36658868cccd18f0d43b719881',1,'mqtt::will']]]
 ];

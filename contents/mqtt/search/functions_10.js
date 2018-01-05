@@ -28,6 +28,7 @@ var searchData=
   ['set_5fpublish_5fhandler',['set_publish_handler',['../classmqtt_1_1endpoint.html#ab2e8e430c7384310ccc48512bba60926',1,'mqtt::endpoint']]],
   ['set_5fpubrec_5fhandler',['set_pubrec_handler',['../classmqtt_1_1endpoint.html#a79fbb227b4b3d1b5845cba0643831813',1,'mqtt::endpoint']]],
   ['set_5fpubrel_5fhandler',['set_pubrel_handler',['../classmqtt_1_1endpoint.html#aee191bcfd559797248d869fd25e3afb0',1,'mqtt::endpoint']]],
+  ['set_5fserialize_5fhandlers',['set_serialize_handlers',['../classmqtt_1_1endpoint.html#a051193db6f0bd16f4ec8c6c05547f33a',1,'mqtt::endpoint::set_serialize_handlers(serialize_publish_handler h_publish, serialize_pubrel_handler h_pubrel, serialize_remove_handler h_remove)'],['../classmqtt_1_1endpoint.html#ae6f8cc98b19fa6efb4859afcc7974af4',1,'mqtt::endpoint::set_serialize_handlers()']]],
   ['set_5fsuback_5fhandler',['set_suback_handler',['../classmqtt_1_1endpoint.html#a1d5952c577be18487ddb6244e20c8cfa',1,'mqtt::endpoint']]],
   ['set_5fsubscribe_5fhandler',['set_subscribe_handler',['../classmqtt_1_1endpoint.html#ad6bd623a1d7474797f0d49c1eed0ff76',1,'mqtt::endpoint']]],
   ['set_5funsuback_5fhandler',['set_unsuback_handler',['../classmqtt_1_1endpoint.html#af3c05ad6e1c692b83adf1e620fa18ae9',1,'mqtt::endpoint']]],
