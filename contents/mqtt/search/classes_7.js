@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tcp_5fendpoint',['tcp_endpoint',['../classmqtt_1_1tcp__endpoint.html',1,'mqtt']]]
+  ['null_5fstrand',['null_strand',['../structmqtt_1_1null__strand.html',1,'mqtt']]]
 ];

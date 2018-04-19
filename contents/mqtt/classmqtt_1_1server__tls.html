@@ -85,6 +85,7 @@ Public Types</h2></td></tr>
 <tr class="memitem:aebdc79dca6ab40d1ddb2eda2f3e998f8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server__tls.html#aebdc79dca6ab40d1ddb2eda2f3e998f8">accept_handler</a> = std::function&lt; void(<a class="el" href="classmqtt_1_1server__tls.html#a88a85aad4fc6e95e2830699afeca3370">endpoint_t</a> &amp;ep)&gt;</td></tr>
 <tr class="separator:aebdc79dca6ab40d1ddb2eda2f3e998f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c164c0a9c70e4d98b7e4a2355731269"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmqtt_1_1server__tls.html#a5c164c0a9c70e4d98b7e4a2355731269">error_handler</a> = std::function&lt; void(boost::system::error_code const  &amp;ec)&gt;</td></tr>
+<tr class="memdesc:a5c164c0a9c70e4d98b7e4a2355731269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error handler.  <a href="#a5c164c0a9c70e4d98b7e4a2355731269">More...</a><br /></td></tr>
 <tr class="separator:a5c164c0a9c70e4d98b7e4a2355731269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -157,7 +158,9 @@ template&lt;typename Strand  = as::io_service::strand, typename Mutex  = std::mu
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Error handler </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Error handler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ec</td><td>error code </td></tr>
   </table>

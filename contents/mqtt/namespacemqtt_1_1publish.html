@@ -74,16 +74,22 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a413bc4025c3c06e20a56c80b0421ed58"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a413bc4025c3c06e20a56c80b0421ed58">is_dup</a> (std::uint8_t v)</td></tr>
-<tr class="separator:a413bc4025c3c06e20a56c80b0421ed58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb9575b9c63ffaebcdcbd19472b76e52"><td class="memItemLeft" align="right" valign="top">constexpr std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#abb9575b9c63ffaebcdcbd19472b76e52">get_qos</a> (std::uint8_t v)</td></tr>
-<tr class="separator:abb9575b9c63ffaebcdcbd19472b76e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d62125fcc70424fc18d960f748a84ed"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a3d62125fcc70424fc18d960f748a84ed">is_retain</a> (std::uint8_t v)</td></tr>
-<tr class="separator:a3d62125fcc70424fc18d960f748a84ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55315f11b5f33572dc6d766ee1f680e1"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a55315f11b5f33572dc6d766ee1f680e1">is_dup</a> (char v)</td></tr>
+<tr class="separator:a55315f11b5f33572dc6d766ee1f680e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafd55b5851abcdd39fadbafd04901d63"><td class="memItemLeft" align="right" valign="top">constexpr std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#aafd55b5851abcdd39fadbafd04901d63">get_qos</a> (char v)</td></tr>
+<tr class="separator:aafd55b5851abcdd39fadbafd04901d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0671fc51db8a60506736ed90a2de4ff0"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a0671fc51db8a60506736ed90a2de4ff0">is_retain</a> (char v)</td></tr>
+<tr class="separator:a0671fc51db8a60506736ed90a2de4ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c58d2e16e333dd716b3592638ae9a18"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a9c58d2e16e333dd716b3592638ae9a18">set_dup</a> (char &amp;fixed_header, bool dup)</td></tr>
+<tr class="separator:a9c58d2e16e333dd716b3592638ae9a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e9d353ce61ad7bfcd4c146510019d5"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#a81e9d353ce61ad7bfcd4c146510019d5">set_qos</a> (char &amp;fixed_header, std::uint8_t qos)</td></tr>
+<tr class="separator:a81e9d353ce61ad7bfcd4c146510019d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6a8c5cd27d4d616d603925af8ff34d0"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemqtt_1_1publish.html#ab6a8c5cd27d4d616d603925af8ff34d0">set_retain</a> (char &amp;fixed_header, bool retain)</td></tr>
+<tr class="separator:ab6a8c5cd27d4d616d603925af8ff34d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="abb9575b9c63ffaebcdcbd19472b76e52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb9575b9c63ffaebcdcbd19472b76e52">&#9670;&nbsp;</a></span>get_qos()</h2>
+<a id="aafd55b5851abcdd39fadbafd04901d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd55b5851abcdd39fadbafd04901d63">&#9670;&nbsp;</a></span>get_qos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -94,7 +100,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">constexpr std::uint8_t mqtt::publish::get_qos </td>
           <td>(</td>
-          <td class="paramtype">std::uint8_t&#160;</td>
+          <td class="paramtype">char&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
@@ -108,8 +114,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a413bc4025c3c06e20a56c80b0421ed58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a413bc4025c3c06e20a56c80b0421ed58">&#9670;&nbsp;</a></span>is_dup()</h2>
+<a id="a55315f11b5f33572dc6d766ee1f680e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55315f11b5f33572dc6d766ee1f680e1">&#9670;&nbsp;</a></span>is_dup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -120,7 +126,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">constexpr bool mqtt::publish::is_dup </td>
           <td>(</td>
-          <td class="paramtype">std::uint8_t&#160;</td>
+          <td class="paramtype">char&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
@@ -134,8 +140,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3d62125fcc70424fc18d960f748a84ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d62125fcc70424fc18d960f748a84ed">&#9670;&nbsp;</a></span>is_retain()</h2>
+<a id="a0671fc51db8a60506736ed90a2de4ff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0671fc51db8a60506736ed90a2de4ff0">&#9670;&nbsp;</a></span>is_retain()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,9 +149,109 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">constexpr bool mqtt::publish::is_retain </td>
           <td>(</td>
-          <td class="paramtype">std::uint8_t&#160;</td>
+          <td class="paramtype">char&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c58d2e16e333dd716b3592638ae9a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c58d2e16e333dd716b3592638ae9a18">&#9670;&nbsp;</a></span>set_dup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void mqtt::publish::set_dup </td>
+          <td>(</td>
+          <td class="paramtype">char &amp;&#160;</td>
+          <td class="paramname"><em>fixed_header</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>dup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81e9d353ce61ad7bfcd4c146510019d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81e9d353ce61ad7bfcd4c146510019d5">&#9670;&nbsp;</a></span>set_qos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void mqtt::publish::set_qos </td>
+          <td>(</td>
+          <td class="paramtype">char &amp;&#160;</td>
+          <td class="paramname"><em>fixed_header</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t&#160;</td>
+          <td class="paramname"><em>qos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6a8c5cd27d4d616d603925af8ff34d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6a8c5cd27d4d616d603925af8ff34d0">&#9670;&nbsp;</a></span>set_retain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr void mqtt::publish::set_retain </td>
+          <td>(</td>
+          <td class="paramtype">char &amp;&#160;</td>
+          <td class="paramname"><em>fixed_header</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>retain</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

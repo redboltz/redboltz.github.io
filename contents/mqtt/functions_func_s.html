@@ -111,11 +111,17 @@ $(function() {
 <li>set_disconnect_handler()
 : <a class="el" href="classmqtt_1_1endpoint.html#ac462694eb41e63598c3d6cbc3fbbbdc5">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
+<li>set_dup()
+: <a class="el" href="classmqtt_1_1publish__message.html#a48987962e5ce25db208c46ad987d0cd6">mqtt::publish_message</a>
+</li>
 <li>set_error_handler()
 : <a class="el" href="classmqtt_1_1client.html#aae0e35dbdf2c67b2a3716e1d2e257f6e">mqtt::client&lt; Socket &gt;</a>
 , <a class="el" href="classmqtt_1_1endpoint.html#a1dc5f2a2ab14653833f2e763284e6f8f">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 , <a class="el" href="classmqtt_1_1server.html#a32bbe13c6d3f45a569d063365cd918cf">mqtt::server&lt; Strand, Mutex, LockGuard &gt;</a>
 , <a class="el" href="classmqtt_1_1server__tls.html#aa1913f9c0a7fe744077e828f19b897eb">mqtt::server_tls&lt; Strand, Mutex, LockGuard &gt;</a>
+</li>
+<li>set_is_valid_length_handler()
+: <a class="el" href="classmqtt_1_1endpoint.html#aae05d777e01fe7df0c366ee08b0ab448">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
 <li>set_keep_alive_sec()
 : <a class="el" href="classmqtt_1_1client.html#a27f2dcd0853785650363259bfe1704ea">mqtt::client&lt; Socket &gt;</a>
@@ -136,6 +142,9 @@ $(function() {
 <li>set_pingresp_handler()
 : <a class="el" href="classmqtt_1_1endpoint.html#a0147fed46ca1bef39d25264f0b058585">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
+<li>set_pre_send_handler()
+: <a class="el" href="classmqtt_1_1endpoint.html#ab5068a80026d8dc1ef7f3e7ed9742294">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+</li>
 <li>set_pub_res_sent_handler()
 : <a class="el" href="classmqtt_1_1endpoint.html#a1b26c627180a09a6456d605d0f661545">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
@@ -155,7 +164,7 @@ $(function() {
 : <a class="el" href="classmqtt_1_1endpoint.html#aee191bcfd559797248d869fd25e3afb0">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
 <li>set_serialize_handlers()
-: <a class="el" href="classmqtt_1_1endpoint.html#a051193db6f0bd16f4ec8c6c05547f33a">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#ab0e5b83b3bc0f4d7201998ba25e19f05">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
 <li>set_suback_handler()
 : <a class="el" href="classmqtt_1_1endpoint.html#a1d5952c577be18487ddb6244e20c8cfa">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
@@ -184,18 +193,34 @@ $(function() {
 <li>set_will()
 : <a class="el" href="classmqtt_1_1endpoint.html#a858b242da7b69c635fc459d0085e0721">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
+<li>size()
+: <a class="el" href="classmqtt_1_1connack__message.html#afd2295c032fefc760f66b2b80fb9086f">mqtt::connack_message</a>
+, <a class="el" href="classmqtt_1_1connect__message.html#a14dfd478d0350722624eb8baba466f72">mqtt::connect_message</a>
+, <a class="el" href="classmqtt_1_1detail_1_1header__only__message.html#a0f39d50e06373eccce2b31741fdc9fae">mqtt::detail::header_only_message</a>
+, <a class="el" href="classmqtt_1_1detail_1_1header__packet__id__message.html#a8cc1087dab0d5364567083029d26d77b">mqtt::detail::header_packet_id_message</a>
+, <a class="el" href="classmqtt_1_1publish__message.html#a9398369ce586988a603fb2b134d2e2d8">mqtt::publish_message</a>
+, <a class="el" href="classmqtt_1_1suback__message.html#ae7fe4838546d09a017170fe4b034e50b">mqtt::suback_message</a>
+, <a class="el" href="classmqtt_1_1subscribe__message.html#a9777deb5b19c46db62171b3d13ba871f">mqtt::subscribe_message</a>
+, <a class="el" href="classmqtt_1_1unsubscribe__message.html#af81be72e4a2be8a897a293348af3ab31">mqtt::unsubscribe_message</a>
+</li>
 <li>socket()
-: <a class="el" href="classmqtt_1_1endpoint.html#a143d84f68b71144289d884ce49890774">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#ae9a39d3dc415bed7c68a62cdd9a0bd48">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 , <a class="el" href="classmqtt_1_1tcp__endpoint.html#a8c1d9ee86bce57955e6cc6d50db7d44c">mqtt::tcp_endpoint&lt; Socket, Strand &gt;</a>
 </li>
 <li>start_session()
 : <a class="el" href="classmqtt_1_1endpoint.html#a0b8d691bd7c6ad79231945d7cba63dd8">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
 </li>
 <li>suback()
-: <a class="el" href="classmqtt_1_1endpoint.html#a3c11ddcb2c1ff4b3583e856f6fde06ad">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+: <a class="el" href="classmqtt_1_1endpoint.html#a4d09945d6d771ecef843ff5098ccdd4b">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+</li>
+<li>suback_message()
+: <a class="el" href="classmqtt_1_1suback__message.html#a94c0cbad308d0b3e2ed2a4bfad1ad0fe">mqtt::suback_message</a>
 </li>
 <li>subscribe()
 : <a class="el" href="classmqtt_1_1endpoint.html#a23aee9d5020a4d36e8e5b47f239464e3">mqtt::endpoint&lt; Socket, Mutex, LockGuard &gt;</a>
+</li>
+<li>subscribe_message()
+: <a class="el" href="classmqtt_1_1subscribe__message.html#a9ae6fd03afdc70a3564a7e3a614471d6">mqtt::subscribe_message</a>
 </li>
 </ul>
 </div><!-- contents -->

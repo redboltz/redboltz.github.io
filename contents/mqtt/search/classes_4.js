@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['packet_5fid_5fexhausted_5ferror',['packet_id_exhausted_error',['../structmqtt_1_1packet__id__exhausted__error.html',1,'mqtt']]],
-  ['password_5flength_5ferror',['password_length_error',['../structmqtt_1_1password__length__error.html',1,'mqtt']]],
-  ['protocol_5ferror',['protocol_error',['../structmqtt_1_1protocol__error.html',1,'mqtt']]]
+  ['header_5fonly_5fmessage',['header_only_message',['../classmqtt_1_1detail_1_1header__only__message.html',1,'mqtt::detail']]],
+  ['header_5fpacket_5fid_5fmessage',['header_packet_id_message',['../classmqtt_1_1detail_1_1header__packet__id__message.html',1,'mqtt::detail']]]
 ];

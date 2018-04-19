@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['read_5fbytes_5ftransferred_5ferror',['read_bytes_transferred_error',['../structmqtt_1_1read__bytes__transferred__error.html',1,'mqtt']]],
-  ['remaining_5flength_5ferror',['remaining_length_error',['../structmqtt_1_1remaining__length__error.html',1,'mqtt']]]
+  ['is_5fshared_5fptr',['is_shared_ptr',['../structmqtt_1_1detail_1_1is__shared__ptr.html',1,'mqtt::detail']]],
+  ['is_5fshared_5fptr_3c_20std_3a_3ashared_5fptr_3c_20t_20_3e_20_3e',['is_shared_ptr&lt; std::shared_ptr&lt; T &gt; &gt;',['../structmqtt_1_1detail_1_1is__shared__ptr_3_01std_1_1shared__ptr_3_01T_01_4_01_4.html',1,'mqtt::detail']]]
 ];
