@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['header_5fonly_5fmessage',['header_only_message',['../classmqtt_1_1detail_1_1header__only__message.html',1,'mqtt::detail']]],
-  ['header_5fpacket_5fid_5fmessage',['header_packet_id_message',['../classmqtt_1_1detail_1_1header__packet__id__message.html',1,'mqtt::detail']]]
+  ['endpoint',['endpoint',['../classmqtt_1_1endpoint.html',1,'mqtt']]],
+  ['endpoint_3c_20socket_2c_20std_3a_3amutex_2c_20std_3a_3alock_5fguard_2c_20packetidbytes_20_3e',['endpoint&lt; Socket, std::mutex, std::lock_guard, PacketIdBytes &gt;',['../classmqtt_1_1endpoint.html',1,'mqtt']]]
 ];

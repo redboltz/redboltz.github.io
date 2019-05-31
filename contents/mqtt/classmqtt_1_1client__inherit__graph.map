@@ -1,0 +1,7 @@
+<map id="mqtt::client&lt; Socket, PacketIdBytes &gt;" name="mqtt::client&lt; Socket, PacketIdBytes &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="483,39,643,80"/>
+<area shape="rect" id="node4" href="$classmqtt_1_1async__client.html" title=" " alt="" coords="691,5,887,47"/>
+<area shape="rect" id="node5" href="$classmqtt_1_1sync__client.html" title=" " alt="" coords="696,71,881,112"/>
+<area shape="rect" id="node2" href="$classmqtt_1_1endpoint.html" title=" " alt="" coords="253,31,435,87"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,17,205,102"/>
+</map>

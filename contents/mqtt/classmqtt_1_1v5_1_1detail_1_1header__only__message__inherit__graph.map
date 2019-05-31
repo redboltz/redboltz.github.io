@@ -1,0 +1,5 @@
+<map id="mqtt::v5::detail::header_only_message" name="mqtt::v5::detail::header_only_message">
+<area shape="rect" id="node1" title=" " alt="" coords="115,5,290,47"/>
+<area shape="rect" id="node2" href="$structmqtt_1_1v5_1_1pingreq__message.html" title=" " alt="" coords="5,102,205,129"/>
+<area shape="rect" id="node3" href="$structmqtt_1_1v5_1_1pingresp__message.html" title=" " alt="" coords="229,95,371,136"/>
+</map>

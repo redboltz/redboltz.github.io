@@ -1,12 +1,22 @@
 var searchData=
 [
-  ['serialize_5fpublish_5fhandler',['serialize_publish_handler',['../classmqtt_1_1endpoint.html#a1d70d897005c82770ff4504e2d9bbe48',1,'mqtt::endpoint']]],
-  ['serialize_5fpublish_5fmessage_5fhandler',['serialize_publish_message_handler',['../classmqtt_1_1endpoint.html#a07d264790daa83a62fb5f9592d471758',1,'mqtt::endpoint']]],
-  ['serialize_5fpubrel_5fhandler',['serialize_pubrel_handler',['../classmqtt_1_1endpoint.html#a23d759bb4f90591a6a5c0a28ad21c347',1,'mqtt::endpoint']]],
-  ['serialize_5fpubrel_5fmessage_5fhandler',['serialize_pubrel_message_handler',['../classmqtt_1_1endpoint.html#a23e76b1870607d703319e2ed9c91f052',1,'mqtt::endpoint']]],
-  ['serialize_5fremove_5fhandler',['serialize_remove_handler',['../classmqtt_1_1endpoint.html#a1e0c955dff2632c33f78ca35d2a8cd65',1,'mqtt::endpoint']]],
-  ['socket_5ft',['socket_t',['../classmqtt_1_1server.html#ada8c3cf6688bf51cef9e12141e309d9f',1,'mqtt::server::socket_t()'],['../classmqtt_1_1server__tls.html#a66231c7d842991376862cadfd4fc3f9c',1,'mqtt::server_tls::socket_t()']]],
-  ['store_5fmessage_5fvariant',['store_message_variant',['../namespacemqtt.html#a8381d9ce659c077383154267618c6d2c',1,'mqtt']]],
-  ['suback_5fhandler',['suback_handler',['../classmqtt_1_1client.html#a52c260b12a6f785dc6a5c8007784ec64',1,'mqtt::client::suback_handler()'],['../classmqtt_1_1endpoint.html#aebdc808e9551b6a8bb4e08eb09a237c4',1,'mqtt::endpoint::suback_handler()']]],
-  ['subscribe_5fhandler',['subscribe_handler',['../classmqtt_1_1endpoint.html#a603aa05bca6418513bfc57c5c1caf310',1,'mqtt::endpoint']]]
+  ['packet_5fid_5ft',['packet_id_t',['../classmqtt_1_1endpoint.html#a564cd0242f23b05aaf94e65ad7effd3a',1,'mqtt::endpoint']]],
+  ['pingreq_5fhandler',['pingreq_handler',['../classmqtt_1_1endpoint.html#aa0d6bdb586acc735d5c784196094c361',1,'mqtt::endpoint']]],
+  ['pingresp_5fhandler',['pingresp_handler',['../classmqtt_1_1endpoint.html#ad1bb95a7462c4a8466c63c860978b2d9',1,'mqtt::endpoint']]],
+  ['pre_5fsend_5fhandler',['pre_send_handler',['../classmqtt_1_1endpoint.html#a529c52ec7d0ff059cc8bf07c30cfe4e8',1,'mqtt::endpoint']]],
+  ['properties',['properties',['../namespacemqtt_1_1v5.html#a76ac2b6ca20fb7d96f6f4f7ef199fdc6',1,'mqtt::v5']]],
+  ['property_5fvariant',['property_variant',['../namespacemqtt_1_1v5.html#ac3a1d8ec4d26da023cc887a4f220328e',1,'mqtt::v5']]],
+  ['pub_5fres_5fsent_5fhandler',['pub_res_sent_handler',['../classmqtt_1_1endpoint.html#a56b07e4580973cd48becf78b4ea289ac',1,'mqtt::endpoint']]],
+  ['puback_5fhandler',['puback_handler',['../classmqtt_1_1endpoint.html#a21324ca4cb279339cf739bef07007182',1,'mqtt::endpoint']]],
+  ['puback_5fmessage',['puback_message',['../namespacemqtt_1_1v3__1__1.html#a3f327eb928e4f0c38e7aaf28dcb47c39',1,'mqtt::v3_1_1::puback_message()'],['../namespacemqtt_1_1v5.html#a08b6781ef9dd714fc8f3455cb4ad8945',1,'mqtt::v5::puback_message()']]],
+  ['pubcomp_5fhandler',['pubcomp_handler',['../classmqtt_1_1endpoint.html#a97cfc609fd1a72bfe4594d9f0a7d42a8',1,'mqtt::endpoint']]],
+  ['pubcomp_5fmessage',['pubcomp_message',['../namespacemqtt_1_1v3__1__1.html#a51a8c6f2c04912e9c70316f9f131408a',1,'mqtt::v3_1_1::pubcomp_message()'],['../namespacemqtt_1_1v5.html#a6c2a4a4e0ab730fbd64539ba6070dc5a',1,'mqtt::v5::pubcomp_message()']]],
+  ['publish_5f32_5fmessage',['publish_32_message',['../namespacemqtt_1_1v3__1__1.html#ae5b18be359668aecb5374e29c94f400a',1,'mqtt::v3_1_1::publish_32_message()'],['../namespacemqtt_1_1v5.html#a123348907703de1e6f73d4986357ed1b',1,'mqtt::v5::publish_32_message()']]],
+  ['publish_5fhandler',['publish_handler',['../classmqtt_1_1endpoint.html#a9191dc1774a8eab18da4bfa9f84029e4',1,'mqtt::endpoint']]],
+  ['publish_5fmessage',['publish_message',['../namespacemqtt_1_1v3__1__1.html#adf23b3502cb14a3c9f1f08dc03377c8e',1,'mqtt::v3_1_1::publish_message()'],['../namespacemqtt_1_1v5.html#ab3dab436b4098536ca391b453b4909fc',1,'mqtt::v5::publish_message()']]],
+  ['pubrec_5fhandler',['pubrec_handler',['../classmqtt_1_1endpoint.html#ab1c00e6f461f7eaa6f1b61f2011e203b',1,'mqtt::endpoint']]],
+  ['pubrec_5fmessage',['pubrec_message',['../namespacemqtt_1_1v3__1__1.html#a54f20c521b93ade32d1401b1a276c03b',1,'mqtt::v3_1_1::pubrec_message()'],['../namespacemqtt_1_1v5.html#a7b16d46fbe2c69086a2269e442b09030',1,'mqtt::v5::pubrec_message()']]],
+  ['pubrel_5f32_5fmessage',['pubrel_32_message',['../namespacemqtt_1_1v3__1__1.html#aed90ea60ccfb49b5dcff47ef2bed34a1',1,'mqtt::v3_1_1::pubrel_32_message()'],['../namespacemqtt_1_1v5.html#af128df0d81954327162aa173418ad7ec',1,'mqtt::v5::pubrel_32_message()']]],
+  ['pubrel_5fhandler',['pubrel_handler',['../classmqtt_1_1endpoint.html#a068ab8287621c9facae754d58e1e9e90',1,'mqtt::endpoint']]],
+  ['pubrel_5fmessage',['pubrel_message',['../namespacemqtt_1_1v3__1__1.html#a2cb80c2d3d3a4cd0f3a701aebbced8ef',1,'mqtt::v3_1_1::pubrel_message()'],['../namespacemqtt_1_1v5.html#abc9efae5f8bac5a0debfbc09c00c0276',1,'mqtt::v5::pubrel_message()']]]
 ];

@@ -1,0 +1,5 @@
+<map id="mqtt::v5::property::response_information_ref" name="mqtt::v5::property::response_information_ref">
+<area shape="rect" id="node1" title=" " alt="" coords="8,184,205,225"/>
+<area shape="rect" id="node2" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1string__property__ref.html" title=" " alt="" coords="7,95,206,136"/>
+<area shape="rect" id="node3" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1binary__property__ref.html" title=" " alt="" coords="5,5,208,47"/>
+</map>

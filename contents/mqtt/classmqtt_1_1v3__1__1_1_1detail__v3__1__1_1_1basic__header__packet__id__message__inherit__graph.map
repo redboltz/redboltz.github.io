@@ -1,0 +1,8 @@
+<map id="mqtt::v3_1_1::detail_v3_1_1::basic_header_packet_id_message&lt; PacketIdBytes &gt;" name="mqtt::v3_1_1::detail_v3_1_1::basic_header_packet_id_message&lt; PacketIdBytes &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,137,233,208"/>
+<area shape="rect" id="node2" href="$structmqtt_1_1v3__1__1_1_1basic__puback__message.html" title=" " alt="" coords="281,5,545,47"/>
+<area shape="rect" id="node3" href="$structmqtt_1_1v3__1__1_1_1basic__pubcomp__message.html" title=" " alt="" coords="301,71,526,127"/>
+<area shape="rect" id="node4" href="$structmqtt_1_1v3__1__1_1_1basic__pubrec__message.html" title=" " alt="" coords="283,152,544,193"/>
+<area shape="rect" id="node5" href="$structmqtt_1_1v3__1__1_1_1basic__pubrel__message.html" title=" " alt="" coords="284,217,543,259"/>
+<area shape="rect" id="node6" href="$structmqtt_1_1v3__1__1_1_1basic__unsuback__message.html" title=" " alt="" coords="300,283,527,339"/>
+</map>

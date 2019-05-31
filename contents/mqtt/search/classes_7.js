@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['null_5fstrand',['null_strand',['../structmqtt_1_1null__strand.html',1,'mqtt']]]
+  ['is_5fshared_5fptr',['is_shared_ptr',['../structmqtt_1_1detail_1_1is__shared__ptr.html',1,'mqtt::detail']]]
 ];
