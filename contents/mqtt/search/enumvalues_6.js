@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['maximum_5fpacket_5fsize',['maximum_packet_size',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19bae86c982cdc73638e7f205067bee6b615',1,'MQTT_NS::v5::property']]],
-  ['maximum_5fqos',['maximum_qos',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba394e6d7ed7fa6cfa41c999989c9fbd38',1,'MQTT_NS::v5::property']]],
-  ['message_5fexpiry_5finterval',['message_expiry_interval',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba5691630c289408c3bedf7fdbe58fdd44',1,'MQTT_NS::v5::property']]]
+  ['granted_5fqos_5f0_1393',['granted_qos_0',['../namespaceMQTT__NS_1_1v5.html#a5e6fab68041ffec5669a68bd19a1a406a962dbfbb0d3e0a94876334eb1eb3ec7b',1,'MQTT_NS::v5']]],
+  ['granted_5fqos_5f1_1394',['granted_qos_1',['../namespaceMQTT__NS_1_1v5.html#a5e6fab68041ffec5669a68bd19a1a406adeac27349e0f25f9d8bd11baaa725519',1,'MQTT_NS::v5']]],
+  ['granted_5fqos_5f2_1395',['granted_qos_2',['../namespaceMQTT__NS_1_1v5.html#a5e6fab68041ffec5669a68bd19a1a406a43bf56a606cf216715524b1f8cafcba8',1,'MQTT_NS::v5']]]
 ];

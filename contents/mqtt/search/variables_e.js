@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['qos_5fnot_5fsupported',['qos_not_supported',['../namespaceMQTT__NS_1_1v5_1_1reason__code.html#a855308cd66c6d6ae0a005d0f1e39339a',1,'MQTT_NS::v5::reason_code']]],
-  ['quota_5fexceeded',['quota_exceeded',['../namespaceMQTT__NS_1_1v5_1_1reason__code.html#a6f814fdf40bb28487d367d1f9cbac5cc',1,'MQTT_NS::v5::reason_code']]]
+  ['will_5fflag_1272',['will_flag',['../namespaceMQTT__NS_1_1connect__flags.html#aacbf60b5d15f498020e4ee9f86d82ebb',1,'MQTT_NS::connect_flags']]],
+  ['will_5fretain_1273',['will_retain',['../namespaceMQTT__NS_1_1connect__flags.html#a594493ae51d42662c228a6f575b2600b',1,'MQTT_NS::connect_flags']]]
 ];

@@ -1,9 +1,10 @@
 <map id="/home/kondo/work/mqtt_cpp/include/mqtt/endpoint.hpp" name="/home/kondo/work/mqtt_cpp/include/mqtt/endpoint.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="275,5,502,47"/>
-<area shape="rect" id="node2" href="$client_8hpp.html" title=" " alt="" coords="169,95,376,136"/>
-<area shape="rect" id="node6" href="$server_8hpp.html" title=" " alt="" coords="426,95,637,136"/>
-<area shape="rect" id="node3" href="$async__client_8hpp.html" title=" " alt="" coords="5,184,185,240"/>
-<area shape="rect" id="node4" href="$mqtt__client__cpp_8hpp.html" title=" " alt="" coords="133,288,314,344"/>
-<area shape="rect" id="node5" href="$sync__client_8hpp.html" title=" " alt="" coords="261,184,439,240"/>
-<area shape="rect" id="node7" href="$mqtt__server__cpp_8hpp.html" title=" " alt="" coords="463,184,650,240"/>
+<area shape="rect" id="node1" title=" " alt="" coords="165,5,392,47"/>
+<area shape="rect" id="node2" href="$callable__overlay_8hpp.html" title=" " alt="" coords="182,95,375,151"/>
+<area shape="rect" id="node5" href="$client_8hpp.html" title=" " alt="" coords="19,199,226,240"/>
+<area shape="rect" id="node7" href="$server_8hpp.html" title=" " alt="" coords="352,199,562,240"/>
+<area shape="rect" id="node3" href="$async__client_8hpp.html" title=" " alt="" coords="27,288,207,344"/>
+<area shape="rect" id="node6" href="$sync__client_8hpp.html" title=" " alt="" coords="231,288,408,344"/>
+<area shape="rect" id="node4" href="$mqtt__client__cpp_8hpp.html" title=" " alt="" coords="26,392,208,448"/>
+<area shape="rect" id="node8" href="$mqtt__server__cpp_8hpp.html" title=" " alt="" coords="433,288,620,344"/>
 </map>

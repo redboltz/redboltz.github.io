@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['qos',['qos',['../classMQTT__NS_1_1v3__1__1_1_1basic__publish__message.html#ab03b4330f5eaebcadf16f3db6fe85591',1,'MQTT_NS::v3_1_1::basic_publish_message::qos()'],['../classMQTT__NS_1_1v5_1_1basic__publish__message.html#a3941302ebefde82867a9d80ffb3583cc',1,'MQTT_NS::v5::basic_publish_message::qos()'],['../classMQTT__NS_1_1will.html#afb1877c962268456b2b81589edacb871',1,'MQTT_NS::will::qos()']]]
+  ['qos_5fto_5fstr_1117',['qos_to_str',['../namespaceMQTT__NS.html#a20e540556d77f8e9f2dc15224144f561',1,'MQTT_NS']]],
+  ['qos_5fto_5fsuback_5freason_5fcode_1118',['qos_to_suback_reason_code',['../namespaceMQTT__NS_1_1v5.html#a940664c06b5cb9b56358f69d8b869aca',1,'MQTT_NS::v5']]],
+  ['qos_5fto_5fsuback_5freturn_5fcode_1119',['qos_to_suback_return_code',['../namespaceMQTT__NS.html#a71d3a8a2d6dbdc3bcd73ef45810186ec',1,'MQTT_NS']]]
 ];

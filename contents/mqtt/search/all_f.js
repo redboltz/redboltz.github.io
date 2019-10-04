@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['qos',['qos',['../classMQTT__NS_1_1v3__1__1_1_1basic__publish__message.html#ab03b4330f5eaebcadf16f3db6fe85591',1,'MQTT_NS::v3_1_1::basic_publish_message::qos()'],['../classMQTT__NS_1_1v5_1_1basic__publish__message.html#a3941302ebefde82867a9d80ffb3583cc',1,'MQTT_NS::v5::basic_publish_message::qos()'],['../classMQTT__NS_1_1will.html#afb1877c962268456b2b81589edacb871',1,'MQTT_NS::will::qos()']]],
-  ['qos_2ehpp',['qos.hpp',['../qos_8hpp.html',1,'']]],
-  ['qos_5fnot_5fsupported',['qos_not_supported',['../namespaceMQTT__NS_1_1v5_1_1reason__code.html#a855308cd66c6d6ae0a005d0f1e39339a',1,'MQTT_NS::v5::reason_code']]],
-  ['quota_5fexceeded',['quota_exceeded',['../namespaceMQTT__NS_1_1v5_1_1reason__code.html#a6f814fdf40bb28487d367d1f9cbac5cc',1,'MQTT_NS::v5::reason_code']]]
+  ['qos_448',['qos',['../namespaceMQTT__NS.html#ac1235436f66e342fcbb253a2a9297c4d',1,'MQTT_NS']]],
+  ['qos_5fnot_5fsupported_449',['qos_not_supported',['../namespaceMQTT__NS_1_1v5.html#a066fed6acd7efdb61dd0196e431324eba9dec14362bd41a43beb8d673756daaad',1,'MQTT_NS::v5::qos_not_supported()'],['../namespaceMQTT__NS_1_1v5.html#ab584e17eca6e580b7a2e556dac731442a9dec14362bd41a43beb8d673756daaad',1,'MQTT_NS::v5::qos_not_supported()']]],
+  ['qos_5fto_5fstr_450',['qos_to_str',['../namespaceMQTT__NS.html#a20e540556d77f8e9f2dc15224144f561',1,'MQTT_NS']]],
+  ['qos_5fto_5fsuback_5freason_5fcode_451',['qos_to_suback_reason_code',['../namespaceMQTT__NS_1_1v5.html#a940664c06b5cb9b56358f69d8b869aca',1,'MQTT_NS::v5']]],
+  ['qos_5fto_5fsuback_5freturn_5fcode_452',['qos_to_suback_return_code',['../namespaceMQTT__NS.html#a71d3a8a2d6dbdc3bcd73ef45810186ec',1,'MQTT_NS']]],
+  ['quota_5fexceeded_453',['quota_exceeded',['../namespaceMQTT__NS_1_1v5.html#a066fed6acd7efdb61dd0196e431324eba038d1f877daecfdfafd2fc3992f0e8bc',1,'MQTT_NS::v5::quota_exceeded()'],['../namespaceMQTT__NS_1_1v5.html#ab584e17eca6e580b7a2e556dac731442a038d1f877daecfdfafd2fc3992f0e8bc',1,'MQTT_NS::v5::quota_exceeded()'],['../namespaceMQTT__NS_1_1v5.html#a5e6fab68041ffec5669a68bd19a1a406a038d1f877daecfdfafd2fc3992f0e8bc',1,'MQTT_NS::v5::quota_exceeded()'],['../namespaceMQTT__NS_1_1v5.html#a730587fc15912a27b530e9473c7f1d7da038d1f877daecfdfafd2fc3992f0e8bc',1,'MQTT_NS::v5::quota_exceeded()'],['../namespaceMQTT__NS_1_1v5.html#a9373a2a0e595ab9c09ecef4399c3dc4ca038d1f877daecfdfafd2fc3992f0e8bc',1,'MQTT_NS::v5::quota_exceeded()']]]
 ];

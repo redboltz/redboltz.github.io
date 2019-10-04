@@ -1,5 +1,5 @@
 <map id="MQTT_NS::v5::property::correlation_data" name="MQTT_NS::v5::property::correlation_data">
-<area shape="rect" id="node1" title=" " alt="" coords="9,184,180,225"/>
+<area shape="rect" id="node1" title=" " alt="" coords="9,184,181,225"/>
 <area shape="rect" id="node2" href="$structMQTT__NS_1_1v5_1_1property_1_1detail_1_1string__property.html" title=" " alt="" coords="7,95,182,136"/>
 <area shape="rect" id="node3" href="$structMQTT__NS_1_1v5_1_1property_1_1detail_1_1binary__property.html" title=" " alt="" coords="5,5,184,47"/>
 </map>

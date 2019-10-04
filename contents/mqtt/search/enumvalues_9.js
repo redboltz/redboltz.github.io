@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['server_5fkeep_5falive',['server_keep_alive',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19bab679a6a76c34d79fbe6fa98606eef93a',1,'MQTT_NS::v5::property']]],
-  ['server_5freference',['server_reference',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba1d8c69ac391ef411f60dc55d168f47b0',1,'MQTT_NS::v5::property']]],
-  ['session_5fexpiry_5finterval',['session_expiry_interval',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba7c1c94c8bbf406c1b4939052d5bdae8e',1,'MQTT_NS::v5::property']]],
-  ['shared_5fsubscription_5favailable',['shared_subscription_available',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba570f14f4d526fcea83d5b11db9f9f0e4',1,'MQTT_NS::v5::property']]],
-  ['string',['string',['../classMQTT__NS_1_1v5_1_1property_1_1payload__format__indicator.html#af08079ff4aa7cef55579a29a8c8d0a31af097a1d91f54653de2912f91d0768fa0',1,'MQTT_NS::v5::property::payload_format_indicator']]],
-  ['subscription_5fidentifier',['subscription_identifier',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba0303e35c985a5501426a930f578f6e11',1,'MQTT_NS::v5::property']]],
-  ['subscription_5fidentifier_5favailable',['subscription_identifier_available',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19bacefe31dfe68287829eeb3b1fe20f2f21',1,'MQTT_NS::v5::property']]]
+  ['malformed_5fpacket_1402',['malformed_packet',['../namespaceMQTT__NS_1_1v5.html#a066fed6acd7efdb61dd0196e431324eba2aa5596a637d08720add08ff58072e77',1,'MQTT_NS::v5::malformed_packet()'],['../namespaceMQTT__NS_1_1v5.html#ab584e17eca6e580b7a2e556dac731442a2aa5596a637d08720add08ff58072e77',1,'MQTT_NS::v5::malformed_packet()']]],
+  ['maximum_5fconnect_5ftime_1403',['maximum_connect_time',['../namespaceMQTT__NS_1_1v5.html#ab584e17eca6e580b7a2e556dac731442a29a53c5d92cc8a480d690d6525d6b3cf',1,'MQTT_NS::v5']]],
+  ['maximum_5fpacket_5fsize_1404',['maximum_packet_size',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19bae86c982cdc73638e7f205067bee6b615',1,'MQTT_NS::v5::property']]],
+  ['maximum_5fqos_1405',['maximum_qos',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba394e6d7ed7fa6cfa41c999989c9fbd38',1,'MQTT_NS::v5::property']]],
+  ['message_5fexpiry_5finterval_1406',['message_expiry_interval',['../namespaceMQTT__NS_1_1v5_1_1property.html#a4bba487a307adcf60ed5edf52c54f19ba5691630c289408c3bedf7fdbe58fdd44',1,'MQTT_NS::v5::property']]],
+  ['message_5frate_5ftoo_5fhigh_1407',['message_rate_too_high',['../namespaceMQTT__NS_1_1v5.html#ab584e17eca6e580b7a2e556dac731442a12a3eec35bdb0f12956e890ccbefc5e0',1,'MQTT_NS::v5']]]
 ];
