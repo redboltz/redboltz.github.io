@@ -1,5 +1,0 @@
-<map id="mqtt::v5::property::assigned_client_identifier_ref" name="mqtt::v5::property::assigned_client_identifier_ref">
-<area shape="rect" id="node1" title=" " alt="" coords="5,184,227,225"/>
-<area shape="rect" id="node2" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1string__property__ref.html" title=" " alt="" coords="17,95,215,136"/>
-<area shape="rect" id="node3" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1binary__property__ref.html" title=" " alt="" coords="15,5,217,47"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="mqtt::v5::property::server_reference" name="mqtt::v5::property::server_reference">
-<area shape="rect" id="node1" title=" " alt="" coords="25,184,165,225"/>
-<area shape="rect" id="node2" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1string__property.html" title=" " alt="" coords="7,95,182,136"/>
-<area shape="rect" id="node3" href="$structmqtt_1_1v5_1_1property_1_1detail_1_1binary__property.html" title=" " alt="" coords="5,5,184,47"/>
-</map>

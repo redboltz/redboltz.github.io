@@ -1,6 +1,6 @@
 <map id="MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;" name="MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="719,20,913,61"/>
-<area shape="rect" id="node2" href="$classMQTT__NS_1_1client.html" title=" " alt="" coords="480,20,671,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="747,20,941,61"/>
+<area shape="rect" id="node2" href="$classMQTT__NS_1_1client.html" title=" " alt="" coords="480,27,699,54"/>
 <area shape="rect" id="node3" href="$classMQTT__NS_1_1endpoint.html" title=" " alt="" coords="252,13,432,69"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,5,204,76"/>
 </map>

@@ -1,6 +1,0 @@
-<map id="mqtt::v3_1_1::detail_v3_1_1::header_only_message" name="mqtt::v3_1_1::detail_v3_1_1::header_only_message">
-<area shape="rect" id="node1" title=" " alt="" coords="5,63,168,119"/>
-<area shape="rect" id="node2" href="$structmqtt_1_1v3__1__1_1_1disconnect__message.html" title=" " alt="" coords="216,5,401,47"/>
-<area shape="rect" id="node3" href="$structmqtt_1_1v3__1__1_1_1pingreq__message.html" title=" " alt="" coords="227,71,391,112"/>
-<area shape="rect" id="node4" href="$structmqtt_1_1v3__1__1_1_1pingresp__message.html" title=" " alt="" coords="223,136,394,177"/>
-</map>

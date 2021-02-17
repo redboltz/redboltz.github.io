@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['disconnect',['disconnect',['../classMQTT__NS_1_1async__client.html#abf070bf69fae6448b6c3db30c224ec1e',1,'MQTT_NS::async_client::disconnect()'],['../classMQTT__NS_1_1client.html#a8df41a6a7df792553f01904b36c2a57b',1,'MQTT_NS::client::disconnect(boost::posix_time::time_duration const &amp;timeout, MQTT_NS::optional&lt; std::uint8_t &gt; reason_code=MQTT_NS::nullopt, std::vector&lt; v5::property_variant &gt; props={})'],['../classMQTT__NS_1_1client.html#ad1e453bb24dfd25c4ac0cbad1eec3e2e',1,'MQTT_NS::client::disconnect(MQTT_NS::optional&lt; std::uint8_t &gt; reason_code=MQTT_NS::nullopt, std::vector&lt; v5::property_variant &gt; props={})'],['../classMQTT__NS_1_1endpoint.html#aae2f12297aaa62d5d4d3fab032e17287',1,'MQTT_NS::endpoint::disconnect()']]],
-  ['disconnect_5fmessage',['disconnect_message',['../structMQTT__NS_1_1v3__1__1_1_1disconnect__message.html#aa0e3cc47ccbb7739c3d782c5f56b052c',1,'MQTT_NS::v3_1_1::disconnect_message::disconnect_message()'],['../structMQTT__NS_1_1v5_1_1disconnect__message.html#ada475902cc26d6e35e692398e499107e',1,'MQTT_NS::v5::disconnect_message::disconnect_message()']]],
-  ['dispatch',['dispatch',['../structMQTT__NS_1_1null__strand.html#a233efd6c6898f64bab775b30cea0e6a6',1,'MQTT_NS::null_strand']]]
-];

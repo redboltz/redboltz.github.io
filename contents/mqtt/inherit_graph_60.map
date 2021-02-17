@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classMQTT__NS_1_1v3__1__1_1_1detail__v3__1__1_1_1basic__header__packet__id__message.html" title=" " alt="" coords="5,129,284,185"/>
+<area shape="rect" id="node2" href="$structMQTT__NS_1_1v3__1__1_1_1basic__puback__message.html" title=" " alt="" coords="340,5,603,47"/>
+<area shape="rect" id="node3" href="$structMQTT__NS_1_1v3__1__1_1_1basic__pubcomp__message.html" title=" " alt="" coords="333,71,609,112"/>
+<area shape="rect" id="node4" href="$structMQTT__NS_1_1v3__1__1_1_1basic__pubrec__message.html" title=" " alt="" coords="341,136,601,177"/>
+<area shape="rect" id="node5" href="$structMQTT__NS_1_1v3__1__1_1_1basic__pubrel__message.html" title=" " alt="" coords="343,201,600,243"/>
+<area shape="rect" id="node6" href="$structMQTT__NS_1_1v3__1__1_1_1basic__unsuback__message.html" title=" " alt="" coords="332,267,611,308"/>
+</map>

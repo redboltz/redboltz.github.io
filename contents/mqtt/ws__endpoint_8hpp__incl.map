@@ -1,9 +1,12 @@
 <map id="/home/kondo/work/mqtt_cpp/include/mqtt/ws_endpoint.hpp" name="/home/kondo/work/mqtt_cpp/include/mqtt/ws_endpoint.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="315,5,492,61"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,109,204,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="227,109,438,136"/>
-<area shape="rect" id="node4" href="$namespace_8hpp.html" title=" " alt="" coords="381,191,541,218"/>
-<area shape="rect" id="node5" href="$string__view_8hpp.html" title=" " alt="" coords="541,109,700,136"/>
-<area shape="rect" id="node6" title=" " alt="" coords="565,191,703,218"/>
-<area shape="rect" id="node7" title=" " alt="" coords="727,184,869,225"/>
+<area shape="rect" id="node1" title=" " alt="" coords="527,5,704,61"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,117,204,143"/>
+<area shape="rect" id="node3" title=" " alt="" coords="227,109,382,151"/>
+<area shape="rect" id="node4" title=" " alt="" coords="406,117,617,143"/>
+<area shape="rect" id="node5" href="$namespace_8hpp.html" title=" " alt="" coords="786,206,946,233"/>
+<area shape="rect" id="node6" href="$string__view_8hpp.html" title=" " alt="" coords="641,117,800,143"/>
+<area shape="rect" id="node9" href="$error__code_8hpp.html" title=" " alt="" coords="875,117,1030,143"/>
+<area shape="rect" id="node7" title=" " alt="" coords="458,206,597,233"/>
+<area shape="rect" id="node8" title=" " alt="" coords="621,199,762,240"/>
+<area shape="rect" id="node10" title=" " alt="" coords="971,199,1116,240"/>
 </map>
