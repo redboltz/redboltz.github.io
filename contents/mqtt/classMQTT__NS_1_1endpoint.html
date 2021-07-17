@@ -71,6 +71,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classMQTT__NS_1_1endpoint-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -101,7 +102,7 @@ Collaboration diagram for MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes 
 Public Types</h2></td></tr>
 <tr class="memitem:a480c9e07ff13bcbed796378425633074"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a480c9e07ff13bcbed796378425633074">async_handler_t</a> = std::function&lt; void(<a class="el" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec)&gt;</td></tr>
 <tr class="separator:a480c9e07ff13bcbed796378425633074"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9525c3f23b3eb6818ad591f88eb8ecc3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a9525c3f23b3eb6818ad591f88eb8ecc3">packet_id_t</a> = typename <a class="el" href="structMQTT__NS_1_1packet__id__type.html">packet_id_type</a>&lt; PacketIdBytes &gt;::type</td></tr>
+<tr class="memitem:a9525c3f23b3eb6818ad591f88eb8ecc3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a9525c3f23b3eb6818ad591f88eb8ecc3">packet_id_t</a> = typename <a class="el" href="namespaceMQTT__NS.html#ad416f24a982bbb66843c260545dc725d">packet_id_type</a>&lt; PacketIdBytes &gt;::type</td></tr>
 <tr class="separator:a9525c3f23b3eb6818ad591f88eb8ecc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -109,10 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a29470cf9cad5cb1756a24f582d5f8f58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a29470cf9cad5cb1756a24f582d5f8f58">endpoint</a> (as::io_context &amp;ioc, <a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685">protocol_version</a> version=<a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685a276fc71ddbf2483a3842cdcef417e03d">protocol_version::undetermined</a>, bool async_send_store=false)</td></tr>
 <tr class="memdesc:a29470cf9cad5cb1756a24f582d5f8f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for client.  <a href="classMQTT__NS_1_1endpoint.html#a29470cf9cad5cb1756a24f582d5f8f58">More...</a><br /></td></tr>
 <tr class="separator:a29470cf9cad5cb1756a24f582d5f8f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe0414917b1c36359b10cde35938bb5a"><td class="memTemplParams" colspan="2">template&lt;typename Socket &gt; </td></tr>
-<tr class="memitem:afe0414917b1c36359b10cde35938bb5a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#afe0414917b1c36359b10cde35938bb5a">endpoint</a> (as::io_context &amp;ioc, std::shared_ptr&lt; Socket &gt; <a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>, <a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685">protocol_version</a> version=<a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685a276fc71ddbf2483a3842cdcef417e03d">protocol_version::undetermined</a>, bool async_send_store=false)</td></tr>
-<tr class="memdesc:afe0414917b1c36359b10cde35938bb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for server. socket should have already been connected with another endpoint.  <a href="classMQTT__NS_1_1endpoint.html#afe0414917b1c36359b10cde35938bb5a">More...</a><br /></td></tr>
-<tr class="separator:afe0414917b1c36359b10cde35938bb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6f74876c0b43bec2b4d85e5c2a1a21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a8b6f74876c0b43bec2b4d85e5c2a1a21">endpoint</a> (as::io_context &amp;ioc, std::shared_ptr&lt; <a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> &gt; <a class="el" href="classMQTT__NS_1_1socket.html">socket</a>, <a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685">protocol_version</a> version=<a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685a276fc71ddbf2483a3842cdcef417e03d">protocol_version::undetermined</a>, bool async_send_store=false)</td></tr>
+<tr class="memdesc:a8b6f74876c0b43bec2b4d85e5c2a1a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for server. socket should have already been connected with another endpoint.  <a href="classMQTT__NS_1_1endpoint.html#a8b6f74876c0b43bec2b4d85e5c2a1a21">More...</a><br /></td></tr>
+<tr class="separator:a8b6f74876c0b43bec2b4d85e5c2a1a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91cb31e631081e8aa9885498b00902e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a91cb31e631081e8aa9885498b00902e8">endpoint</a> (<a class="el" href="classMQTT__NS_1_1endpoint.html">this_type</a> const &amp;)=delete</td></tr>
 <tr class="separator:a91cb31e631081e8aa9885498b00902e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef4b283fc6b3a22f6302851c8ada488a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#aef4b283fc6b3a22f6302851c8ada488a">endpoint</a> (<a class="el" href="classMQTT__NS_1_1endpoint.html">this_type</a> &amp;&amp;)=delete</td></tr>
@@ -136,12 +136,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acabfd0bd245770caa1ef8e03a76aa64f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#acabfd0bd245770caa1ef8e03a76aa64f">set_auto_pub_response</a> (bool b=true, bool async=true)</td></tr>
 <tr class="memdesc:acabfd0bd245770caa1ef8e03a76aa64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set auto publish response mode.  <a href="classMQTT__NS_1_1endpoint.html#acabfd0bd245770caa1ef8e03a76aa64f">More...</a><br /></td></tr>
 <tr class="separator:acabfd0bd245770caa1ef8e03a76aa64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f353ef71b1825f279510ff1b52b5b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a4f353ef71b1825f279510ff1b52b5b23">set_auto_map_topic_alias_send</a> (bool b=true)</td></tr>
+<tr class="memdesc:a4f353ef71b1825f279510ff1b52b5b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set topic alias send auto mapping enable flag.  <a href="classMQTT__NS_1_1endpoint.html#a4f353ef71b1825f279510ff1b52b5b23">More...</a><br /></td></tr>
+<tr class="separator:a4f353ef71b1825f279510ff1b52b5b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abff4c5e845c5b4d5904bcf0a11eca37c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#abff4c5e845c5b4d5904bcf0a11eca37c">set_auto_replace_topic_alias_send</a> (bool b=true)</td></tr>
+<tr class="memdesc:abff4c5e845c5b4d5904bcf0a11eca37c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set topic alias send auto replacing enable flag.  <a href="classMQTT__NS_1_1endpoint.html#abff4c5e845c5b4d5904bcf0a11eca37c">More...</a><br /></td></tr>
 <tr class="separator:abff4c5e845c5b4d5904bcf0a11eca37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab936aa635400f77eeaff109656ffbf0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ab936aa635400f77eeaff109656ffbf0c">set_packet_bulk_read_limit</a> (std::size_t <a class="el" href="namespaceMQTT__NS.html#aa277277e254987fcfa134e38ec17aca4">size</a>)</td></tr>
 <tr class="separator:ab936aa635400f77eeaff109656ffbf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71b1d2e8898e9cda6f8f4441ce663408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a71b1d2e8898e9cda6f8f4441ce663408">set_props_bulk_read_limit</a> (std::size_t <a class="el" href="namespaceMQTT__NS.html#aa277277e254987fcfa134e38ec17aca4">size</a>)</td></tr>
 <tr class="separator:a71b1d2e8898e9cda6f8f4441ce663408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f0e3cba6f71618657350a5589cd0bac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a4f0e3cba6f71618657350a5589cd0bac">set_topic_alias_maximum</a> (<a class="el" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> max)</td></tr>
+<tr class="memdesc:a4f0e3cba6f71618657350a5589cd0bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">set topic alias maximum for receiving  <a href="classMQTT__NS_1_1endpoint.html#a4f0e3cba6f71618657350a5589cd0bac">More...</a><br /></td></tr>
+<tr class="separator:a4f0e3cba6f71618657350a5589cd0bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce134b027d9313ef79bf622659ed45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a4ce134b027d9313ef79bf622659ed45d">start_session</a> (any session_life_keeper=any())</td></tr>
 <tr class="memdesc:a4ce134b027d9313ef79bf622659ed45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">start session with a connected endpoint.  <a href="classMQTT__NS_1_1endpoint.html#a4ce134b027d9313ef79bf622659ed45d">More...</a><br /></td></tr>
 <tr class="separator:a4ce134b027d9313ef79bf622659ed45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -504,9 +511,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a64befa073dd4949ec5554f25dafa52c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0700fc3a40284d20867e0b19eb16165b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685">protocol_version</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a0700fc3a40284d20867e0b19eb16165b">get_protocol_version</a> () const</td></tr>
 <tr class="separator:a0700fc3a40284d20867e0b19eb16165b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a873a631af560eac356e15cd9355aba75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a> const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a873a631af560eac356e15cd9355aba75">socket</a> () const</td></tr>
+<tr class="memitem:a873a631af560eac356e15cd9355aba75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a873a631af560eac356e15cd9355aba75">socket</a> () const</td></tr>
 <tr class="separator:a873a631af560eac356e15cd9355aba75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75e6012673eaa3dae1f6e69eaed4a3bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a75e6012673eaa3dae1f6e69eaed4a3bd">socket</a> ()</td></tr>
+<tr class="memitem:a75e6012673eaa3dae1f6e69eaed4a3bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a75e6012673eaa3dae1f6e69eaed4a3bd">socket</a> ()</td></tr>
 <tr class="separator:a75e6012673eaa3dae1f6e69eaed4a3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a3b0cbbcf288e8c5ce7b05a22883a5b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a7a3b0cbbcf288e8c5ce7b05a22883a5b">get_executor</a> ()</td></tr>
 <tr class="separator:a7a3b0cbbcf288e8c5ce7b05a22883a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -528,9 +535,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4f1d76146fcd753a95592e908faa9ab7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a4f1d76146fcd753a95592e908faa9ab7">on_mqtt_message_processed</a> (any session_life_keeper)</td></tr>
 <tr class="memdesc:a4f1d76146fcd753a95592e908faa9ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">next read handler This handler is called when the current mqtt message has been processed.  <a href="classMQTT__NS_1_1endpoint.html#a4f1d76146fcd753a95592e908faa9ab7">More...</a><br /></td></tr>
 <tr class="separator:a4f1d76146fcd753a95592e908faa9ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54bc27d0819fe7ab29688270916e0d9a"><td class="memItemLeft" align="right" valign="top">optional&lt; <a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a54bc27d0819fe7ab29688270916e0d9a">socket_optional</a> ()</td></tr>
-<tr class="memdesc:a54bc27d0819fe7ab29688270916e0d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classMQTT__NS_1_1shared__any.html" title="boost::type_erasure wrapper that supports shared_ptr">shared_any</a> of socket.  <a href="classMQTT__NS_1_1endpoint.html#a54bc27d0819fe7ab29688270916e0d9a">More...</a><br /></td></tr>
-<tr class="separator:a54bc27d0819fe7ab29688270916e0d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1aa3e959db52f9e5348b356580bbc1f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ac1aa3e959db52f9e5348b356580bbc1f">socket_sp_ref</a> ()</td></tr>
+<tr class="memdesc:ac1aa3e959db52f9e5348b356580bbc1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get shared_ptr of socket.  <a href="classMQTT__NS_1_1endpoint.html#ac1aa3e959db52f9e5348b356580bbc1f">More...</a><br /></td></tr>
+<tr class="separator:ac1aa3e959db52f9e5348b356580bbc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7dba0a39184031abbbff36356edc30f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ae7dba0a39184031abbbff36356edc30f">async_read_control_packet_type</a> (any session_life_keeper)</td></tr>
 <tr class="separator:ae7dba0a39184031abbbff36356edc30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5361b6928bb27411cbf4ffcf70436930"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a5361b6928bb27411cbf4ffcf70436930">handle_close_or_error</a> (<a class="el" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec)</td></tr>
@@ -548,6 +555,35 @@ Protected Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad750138f9326bd7e016581c0dd2d2fa6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ad750138f9326bd7e016581c0dd2d2fa6">clean_start_</a> {false}</td></tr>
 <tr class="separator:ad750138f9326bd7e016581c0dd2d2fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac0a2e8b890c8a5eabe26277289483191"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ac0a2e8b890c8a5eabe26277289483191">process_connect</a></td></tr>
+<tr class="separator:ac0a2e8b890c8a5eabe26277289483191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f26d794400ae9c55248f4f347da622"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a35f26d794400ae9c55248f4f347da622">process_connack</a></td></tr>
+<tr class="separator:a35f26d794400ae9c55248f4f347da622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe2da786758d1dbe46b8b0f21d7eeff"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#adfe2da786758d1dbe46b8b0f21d7eeff">process_publish</a></td></tr>
+<tr class="separator:adfe2da786758d1dbe46b8b0f21d7eeff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cca4656ae5ba55ef389b0d07f4ecdc0"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a7cca4656ae5ba55ef389b0d07f4ecdc0">process_puback</a></td></tr>
+<tr class="separator:a7cca4656ae5ba55ef389b0d07f4ecdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74fdb89c90f26455035884d035d6bc2"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ac74fdb89c90f26455035884d035d6bc2">process_pubrec</a></td></tr>
+<tr class="separator:ac74fdb89c90f26455035884d035d6bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c6ae702ff003b2bce88509bab06665c"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a3c6ae702ff003b2bce88509bab06665c">process_pubrel</a></td></tr>
+<tr class="separator:a3c6ae702ff003b2bce88509bab06665c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff9913ccdc473a4db488ccd44c16fb1"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#acff9913ccdc473a4db488ccd44c16fb1">process_pubcomp</a></td></tr>
+<tr class="separator:acff9913ccdc473a4db488ccd44c16fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a2fe5bab5f9d9f26a02ccd2fc111d6"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a24a2fe5bab5f9d9f26a02ccd2fc111d6">process_subscribe</a></td></tr>
+<tr class="separator:a24a2fe5bab5f9d9f26a02ccd2fc111d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae79d463f1dbf374b3a8d4018fc5faf73"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#ae79d463f1dbf374b3a8d4018fc5faf73">process_suback</a></td></tr>
+<tr class="separator:ae79d463f1dbf374b3a8d4018fc5faf73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b4911efc8f819b2d35a8e2a30b28cd"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a29b4911efc8f819b2d35a8e2a30b28cd">process_unsubscribe</a></td></tr>
+<tr class="separator:a29b4911efc8f819b2d35a8e2a30b28cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf6ff1b6580a676f044eb3d8370a07f"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a2bf6ff1b6580a676f044eb3d8370a07f">process_unsuback</a></td></tr>
+<tr class="separator:a2bf6ff1b6580a676f044eb3d8370a07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32b5d8c733104328e69f4b82f4b71776"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a32b5d8c733104328e69f4b82f4b71776">process_disconnect</a></td></tr>
+<tr class="separator:a32b5d8c733104328e69f4b82f4b71776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ee8ad98a2153a951c99111e0076bd0"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTT__NS_1_1endpoint.html#a87ee8ad98a2153a951c99111e0076bd0">process_auth</a></td></tr>
+<tr class="separator:a87ee8ad98a2153a951c99111e0076bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a480c9e07ff13bcbed796378425633074"></a>
@@ -575,7 +611,7 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="classMQTT__NS_1_1endpoint.html#a9525c3f23b3eb6818ad591f88eb8ecc3">packet_id_t</a> =  typename <a class="el" href="structMQTT__NS_1_1packet__id__type.html">packet_id_type</a>&lt;PacketIdBytes&gt;::type</td>
+          <td class="memname">using <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="classMQTT__NS_1_1endpoint.html#a9525c3f23b3eb6818ad591f88eb8ecc3">packet_id_t</a> =  typename <a class="el" href="namespaceMQTT__NS.html#ad416f24a982bbb66843c260545dc725d">packet_id_type</a>&lt;PacketIdBytes&gt;::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -629,15 +665,13 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 
 </div>
 </div>
-<a id="afe0414917b1c36359b10cde35938bb5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe0414917b1c36359b10cde35938bb5a">&#9670;&nbsp;</a></span>endpoint() <span class="overload">[2/4]</span></h2>
+<a id="a8b6f74876c0b43bec2b4d85e5c2a1a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6f74876c0b43bec2b4d85e5c2a1a21">&#9670;&nbsp;</a></span>endpoint() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
-<div class="memtemplate">
-template&lt;typename Socket &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -651,7 +685,7 @@ template&lt;typename Socket &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::shared_ptr&lt; Socket &gt;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> &gt;&#160;</td>
           <td class="paramname"><em>socket</em>, </td>
         </tr>
         <tr>
@@ -6566,6 +6600,43 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 
 </div>
 </div>
+<a id="a4f353ef71b1825f279510ff1b52b5b23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f353ef71b1825f279510ff1b52b5b23">&#9670;&nbsp;</a></span>set_auto_map_topic_alias_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::set_auto_map_topic_alias_send </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>b</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set topic alias send auto mapping enable flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>set value</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If set true then topic alias is automatically used. topic alias is allocated and reused by LRU algorithm. topic alias that is set manually can be used with this flag. </p>
+
+</div>
+</div>
 <a id="acabfd0bd245770caa1ef8e03a76aa64f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acabfd0bd245770caa1ef8e03a76aa64f">&#9670;&nbsp;</a></span>set_auto_pub_response()</h2>
 
@@ -6640,6 +6711,15 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set topic alias send auto replacing enable flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>set value</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>If set true when publish without topic alias and topic alias send map has corresponding entry, then use the alias. topic alias that is set manually can be used with this flag. </p>
 
 </div>
 </div>
@@ -6865,6 +6945,42 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 
 </div>
 </div>
+<a id="a4f0e3cba6f71618657350a5589cd0bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f0e3cba6f71618657350a5589cd0bac">&#9670;&nbsp;</a></span>set_topic_alias_maximum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::set_topic_alias_maximum </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a>&#160;</td>
+          <td class="paramname"><em>max</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set topic alias maximum for receiving </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max</td><td>maximum value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a75e6012673eaa3dae1f6e69eaed4a3bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a75e6012673eaa3dae1f6e69eaed4a3bd">&#9670;&nbsp;</a></span>socket() <span class="overload">[1/2]</span></h2>
 
@@ -6877,7 +6993,7 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a>&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> </td>
+          <td class="memname"><a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a>&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="classMQTT__NS_1_1socket.html">socket</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -6904,7 +7020,7 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a> const&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> </td>
+          <td class="memname"><a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a> const&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::<a class="el" href="classMQTT__NS_1_1socket.html">socket</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -6919,8 +7035,8 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 
 </div>
 </div>
-<a id="a54bc27d0819fe7ab29688270916e0d9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54bc27d0819fe7ab29688270916e0d9a">&#9670;&nbsp;</a></span>socket_optional()</h2>
+<a id="ac1aa3e959db52f9e5348b356580bbc1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1aa3e959db52f9e5348b356580bbc1f">&#9670;&nbsp;</a></span>socket_sp_ref()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6931,7 +7047,7 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">optional&lt;<a class="el" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a>&gt;&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::socket_optional </td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a>&gt;&amp; <a class="el" href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a>&lt; Mutex, LockGuard, PacketIdBytes &gt;::socket_sp_ref </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -6944,8 +7060,8 @@ template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class Lo
 </table>
 </div><div class="memdoc">
 
-<p>Get <a class="el" href="classMQTT__NS_1_1shared__any.html" title="boost::type_erasure wrapper that supports shared_ptr">shared_any</a> of socket. </p>
-<dl class="section return"><dt>Returns</dt><dd>reference of <a class="el" href="classMQTT__NS_1_1shared__any.html" title="boost::type_erasure wrapper that supports shared_ptr">shared_any</a> socket </dd></dl>
+<p>Get shared_ptr of socket. </p>
+<dl class="section return"><dt>Returns</dt><dd>reference of std::shared_ptr&lt;socket&gt; </dd></dl>
 
 </div>
 </div>
@@ -7926,6 +8042,319 @@ template&lt;typename T , typename... Params&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>packet_id. packet_id is automatically generated.<br  />
  You can subscribe multiple topics all at once.<br  />
  See <a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901179">https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901179</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a87ee8ad98a2153a951c99111e0076bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ee8ad98a2153a951c99111e0076bd0">&#9670;&nbsp;</a></span>process_auth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_auth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35f26d794400ae9c55248f4f347da622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f26d794400ae9c55248f4f347da622">&#9670;&nbsp;</a></span>process_connack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_connack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0a2e8b890c8a5eabe26277289483191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0a2e8b890c8a5eabe26277289483191">&#9670;&nbsp;</a></span>process_connect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_connect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32b5d8c733104328e69f4b82f4b71776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b5d8c733104328e69f4b82f4b71776">&#9670;&nbsp;</a></span>process_disconnect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_disconnect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7cca4656ae5ba55ef389b0d07f4ecdc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cca4656ae5ba55ef389b0d07f4ecdc0">&#9670;&nbsp;</a></span>process_puback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_puback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acff9913ccdc473a4db488ccd44c16fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff9913ccdc473a4db488ccd44c16fb1">&#9670;&nbsp;</a></span>process_pubcomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_pubcomp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfe2da786758d1dbe46b8b0f21d7eeff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe2da786758d1dbe46b8b0f21d7eeff">&#9670;&nbsp;</a></span>process_publish</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_publish</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac74fdb89c90f26455035884d035d6bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74fdb89c90f26455035884d035d6bc2">&#9670;&nbsp;</a></span>process_pubrec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_pubrec</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c6ae702ff003b2bce88509bab06665c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c6ae702ff003b2bce88509bab06665c">&#9670;&nbsp;</a></span>process_pubrel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_pubrel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae79d463f1dbf374b3a8d4018fc5faf73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79d463f1dbf374b3a8d4018fc5faf73">&#9670;&nbsp;</a></span>process_suback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_suback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24a2fe5bab5f9d9f26a02ccd2fc111d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a2fe5bab5f9d9f26a02ccd2fc111d6">&#9670;&nbsp;</a></span>process_subscribe</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_subscribe</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2bf6ff1b6580a676f044eb3d8370a07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bf6ff1b6580a676f044eb3d8370a07f">&#9670;&nbsp;</a></span>process_unsuback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_unsuback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29b4911efc8f819b2d35a8e2a30b28cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29b4911efc8f819b2d35a8e2a30b28cd">&#9670;&nbsp;</a></span>process_unsubscribe</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Mutex  = std::mutex, template&lt; typename... &gt; class LockGuard = std::lock_guard, std::size_t PacketIdBytes = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct process_unsubscribe</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

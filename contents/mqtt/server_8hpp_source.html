@@ -165,7 +165,7 @@ $(function() {
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                config_(acceptor_.value());</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">catch</span> (boost::system::system_error <span class="keyword">const</span>&amp; e) {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                as::post(</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    ioc_accept_,</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    [<span class="keyword">this</span>, ec = e.code()] {</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        if (h_error_) h_error_(ec);</div>
@@ -207,17 +207,17 @@ $(function() {
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">void</span> do_accept() {</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> (close_request_) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keyword">auto</span> <a class="code" href="classMQTT__NS_1_1shared__any.html">socket</a> = std::make_shared&lt;socket_t&gt;(ioc_con_);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keyword">auto</span> <a class="code" href="classMQTT__NS_1_1socket.html">socket</a> = std::make_shared&lt;socket_t&gt;(ioc_con_);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        acceptor_.value().async_accept(</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <a class="code" href="classMQTT__NS_1_1shared__any.html">socket</a>-&gt;lowest_layer(),</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            [<span class="keyword">this</span>, <a class="code" href="classMQTT__NS_1_1shared__any.html">socket</a>]</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <a class="code" href="classMQTT__NS_1_1socket.html">socket</a>-&gt;<a class="code" href="classMQTT__NS_1_1socket.html#a0e050738a1f607782c666c4666400519">lowest_layer</a>(),</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            [<span class="keyword">this</span>, <a class="code" href="classMQTT__NS_1_1socket.html">socket</a>]</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                if (ec) {</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    acceptor_.reset();</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                    if (h_error_) h_error_(ec);</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    return;</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="classMQTT__NS_1_1shared__any.html">socket</a>), version_);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="classMQTT__NS_1_1socket.html">socket</a>), version_);</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                do_accept();</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
@@ -301,7 +301,7 @@ $(function() {
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                config_(acceptor_.value());</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            }</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            <span class="keywordflow">catch</span> (boost::system::system_error <span class="keyword">const</span>&amp; e) {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                as::post(</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                    ioc_accept_,</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                    [<span class="keyword">this</span>, ec = e.code()] {</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                        if (h_error_) h_error_(ec);</div>
@@ -355,11 +355,11 @@ $(function() {
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">void</span> do_accept() {</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keywordflow">if</span> (close_request_) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="keyword">auto</span> <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = std::make_shared&lt;socket_t&gt;(ioc_con_, ctx_);</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="keyword">auto</span> socket = std::make_shared&lt;socket_t&gt;(ioc_con_, ctx_);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        acceptor_.value().async_accept(</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            ps-&gt;lowest_layer(),</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>)]</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket)]</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                    acceptor_.reset();</div>
@@ -370,29 +370,29 @@ $(function() {
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                <span class="keyword">auto</span> tim = std::make_shared&lt;as::steady_timer&gt;(ioc_con_);</div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                tim-&gt;expires_after(underlying_connect_timeout_);</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                tim-&gt;async_wait(</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                    [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>, tim, underlying_finished]</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                    [socket, tim, underlying_finished]</div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) {</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                        <span class="keywordflow">if</span> (*underlying_finished) <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                        <span class="keywordflow">if</span> (ec) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;post(</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                            [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>] {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                        socket-&gt;post(</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                            [socket] {</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a> close_ec;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;lowest_layer().close(close_ec);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                                socket-&gt;lowest_layer().close(close_ec);</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                            }</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                        );</div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                    }</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                );</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                ps-&gt;async_handshake(</div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                    tls::stream_base::server,</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                    [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                    [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                        *underlying_finished = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                        tim-&gt;cancel();</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                        <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                        }</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), version_);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), version_);</div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                        <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                    }</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                );</div>
@@ -477,7 +477,7 @@ $(function() {
 <div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;                config_(acceptor_.value());</div>
 <div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;            }</div>
 <div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;            <span class="keywordflow">catch</span> (boost::system::system_error <span class="keyword">const</span>&amp; e) {</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                as::post(</div>
 <div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                    ioc_accept_,</div>
 <div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;                    [<span class="keyword">this</span>, ec = e.code()] {</div>
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                        if (h_error_) h_error_(ec);</div>
@@ -523,11 +523,11 @@ $(function() {
 <div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;    <span class="keywordtype">void</span> do_accept() {</div>
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;        <span class="keywordflow">if</span> (close_request_) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        <span class="keyword">auto</span> <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = std::make_shared&lt;socket_t&gt;(ioc_con_);</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        <span class="keyword">auto</span> socket = std::make_shared&lt;socket_t&gt;(ioc_con_);</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;        acceptor_.value().async_accept(</div>
 <div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;            ps-&gt;next_layer(),</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>)]</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket)]</div>
 <div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                    acceptor_.reset();</div>
@@ -538,14 +538,14 @@ $(function() {
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;                <span class="keyword">auto</span> tim = std::make_shared&lt;as::steady_timer&gt;(ioc_con_);</div>
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;                tim-&gt;expires_after(underlying_connect_timeout_);</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;                tim-&gt;async_wait(</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                    [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>, tim, underlying_finished]</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                    [socket, tim, underlying_finished]</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) {</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                        <span class="keywordflow">if</span> (*underlying_finished) <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                        <span class="keywordflow">if</span> (ec) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;post(</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                            [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>] {</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                        socket-&gt;post(</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                            [socket] {</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a> close_ec;</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;lowest_layer().close(close_ec);</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                                socket-&gt;lowest_layer().close(close_ec);</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                            }</div>
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                        );</div>
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                    }</div>
@@ -553,12 +553,12 @@ $(function() {
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                <span class="keyword">auto</span> sb = std::make_shared&lt;boost::asio::streambuf&gt;();</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                <span class="keyword">auto</span> request = std::make_shared&lt;boost::beast::http::request&lt;boost::beast::http::string_body&gt;&gt;();</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                <a class="code" href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">boost::beast::http::async_read</a>(</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                <span class="keyword">auto</span> ps = socket.get();</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                boost::beast::http::async_read(</div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                    ps-&gt;next_layer(),</div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                    *sb,</div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                    *request,</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                    [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), sb, request, tim, underlying_finished]</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                    [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), sb, request, tim, underlying_finished]</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;                        <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                            *underlying_finished = <span class="keyword">true</span>;</div>
@@ -570,7 +570,7 @@ $(function() {
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                            tim-&gt;cancel();</div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                        }</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                        <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                        <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160; </div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<span class="preprocessor">#if BOOST_BEAST_VERSION &gt;= 248</span></div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160; </div>
@@ -588,14 +588,14 @@ $(function() {
 <div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        }</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                        ps-&gt;async_accept(</div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                            *request,</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                                *underlying_finished = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                                tim-&gt;cancel();</div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                                    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                                }</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), version_);</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), version_);</div>
 <div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                                <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                            }</div>
 <div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                        );</div>
@@ -611,14 +611,14 @@ $(function() {
 <div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                                    m.insert(it-&gt;name(), it-&gt;value());</div>
 <div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                                }</div>
 <div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                            },</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                                *underlying_finished = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                                tim-&gt;cancel();</div>
 <div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;                                    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;                                }</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), version_);</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                                <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), version_);</div>
 <div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                                <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;                            }</div>
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                        );</div>
@@ -712,7 +712,7 @@ $(function() {
 <div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                config_(acceptor_.value());</div>
 <div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;            }</div>
 <div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;            <span class="keywordflow">catch</span> (boost::system::system_error <span class="keyword">const</span>&amp; e) {</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;                <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;                as::post(</div>
 <div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;                    ioc_accept_,</div>
 <div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;                    [<span class="keyword">this</span>, ec = e.code()] {</div>
 <div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;                        if (h_error_) h_error_(ec);</div>
@@ -766,11 +766,11 @@ $(function() {
 <div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;    <span class="keywordtype">void</span> do_accept() {</div>
 <div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;        <span class="keywordflow">if</span> (close_request_) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;        <span class="keyword">auto</span> <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = std::make_shared&lt;socket_t&gt;(ioc_con_, ctx_);</div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;        <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;        <span class="keyword">auto</span> socket = std::make_shared&lt;socket_t&gt;(ioc_con_, ctx_);</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;        <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;        acceptor_.value().async_accept(</div>
 <div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;            ps-&gt;next_layer().next_layer(),</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>)]</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket)]</div>
 <div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;                    acceptor_.reset();</div>
@@ -781,23 +781,23 @@ $(function() {
 <div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                <span class="keyword">auto</span> tim = std::make_shared&lt;as::steady_timer&gt;(ioc_con_);</div>
 <div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                tim-&gt;expires_after(underlying_connect_timeout_);</div>
 <div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                tim-&gt;async_wait(</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                    [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>, tim, underlying_finished]</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                    [socket, tim, underlying_finished]</div>
 <div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) {</div>
 <div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;                        <span class="keywordflow">if</span> (*underlying_finished) <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;                        <span class="keywordflow">if</span> (ec) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;post(</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;                            [<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>] {</div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;                        socket-&gt;post(</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;                            [socket] {</div>
 <div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a> close_ec;</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;                                <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>-&gt;lowest_layer().close(close_ec);</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;                                socket-&gt;lowest_layer().close(close_ec);</div>
 <div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;                            }</div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;                        );</div>
 <div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;                    }</div>
 <div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;                );</div>
 <div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160; </div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;                <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;                <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;                ps-&gt;next_layer().async_handshake(</div>
 <div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;                    tls::stream_base::server,</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;                    [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;                    [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;                        <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160;                            *underlying_finished = <span class="keyword">true</span>;</div>
@@ -806,12 +806,12 @@ $(function() {
 <div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;                        }</div>
 <div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;                        <span class="keyword">auto</span> sb = std::make_shared&lt;boost::asio::streambuf&gt;();</div>
 <div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;                        <span class="keyword">auto</span> request = std::make_shared&lt;boost::beast::http::request&lt;boost::beast::http::string_body&gt;&gt;();</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;                        <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">boost::beast::http::async_read</a>(</div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;                        <span class="keyword">auto</span> ps = socket.get();</div>
+<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;                        boost::beast::http::async_read(</div>
 <div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;                            ps-&gt;next_layer(),</div>
 <div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;                            *sb,</div>
 <div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;                            *request,</div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;                            [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), sb, request, tim, underlying_finished]</div>
+<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;                            [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), sb, request, tim, underlying_finished]</div>
 <div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;                            (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;                                <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;                                    *underlying_finished = <span class="keyword">true</span>;</div>
@@ -823,7 +823,7 @@ $(function() {
 <div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;                                    tim-&gt;cancel();</div>
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;                                    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;                                }</div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;                                <span class="keyword">auto</span> ps = <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>.get();</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;                                <span class="keyword">auto</span> ps = socket.get();</div>
 <div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160; </div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;<span class="preprocessor">#if BOOST_BEAST_VERSION &gt;= 248</span></div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160; </div>
@@ -841,14 +841,14 @@ $(function() {
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;                                }</div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;                                ps-&gt;async_accept(</div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                                    *request,</div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;                                    [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;                                    [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;                                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;                                        *underlying_finished = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;                                        tim-&gt;cancel();</div>
 <div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;                                        <span class="keywordflow">if</span> (ec) {</div>
 <div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;                                            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;                                        }</div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;                                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), version_);</div>
+<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;                                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), version_);</div>
 <div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;                                        <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;                                    }</div>
 <div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;                                );</div>
@@ -864,7 +864,7 @@ $(function() {
 <div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;                                            m.insert(it-&gt;name(), it-&gt;value());</div>
 <div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;                                        }</div>
 <div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;                                    },</div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;                                    [<span class="keyword">this</span>, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a> = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(<a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>), tim, underlying_finished]</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;                                    [<span class="keyword">this</span>, socket = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(socket), tim, underlying_finished]</div>
 <div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;                                    (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec) <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;                                        *underlying_finished = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;                                        tim-&gt;cancel();</div>
@@ -874,7 +874,7 @@ $(function() {
 <div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;                                        <span class="comment">// TODO: The use of force_move on this line of code causes</span></div>
 <div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;                                        <span class="comment">// a static assertion that socket is a const object when</span></div>
 <div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;                                        <span class="comment">// TLS is enabled, and WS is enabled, with Boost 1.70, and gcc 8.3.0</span></div>
-<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;                                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, <a class="code" href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">socket</a>, version_);</div>
+<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;                                        <span class="keyword">auto</span> sp = std::make_shared&lt;endpoint_t&gt;(ioc_con_, socket, version_);</div>
 <div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;                                        <span class="keywordflow">if</span> (h_accept_) h_accept_(<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(sp));</div>
 <div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;                                    }</div>
 <div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;                                );</div>
@@ -913,7 +913,7 @@ $(function() {
 <div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160; </div>
 <div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_SERVER_HPP</span></div>
 <div class="ttc" id="acallable__overlay_8hpp_html"><div class="ttname"><a href="callable__overlay_8hpp.html">callable_overlay.hpp</a></div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a></div><div class="ttdef"><b>Definition:</b> endpoint.hpp:164</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1endpoint.html">MQTT_NS::endpoint</a></div><div class="ttdef"><b>Definition:</b> endpoint.hpp:171</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1server__endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1server__endpoint.html">MQTT_NS::server_endpoint</a></div><div class="ttdef"><b>Definition:</b> server.hpp:28</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1server__endpoint_html_a5decdeea31cc738b82d89746bbd2342f"><div class="ttname"><a href="classMQTT__NS_1_1server__endpoint.html#a5decdeea31cc738b82d89746bbd2342f">MQTT_NS::server_endpoint::on_close</a></div><div class="ttdeci">void on_close() noexcept override</div><div class="ttdoc">Close handler.</div><div class="ttdef"><b>Definition:</b> server.hpp:33</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1server__endpoint_html_a6a93f23424affa8f9e44c1ed847c41c8"><div class="ttname"><a href="classMQTT__NS_1_1server__endpoint.html#a6a93f23424affa8f9e44c1ed847c41c8">MQTT_NS::server_endpoint::on_error</a></div><div class="ttdeci">void on_error(error_code) noexcept override</div><div class="ttdoc">Error handler.</div><div class="ttdef"><b>Definition:</b> server.hpp:34</div></div>
@@ -934,24 +934,22 @@ $(function() {
 <div class="ttc" id="aclassMQTT__NS_1_1server_html_ad9e466847c6827d4d8280e2323fea7df"><div class="ttname"><a href="classMQTT__NS_1_1server.html#ad9e466847c6827d4d8280e2323fea7df">MQTT_NS::server::server</a></div><div class="ttdeci">server(AsioEndpoint &amp;&amp;ep, as::io_context &amp;ioc)</div><div class="ttdef"><b>Definition:</b> server.hpp:91</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1server_html_adaaa8f1d6498c5d9a1d97d0faf883d5a"><div class="ttname"><a href="classMQTT__NS_1_1server.html#adaaa8f1d6498c5d9a1d97d0faf883d5a">MQTT_NS::server::error_handler</a></div><div class="ttdeci">std::function&lt; void(error_code ec)&gt; error_handler</div><div class="ttdoc">Error handler.</div><div class="ttdef"><b>Definition:</b> server.hpp:60</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1server_html_ae8a57ce700f15c11af8646ebbecc5ccb"><div class="ttname"><a href="classMQTT__NS_1_1server.html#ae8a57ce700f15c11af8646ebbecc5ccb">MQTT_NS::server::ioc_con</a></div><div class="ttdeci">as::io_context &amp; ioc_con() const</div><div class="ttdoc">Get reference of boost::asio::io_context for connections.</div><div class="ttdef"><b>Definition:</b> server.hpp:151</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1shared__any_html"><div class="ttname"><a href="classMQTT__NS_1_1shared__any.html">MQTT_NS::shared_any</a></div><div class="ttdoc">boost::type_erasure wrapper that supports shared_ptr</div><div class="ttdef"><b>Definition:</b> shared_any.hpp:82</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1tcp__endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1tcp__endpoint.html">MQTT_NS::tcp_endpoint</a></div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:20</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1socket_html"><div class="ttname"><a href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a></div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:22</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1socket_html_a0e050738a1f607782c666c4666400519"><div class="ttname"><a href="classMQTT__NS_1_1socket.html#a0e050738a1f607782c666c4666400519">MQTT_NS::socket::lowest_layer</a></div><div class="ttdeci">virtual as::ip::tcp::socket::lowest_layer_type &amp; lowest_layer()=0</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1tcp__endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1tcp__endpoint.html">MQTT_NS::tcp_endpoint</a></div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:23</div></div>
 <div class="ttc" id="acommon__type_8hpp_html_a307d154cccba9c6abd0aa23ba58b3662"><div class="ttname"><a href="common__type_8hpp.html#a307d154cccba9c6abd0aa23ba58b3662">endpoint_t</a></div><div class="ttdeci">server&lt;&gt;::endpoint_t endpoint_t</div><div class="ttdef"><b>Definition:</b> common_type.hpp:17</div></div>
 <div class="ttc" id="aendpoint_8hpp_html"><div class="ttname"><a href="endpoint_8hpp.html">endpoint.hpp</a></div></div>
 <div class="ttc" id="amove_8hpp_html"><div class="ttname"><a href="move_8hpp.html">move.hpp</a></div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html"><div class="ttname"><a href="namespaceMQTT__NS.html">MQTT_NS</a></div><div class="ttdef"><b>Definition:</b> any.hpp:27</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_a5a0205af6c142eef71e19d7066501d91"><div class="ttname"><a href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">MQTT_NS::error_code</a></div><div class="ttdeci">boost::system::error_code error_code</div><div class="ttdef"><b>Definition:</b> error_code.hpp:16</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_a668d2397a4d95f82b905b43680ceaebf"><div class="ttname"><a href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">MQTT_NS::force_move</a></div><div class="ttdeci">constexpr std::remove_reference_t&lt; T &gt; &amp;&amp; force_move(T &amp;&amp;t)</div><div class="ttdef"><b>Definition:</b> move.hpp:20</div></div>
-<div class="ttc" id="anamespaceMQTT__NS_html_a72bf4644631fbe7339bb114c4c462a50"><div class="ttname"><a href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">MQTT_NS::async_read</a></div><div class="ttdeci">void async_read(tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence &amp;&amp;buffers, ReadHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:119</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_abe4c9bdc61287be90f38e66c65bf7685"><div class="ttname"><a href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685">MQTT_NS::protocol_version</a></div><div class="ttdeci">protocol_version</div><div class="ttdef"><b>Definition:</b> protocol_version.hpp:17</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_abe4c9bdc61287be90f38e66c65bf7685a276fc71ddbf2483a3842cdcef417e03d"><div class="ttname"><a href="namespaceMQTT__NS.html#abe4c9bdc61287be90f38e66c65bf7685a276fc71ddbf2483a3842cdcef417e03d">MQTT_NS::protocol_version::undetermined</a></div><div class="ttdeci">@ undetermined</div></div>
-<div class="ttc" id="anamespaceMQTT__NS_html_ade0fb43788f914f6d676282b0b481359"><div class="ttname"><a href="namespaceMQTT__NS.html#ade0fb43788f914f6d676282b0b481359">MQTT_NS::socket</a></div><div class="ttdeci">shared_any&lt; mpl::vector&lt; destructible&lt;&gt;, has_async_read&lt; void(as::mutable_buffer, std::function&lt; void(error_code, std::size_t)&gt;)&gt;, has_async_write&lt; void(std::vector&lt; as::const_buffer &gt;, std::function&lt; void(error_code, std::size_t)&gt;)&gt;, has_write&lt; std::size_t(std::vector&lt; as::const_buffer &gt;, boost::system::error_code &amp;)&gt;, has_post&lt; void(std::function&lt; void()&gt;)&gt;, has_lowest_layer&lt; as::ip::tcp::socket::lowest_layer_type &amp;()&gt;, has_native_handle&lt; any()&gt;, has_close&lt; void(boost::system::error_code &amp;)&gt;, has_get_executor&lt; as::executor()&gt; &gt; &gt; socket</div><div class="ttdoc">type alias of the type erased socket</div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:65</div></div>
 <div class="ttc" id="anamespace_8hpp_html"><div class="ttname"><a href="namespace_8hpp.html">namespace.hpp</a></div></div>
 <div class="ttc" id="anamespaceboost_1_1asio_html"><div class="ttname"><a href="namespaceboost_1_1asio.html">boost::asio</a></div><div class="ttdef"><b>Definition:</b> buffer.hpp:242</div></div>
 <div class="ttc" id="anull__strand_8hpp_html"><div class="ttname"><a href="null__strand_8hpp.html">null_strand.hpp</a></div></div>
 <div class="ttc" id="astructMQTT__NS_1_1callable__overlay_html"><div class="ttname"><a href="structMQTT__NS_1_1callable__overlay.html">MQTT_NS::callable_overlay</a></div><div class="ttdef"><b>Definition:</b> callable_overlay.hpp:20</div></div>
 <div class="ttc" id="atcp__endpoint_8hpp_html"><div class="ttname"><a href="tcp__endpoint_8hpp.html">tcp_endpoint.hpp</a></div></div>
-<div class="ttc" id="atype__erased__socket_8hpp_html_a7f3504a67662ee6f264bde4235063e08"><div class="ttname"><a href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">post</a></div><div class="ttdeci">post</div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:29</div></div>
 <div class="ttc" id="avariant_8hpp_html"><div class="ttname"><a href="variant_8hpp.html">variant.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

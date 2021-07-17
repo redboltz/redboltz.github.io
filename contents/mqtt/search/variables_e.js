@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['share_5fname_1796',['share_name',['../structsubscription.html#afcaffb75f94a69898c0519db1fdf9135',1,'subscription::share_name()'],['../structMQTT__NS_1_1share__name__topic__filter.html#a02d9eeea54724928ceaf5765cdab3115',1,'MQTT_NS::share_name_topic_filter::share_name()'],['../structMQTT__NS_1_1subscribe__entry.html#a9dbc375a425330856f58f9f3ab7481d0',1,'MQTT_NS::subscribe_entry::share_name()'],['../structMQTT__NS_1_1unsubscribe__entry.html#ad9664ed7619940fd97344a735451175b',1,'MQTT_NS::unsubscribe_entry::share_name()']]],
-  ['sid_1797',['sid',['../structsubscription.html#aa711da40a065b85e4a386cb2b5a43c94',1,'subscription']]],
-  ['ss_1798',['ss',['../structsubscription.html#abb66c5a28e7648c61ebe987255cae4ed',1,'subscription']]],
-  ['subopts_1799',['subopts',['../structsubscription.html#ab0aed721683118c223851be9e29bf813',1,'subscription::subopts()'],['../structMQTT__NS_1_1subscribe__entry.html#ac46143934da9933e6dc55588b100f6cb',1,'MQTT_NS::subscribe_entry::subopts()']]]
+  ['user_5fname_5fflag_1822',['user_name_flag',['../namespaceMQTT__NS_1_1connect__flags.html#a1727ff4ec4497e4982a5e01a9140f3f6',1,'MQTT_NS::connect_flags']]]
 ];

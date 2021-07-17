@@ -127,11 +127,51 @@ $(function() {
 </li>
 <li>post()
 : <a class="el" href="structMQTT__NS_1_1null__strand.html#a5b66e5768e8f7da1ac1bd102f6551eec">MQTT_NS::null_strand</a>
-, <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#a94ed3043dac2b794de7703f8c4d1f3fd">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#ab7f1c275f513b69b46a90d02050a258d">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1socket.html#a1466df8a679856442dd781ff68c2fafa">MQTT_NS::socket</a>
+, <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#a8ab20f72d82aa8ac41af8fac0f276661">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#acad7ea0b709aedd93779cedc462358fc">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
 </li>
 <li>pre_send_handler
 : <a class="el" href="structMQTT__NS_1_1callable__overlay.html#a13c4f57da858c74d3f51ee3c7361d0d5">MQTT_NS::callable_overlay&lt; Impl &gt;</a>
+</li>
+<li>process_auth
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a87ee8ad98a2153a951c99111e0076bd0">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_connack
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a35f26d794400ae9c55248f4f347da622">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_connect
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#ac0a2e8b890c8a5eabe26277289483191">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_disconnect
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a32b5d8c733104328e69f4b82f4b71776">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_puback
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a7cca4656ae5ba55ef389b0d07f4ecdc0">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_pubcomp
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#acff9913ccdc473a4db488ccd44c16fb1">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_publish
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#adfe2da786758d1dbe46b8b0f21d7eeff">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_pubrec
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#ac74fdb89c90f26455035884d035d6bc2">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_pubrel
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a3c6ae702ff003b2bce88509bab06665c">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_suback
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#ae79d463f1dbf374b3a8d4018fc5faf73">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_subscribe
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a24a2fe5bab5f9d9f26a02ccd2fc111d6">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_unsuback
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a2bf6ff1b6580a676f044eb3d8370a07f">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+</li>
+<li>process_unsubscribe
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#a29b4911efc8f819b2d35a8e2a30b28cd">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
 </li>
 <li>property_length_
 : <a class="el" href="structMQTT__NS_1_1v5_1_1basic__puback__message.html#ac3b290d1169a0fa1d0290289384402fc">MQTT_NS::v5::basic_puback_message&lt; PacketIdBytes &gt;</a>
@@ -176,14 +216,14 @@ $(function() {
 </li>
 <li>publish()
 : <a class="el" href="classMQTT__NS_1_1async__client.html#a67cb2c896e5eaec910df89e428162000">MQTT_NS::async_client&lt; Socket, PacketIdBytes &gt;</a>
-, <a class="el" href="classMQTT__NS_1_1endpoint.html#adb3340717ebfd97f44b62d3adfc506d0">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1endpoint.html#a2122a797f9904c13a8fbde624dec9fb9">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
 , <a class="el" href="structsession__state.html#a403b004628a30985ffd3ded083f91647">session_state</a>
 </li>
 <li>publish_handler
 : <a class="el" href="structMQTT__NS_1_1callable__overlay.html#a826f8a5345dde7873244bc58ef787ee1">MQTT_NS::callable_overlay&lt; Impl &gt;</a>
 </li>
 <li>publish_options()
-: <a class="el" href="structMQTT__NS_1_1publish__options.html#a85cf027353cad0763db171549d40a600">MQTT_NS::publish_options</a>
+: <a class="el" href="structMQTT__NS_1_1publish__options.html#aa31376346c97c5baa9de4efc113c7fe0">MQTT_NS::publish_options</a>
 </li>
 <li>pubrec()
 : <a class="el" href="classMQTT__NS_1_1async__client.html#a5c8d8e6abfdc116ea2abccfa19a1308e">MQTT_NS::async_client&lt; Socket, PacketIdBytes &gt;</a>

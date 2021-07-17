@@ -92,7 +92,7 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structMQTT__NS_1_1null__strand.html#ac0599df463a350157ca4416c9b05dfcc">   21</a></span>&#160;    <a class="code" href="structMQTT__NS_1_1null__strand.html#ac0599df463a350157ca4416c9b05dfcc">null_strand</a>(as::io_context&amp; ioc) noexcept : ioc_(ioc) {}</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Func, <span class="keyword">typename</span> Allocator&gt;</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structMQTT__NS_1_1null__strand.html#a5b66e5768e8f7da1ac1bd102f6551eec">   23</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structMQTT__NS_1_1null__strand.html#a5b66e5768e8f7da1ac1bd102f6551eec">post</a>(Func&amp;&amp; f, Allocator)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        as::post(</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            ioc_,</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            [f = std::forward&lt;Func&gt;(f)] () <span class="keyword">mutable</span> {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                std::move(f)();</div>
@@ -156,7 +156,6 @@ $(function() {
 <div class="ttc" id="astructMQTT__NS_1_1null__strand_html_a993261993766e8c0b7b46a391b102046"><div class="ttname"><a href="structMQTT__NS_1_1null__strand.html#a993261993766e8c0b7b46a391b102046">MQTT_NS::null_strand::context</a></div><div class="ttdeci">as::io_context &amp; context() noexcept</div><div class="ttdef"><b>Definition:</b> null_strand.hpp:46</div></div>
 <div class="ttc" id="astructMQTT__NS_1_1null__strand_html_a9cfdd6d77bcfc19d9acde482f32884a9"><div class="ttname"><a href="structMQTT__NS_1_1null__strand.html#a9cfdd6d77bcfc19d9acde482f32884a9">MQTT_NS::null_strand::context</a></div><div class="ttdeci">as::io_context const  &amp; context() const noexcept</div><div class="ttdef"><b>Definition:</b> null_strand.hpp:47</div></div>
 <div class="ttc" id="astructMQTT__NS_1_1null__strand_html_ac0599df463a350157ca4416c9b05dfcc"><div class="ttname"><a href="structMQTT__NS_1_1null__strand.html#ac0599df463a350157ca4416c9b05dfcc">MQTT_NS::null_strand::null_strand</a></div><div class="ttdeci">null_strand(as::io_context &amp;ioc) noexcept</div><div class="ttdef"><b>Definition:</b> null_strand.hpp:21</div></div>
-<div class="ttc" id="atype__erased__socket_8hpp_html_a7f3504a67662ee6f264bde4235063e08"><div class="ttname"><a href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">post</a></div><div class="ttdeci">post</div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

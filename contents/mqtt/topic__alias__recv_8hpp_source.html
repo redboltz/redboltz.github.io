@@ -99,8 +99,8 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1topic__alias__recv.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMQTT__NS_1_1topic__alias__recv.html">topic_alias_recv</a> {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1topic__alias__recv.html#a6116d7a33b3814c8ff083b088c85b9bc">   31</a></span>&#160;    <a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a6116d7a33b3814c8ff083b088c85b9bc">topic_alias_recv</a>(<a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> max)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        :max_{max} {}</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1topic__alias__recv.html#a6116d7a33b3814c8ff083b088c85b9bc">   31</a></span>&#160;    <a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a6116d7a33b3814c8ff083b088c85b9bc">topic_alias_recv</a>(<a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> <a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a121e5bc9b5f96879c6861b2c73e2067f">max</a>)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        :max_{<a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a121e5bc9b5f96879c6861b2c73e2067f">max</a>} {}</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1topic__alias__recv.html#a9b675c572b1c2a04c188596e0f8809c3">   34</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a9b675c572b1c2a04c188596e0f8809c3">insert_or_update</a>(<a class="code" href="namespaceMQTT__NS.html#a21d771b44b8849e58d538da7d6c59894">string_view</a> topic, <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> alias) {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="log_8hpp.html#a2da223234bcac15ef2d9a3d86d5a6473">MQTT_LOG</a>(<span class="stringliteral">&quot;mqtt_impl&quot;</span>, <a class="code" href="namespaceMQTT__NS.html#abfe0af5c07f3e454b0e135b4a11ec18da04a75036e9d520bb983c5ed03b8d0182">trace</a>)</div>
@@ -147,41 +147,44 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        aliases_.clear();</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">static</span> constexpr <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> min_ = 1;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> max_;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">struct </span>entry {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        entry(std::string topic, <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> alias)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            : topic{<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(topic)}, alias{alias} {}</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        std::string topic;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> alias;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    };</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">using</span> mi_topic_alias = mi::multi_index_container&lt;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        entry,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        mi::indexed_by&lt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            mi::ordered_unique&lt;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                BOOST_MULTI_INDEX_MEMBER(entry, <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a>, alias)</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            &gt;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        &gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    &gt;;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    mi_topic_alias aliases_;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1topic__alias__recv.html#a121e5bc9b5f96879c6861b2c73e2067f">   79</a></span>&#160;    <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> <a class="code" href="classMQTT__NS_1_1topic__alias__recv.html#a121e5bc9b5f96879c6861b2c73e2067f">max</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> max_; }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">static</span> constexpr <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> min_ = 1;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> max_;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">struct </span>entry {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        entry(std::string topic, <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> alias)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            : topic{<a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(topic)}, alias{alias} {}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        std::string topic;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a> alias;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    };</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">using</span> mi_topic_alias = mi::multi_index_container&lt;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        entry,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        mi::indexed_by&lt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            mi::ordered_unique&lt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                BOOST_MULTI_INDEX_MEMBER(entry, <a class="code" href="namespaceMQTT__NS.html#a6a698670822773bb3b2171ea783fa35c">topic_alias_t</a>, alias)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            &gt;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        &gt;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    &gt;;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    mi_topic_alias aliases_;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_TOPIC_ALIAS_RECV_HPP</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_TOPIC_ALIAS_RECV_HPP</span></div>
 <div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html">MQTT_NS::topic_alias_recv</a></div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:29</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html_a121e5bc9b5f96879c6861b2c73e2067f"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html#a121e5bc9b5f96879c6861b2c73e2067f">MQTT_NS::topic_alias_recv::max</a></div><div class="ttdeci">topic_alias_t max() const</div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:79</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html_a6116d7a33b3814c8ff083b088c85b9bc"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html#a6116d7a33b3814c8ff083b088c85b9bc">MQTT_NS::topic_alias_recv::topic_alias_recv</a></div><div class="ttdeci">topic_alias_recv(topic_alias_t max)</div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:31</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html_a63dbd0e2d004f4f0bd77421aacca04ac"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html#a63dbd0e2d004f4f0bd77421aacca04ac">MQTT_NS::topic_alias_recv::find</a></div><div class="ttdeci">std::string find(topic_alias_t alias) const</div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:57</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html_a9b675c572b1c2a04c188596e0f8809c3"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html#a9b675c572b1c2a04c188596e0f8809c3">MQTT_NS::topic_alias_recv::insert_or_update</a></div><div class="ttdeci">void insert_or_update(string_view topic, topic_alias_t alias)</div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:34</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1topic__alias__recv_html_ada7b847b48d6ffb2e391939240af714a"><div class="ttname"><a href="classMQTT__NS_1_1topic__alias__recv.html#ada7b847b48d6ffb2e391939240af714a">MQTT_NS::topic_alias_recv::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> topic_alias_recv.hpp:72</div></div>
 <div class="ttc" id="aconstant_8hpp_html"><div class="ttname"><a href="constant_8hpp.html">constant.hpp</a></div></div>
 <div class="ttc" id="alog_8hpp_html"><div class="ttname"><a href="log_8hpp.html">log.hpp</a></div></div>
-<div class="ttc" id="alog_8hpp_html_a2da223234bcac15ef2d9a3d86d5a6473"><div class="ttname"><a href="log_8hpp.html#a2da223234bcac15ef2d9a3d86d5a6473">MQTT_LOG</a></div><div class="ttdeci">#define MQTT_LOG(chan, sev)</div><div class="ttdef"><b>Definition:</b> log.hpp:132</div></div>
-<div class="ttc" id="alog_8hpp_html_ae787d5ab38bcda1cb94803c3ce348a4f"><div class="ttname"><a href="log_8hpp.html#ae787d5ab38bcda1cb94803c3ce348a4f">MQTT_ADD_VALUE</a></div><div class="ttdeci">#define MQTT_ADD_VALUE(name, val)</div><div class="ttdef"><b>Definition:</b> log.hpp:133</div></div>
+<div class="ttc" id="alog_8hpp_html_a2da223234bcac15ef2d9a3d86d5a6473"><div class="ttname"><a href="log_8hpp.html#a2da223234bcac15ef2d9a3d86d5a6473">MQTT_LOG</a></div><div class="ttdeci">#define MQTT_LOG(chan, sev)</div><div class="ttdef"><b>Definition:</b> log.hpp:135</div></div>
+<div class="ttc" id="alog_8hpp_html_ae787d5ab38bcda1cb94803c3ce348a4f"><div class="ttname"><a href="log_8hpp.html#ae787d5ab38bcda1cb94803c3ce348a4f">MQTT_ADD_VALUE</a></div><div class="ttdeci">#define MQTT_ADD_VALUE(name, val)</div><div class="ttdef"><b>Definition:</b> log.hpp:136</div></div>
 <div class="ttc" id="amove_8hpp_html"><div class="ttname"><a href="move_8hpp.html">move.hpp</a></div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html"><div class="ttname"><a href="namespaceMQTT__NS.html">MQTT_NS</a></div><div class="ttdef"><b>Definition:</b> any.hpp:27</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_a21d771b44b8849e58d538da7d6c59894"><div class="ttname"><a href="namespaceMQTT__NS.html#a21d771b44b8849e58d538da7d6c59894">MQTT_NS::string_view</a></div><div class="ttdeci">boost::string_ref string_view</div><div class="ttdef"><b>Definition:</b> string_view.hpp:64</div></div>

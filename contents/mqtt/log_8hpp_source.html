@@ -143,71 +143,74 @@ $(function() {
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// template arguments are defined in MQTT_NS</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// filter and formatter can distinguish mqtt_cpp&#39;s channel and severity by their types</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">using</span> global_logger_t = log::sources::severity_channel_logger_mt&lt;severity_level, channel&gt;;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT(logger, global_logger_t)</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// Normal attributes</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(file, <span class="stringliteral">&quot;MqttFile&quot;</span>, std::string)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(line, <span class="stringliteral">&quot;MqttLine&quot;</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(<span class="keyword">function</span>, <span class="stringliteral">&quot;MqttFunction&quot;</span>, std::string)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(address, <span class="stringliteral">&quot;MqttAddress&quot;</span>, <span class="keywordtype">void</span> <span class="keyword">const</span>*)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// Take any filterable parameters (FP)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define MQTT_LOG_FP(chan, sev)                                          \</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">    BOOST_LOG_STREAM_CHANNEL_SEV(MQTT_NS::logger::get(), MQTT_NS::channel(chan), sev) \</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::file, __FILE__)                   \</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::line, __LINE__)                   \</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::function, BOOST_CURRENT_FUNCTION)</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define MQTT_GET_LOG_SEV_NUM(lv) BOOST_PP_CAT(MQTT_, lv)</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// Use can set preprocessor macro MQTT_LOG_SEV.</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// For example, -DMQTT_LOG_SEV=info, greater or equal to info log is generated at</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// compiling time.</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#if !defined(MQTT_LOG_SEV)</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#define MQTT_LOG_SEV trace</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_LOG_SEV)</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#define MQTT_trace   0</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#define MQTT_debug   1</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#define MQTT_info    2</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define MQTT_warning 3</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#define MQTT_error   4</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define MQTT_fatal   5</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">// User can define custom MQTT_LOG implementation</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// By default MQTT_LOG_FP is used</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">using</span> global_logger_t = log::sources::severity_channel_logger&lt;severity_level, channel&gt;;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">inline</span> global_logger_t&amp; logger() {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    thread_local global_logger_t l;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> l;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// Normal attributes</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(file, <span class="stringliteral">&quot;MqttFile&quot;</span>, std::string)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(line, <span class="stringliteral">&quot;MqttLine&quot;</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(<span class="keyword">function</span>, <span class="stringliteral">&quot;MqttFunction&quot;</span>, std::string)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;BOOST_LOG_ATTRIBUTE_KEYWORD(address, <span class="stringliteral">&quot;MqttAddress&quot;</span>, <span class="keywordtype">void</span> <span class="keyword">const</span>*)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// Take any filterable parameters (FP)</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define MQTT_LOG_FP(chan, sev)                                          \</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">    BOOST_LOG_STREAM_CHANNEL_SEV(MQTT_NS::logger(), MQTT_NS::channel(chan), sev) \</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::file, __FILE__)                   \</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::line, __LINE__)                   \</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">    &lt;&lt; boost::log::add_value(MQTT_NS::function, BOOST_CURRENT_FUNCTION)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define MQTT_GET_LOG_SEV_NUM(lv) BOOST_PP_CAT(MQTT_, lv)</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// Use can set preprocessor macro MQTT_LOG_SEV.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">// For example, -DMQTT_LOG_SEV=info, greater or equal to info log is generated at</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// compiling time.</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#if !defined(MQTT_LOG_SEV)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#define MQTT_LOG_SEV trace</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_LOG_SEV)</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#define MQTT_trace   0</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#define MQTT_debug   1</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#define MQTT_info    2</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#define MQTT_warning 3</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define MQTT_error   4</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#define MQTT_fatal   5</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#if !defined(MQTT_LOG)</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">// User can define custom MQTT_LOG implementation</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">// By default MQTT_LOG_FP is used</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define MQTT_LOG(chan, sev)                                             \</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">    BOOST_PP_IF(                                                        \</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">        BOOST_PP_GREATER_EQUAL(MQTT_GET_LOG_SEV_NUM(sev), MQTT_GET_LOG_SEV_NUM(MQTT_LOG_SEV)), \</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">        MQTT_LOG_FP(chan, MQTT_NS::severity_level::sev),                \</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">        MQTT_NS::detail::null_log(chan, MQTT_NS::severity_level::sev)   \</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">    )</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_LOG)</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#if !defined(MQTT_ADD_VALUE)</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#define MQTT_ADD_VALUE(name, val) boost::log::add_value((MQTT_NS::name), (val))</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_ADD_VALUE)</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#else  </span><span class="comment">// defined(MQTT_USE_LOG)</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="log_8hpp.html#a2da223234bcac15ef2d9a3d86d5a6473">  132</a></span>&#160;<span class="preprocessor">#define MQTT_LOG(chan, sev) MQTT_NS::detail::null_log(chan, MQTT_NS::severity_level::sev)</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="log_8hpp.html#ae787d5ab38bcda1cb94803c3ce348a4f">  133</a></span>&#160;<span class="preprocessor">#define MQTT_ADD_VALUE(name, val) val</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#if !defined(MQTT_LOG)</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#define MQTT_LOG(chan, sev)                                             \</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">    BOOST_PP_IF(                                                        \</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">        BOOST_PP_GREATER_EQUAL(MQTT_GET_LOG_SEV_NUM(sev), MQTT_GET_LOG_SEV_NUM(MQTT_LOG_SEV)), \</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">        MQTT_LOG_FP(chan, MQTT_NS::severity_level::sev),                \</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">        MQTT_NS::detail::null_log(chan, MQTT_NS::severity_level::sev)   \</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">    )</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_LOG)</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#if !defined(MQTT_ADD_VALUE)</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define MQTT_ADD_VALUE(name, val) boost::log::add_value((MQTT_NS::name), (val))</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !defined(MQTT_ADD_VALUE)</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#else  </span><span class="comment">// defined(MQTT_USE_LOG)</span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// defined(MQTT_USE_LOG)</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_LOG_HPP</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="log_8hpp.html#a2da223234bcac15ef2d9a3d86d5a6473">  135</a></span>&#160;<span class="preprocessor">#define MQTT_LOG(chan, sev) MQTT_NS::detail::null_log(chan, MQTT_NS::severity_level::sev)</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="log_8hpp.html#ae787d5ab38bcda1cb94803c3ce348a4f">  136</a></span>&#160;<span class="preprocessor">#define MQTT_ADD_VALUE(name, val) val</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// defined(MQTT_USE_LOG)</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_LOG_HPP</span></div>
 <div class="ttc" id="anamespaceMQTT__NS_1_1detail_html_a012454e1a781d4ba0d09d914700df1c7"><div class="ttname"><a href="namespaceMQTT__NS_1_1detail.html#a012454e1a781d4ba0d09d914700df1c7">MQTT_NS::detail::operator&lt;&lt;</a></div><div class="ttdeci">constexpr null_log const  &amp; operator&lt;&lt;(null_log const &amp;o, T const &amp;)</div><div class="ttdef"><b>Definition:</b> log.hpp:67</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html"><div class="ttname"><a href="namespaceMQTT__NS.html">MQTT_NS</a></div><div class="ttdef"><b>Definition:</b> any.hpp:27</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_a9707c0666e5911d32ab973e263c25015"><div class="ttname"><a href="namespaceMQTT__NS.html#a9707c0666e5911d32ab973e263c25015">MQTT_NS::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, connect_return_code val)</div><div class="ttdef"><b>Definition:</b> connect_return_code.hpp:43</div></div>

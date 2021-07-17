@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['id_5f_1775',['id_',['../structMQTT__NS_1_1v5_1_1property_1_1detail_1_1n__bytes__property.html#a6dd48c0ea93e9e5fc974e96af533ff9c',1,'MQTT_NS::v5::property::detail::n_bytes_property::id_()'],['../structMQTT__NS_1_1v5_1_1property_1_1detail_1_1binary__property.html#a4139506208bc3ddbce40a2dbe274800f',1,'MQTT_NS::v5::property::detail::binary_property::id_()'],['../structMQTT__NS_1_1v5_1_1property_1_1detail_1_1variable__property.html#a5233ae4088f13ef9acd3321564eb8467',1,'MQTT_NS::v5::property::detail::variable_property::id_()']]]
+  ['map_5fsize_1798',['map_size',['../classsubscription__map__base.html#a94f4907542de65422e590f3999e17256',1,'subscription_map_base']]],
+  ['msg_1799',['msg',['../structMQTT__NS_1_1bytes__transferred__error.html#a2507ee44bd0aa9b17ec5abd92ef49cec',1,'MQTT_NS::bytes_transferred_error']]]
 ];

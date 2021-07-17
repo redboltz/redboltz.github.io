@@ -1,0 +1,5 @@
+<map id="MQTT_NS::socket" name="MQTT_NS::socket">
+<area shape="rect" id="node1" title=" " alt="" coords="127,5,261,32"/>
+<area shape="rect" id="node2" href="$classMQTT__NS_1_1tcp__endpoint.html" title=" " alt="" coords="5,80,183,121"/>
+<area shape="rect" id="node3" href="$classMQTT__NS_1_1ws__endpoint.html" title=" " alt="" coords="207,80,381,121"/>
+</map>

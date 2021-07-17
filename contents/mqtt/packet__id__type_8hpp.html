@@ -66,32 +66,29 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">packet_id_type.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;cstdlib&gt;</code><br />
-<code>#include &lt;<a class="el" href="namespace_8hpp_source.html">mqtt/namespace.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="two__byte__util_8hpp_source.html">mqtt/two_byte_util.hpp</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="four__byte__util_8hpp_source.html">mqtt/four_byte_util.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="two__or__four__byte__util_8hpp_source.html">mqtt/two_or_four_byte_util.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for packet_id_type.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="packet__id__type_8hpp__incl.png" border="0" usemap="#a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2packet__id__type_8hpp" alt=""/></div>
 <map name="a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2packet__id__type_8hpp" id="a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2packet__id__type_8hpp">
 <area shape="rect" title=" " alt="" coords="137,5,322,61"/>
-<area shape="rect" title=" " alt="" coords="5,191,72,218"/>
-<area shape="rect" title=" " alt="" coords="539,109,605,136"/>
-<area shape="rect" href="namespace_8hpp.html" title=" " alt="" coords="96,191,256,218"/>
-<area shape="rect" href="two__byte__util_8hpp.html" title=" " alt="" coords="143,109,316,136"/>
-<area shape="rect" href="four__byte__util_8hpp.html" title=" " alt="" coords="341,109,515,136"/>
-<area shape="rect" title=" " alt="" coords="280,191,339,218"/>
-<area shape="rect" title=" " alt="" coords="363,191,493,218"/>
-<area shape="rect" title=" " alt="" coords="517,184,680,225"/>
-<area shape="rect" title=" " alt="" coords="704,191,789,218"/>
+<area shape="rect" href="two__or__four__byte__util_8hpp.html" title=" " alt="" coords="144,109,315,151"/>
+<area shape="rect" title=" " alt="" coords="5,281,72,307"/>
+<area shape="rect" title=" " alt="" coords="539,199,605,225"/>
+<area shape="rect" href="namespace_8hpp.html" title=" " alt="" coords="96,281,256,307"/>
+<area shape="rect" href="two__byte__util_8hpp.html" title=" " alt="" coords="143,199,316,225"/>
+<area shape="rect" href="four__byte__util_8hpp.html" title=" " alt="" coords="341,199,515,225"/>
+<area shape="rect" title=" " alt="" coords="280,281,339,307"/>
+<area shape="rect" title=" " alt="" coords="363,281,493,307"/>
+<area shape="rect" title=" " alt="" coords="517,273,680,315"/>
+<area shape="rect" title=" " alt="" coords="704,281,789,307"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -122,25 +119,22 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="packet__id__type_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1packet__id__type_3_012_01_4.html">MQTT_NS::packet_id_type&lt; 2 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1packet__id__type_3_014_01_4.html">MQTT_NS::packet_id_type&lt; 4 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1make__packet__id_3_012_01_4.html">MQTT_NS::make_packet_id&lt; 2 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1make__packet__id_3_014_01_4.html">MQTT_NS::make_packet_id&lt; 4 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1add__packet__id__to__buf_3_012_01_4.html">MQTT_NS::add_packet_id_to_buf&lt; 2 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMQTT__NS_1_1add__packet__id__to__buf_3_014_01_4.html">MQTT_NS::add_packet_id_to_buf&lt; 4 &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMQTT__NS"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html">MQTT_NS</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ad416f24a982bbb66843c260545dc725d"><td class="memTemplParams" colspan="2">template&lt;std::size_t PacketIdBytes&gt; </td></tr>
+<tr class="memitem:ad416f24a982bbb66843c260545dc725d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#ad416f24a982bbb66843c260545dc725d">MQTT_NS::packet_id_type</a> = two_or_four_byte_type&lt; PacketIdBytes &gt;</td></tr>
+<tr class="separator:ad416f24a982bbb66843c260545dc725d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e026606b837b0431b1f0a31819464b5"><td class="memTemplParams" colspan="2">template&lt;std::size_t PacketIdBytes&gt; </td></tr>
+<tr class="memitem:a6e026606b837b0431b1f0a31819464b5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#a6e026606b837b0431b1f0a31819464b5">MQTT_NS::make_packet_id</a> = make_two_or_four_byte&lt; PacketIdBytes &gt;</td></tr>
+<tr class="separator:a6e026606b837b0431b1f0a31819464b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42dc1fbfbf27081a496a8695cd2dca99"><td class="memTemplParams" colspan="2">template&lt;std::size_t PacketIdBytes&gt; </td></tr>
+<tr class="memitem:a42dc1fbfbf27081a496a8695cd2dca99"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#a42dc1fbfbf27081a496a8695cd2dca99">MQTT_NS::add_packet_id_to_buf</a> = add_two_or_four_byte_to_buf&lt; PacketIdBytes &gt;</td></tr>
+<tr class="separator:a42dc1fbfbf27081a496a8695cd2dca99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -67,8 +67,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">tcp_endpoint.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -76,15 +75,28 @@ $(function() {
 <div class="textblock"><code>#include &lt;boost/asio.hpp&gt;</code><br />
 <code>#include &lt;boost/asio/bind_executor.hpp&gt;</code><br />
 <code>#include &lt;<a class="el" href="namespace_8hpp_source.html">mqtt/namespace.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="type__erased__socket_8hpp_source.html">mqtt/type_erased_socket.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="move_8hpp_source.html">mqtt/move.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="attributes_8hpp_source.html">mqtt/attributes.hpp</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tcp_endpoint.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="tcp__endpoint_8hpp__incl.png" border="0" usemap="#a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2tcp__endpoint_8hpp" alt=""/></div>
 <map name="a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2tcp__endpoint_8hpp" id="a_2home_2kondo_2work_2mqtt__cpp_2include_2mqtt_2tcp__endpoint_8hpp">
-<area shape="rect" title=" " alt="" coords="163,5,341,61"/>
-<area shape="rect" title=" " alt="" coords="5,109,123,136"/>
-<area shape="rect" title=" " alt="" coords="147,109,357,136"/>
-<area shape="rect" href="namespace_8hpp.html" title=" " alt="" coords="381,109,541,136"/>
+<area shape="rect" title=" " alt="" coords="589,5,766,61"/>
+<area shape="rect" title=" " alt="" coords="5,184,123,211"/>
+<area shape="rect" title=" " alt="" coords="951,109,1161,136"/>
+<area shape="rect" href="namespace_8hpp.html" title=" " alt="" coords="505,266,665,293"/>
+<area shape="rect" href="type__erased__socket_8hpp.html" title=" " alt="" coords="278,109,493,136"/>
+<area shape="rect" href="move_8hpp.html" title=" " alt="" coords="696,109,819,136"/>
+<area shape="rect" href="attributes_8hpp.html" title=" " alt="" coords="523,109,671,136"/>
+<area shape="rect" title=" " alt="" coords="457,184,522,211"/>
+<area shape="rect" href="error__code_8hpp.html" title=" " alt="" coords="147,184,301,211"/>
+<area shape="rect" href="any_8hpp.html" title=" " alt="" coords="325,184,432,211"/>
+<area shape="rect" title=" " alt="" coords="151,259,297,300"/>
+<area shape="rect" title=" " alt="" coords="323,266,435,293"/>
+<area shape="rect" title=" " alt="" coords="699,184,759,211"/>
+<area shape="rect" title=" " alt="" coords="783,184,875,211"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -121,21 +133,6 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMQTT__NS"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html">MQTT_NS</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a72bf4644631fbe7339bb114c4c462a50"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename MutableBufferSequence , typename ReadHandler &gt; </td></tr>
-<tr class="memitem:a72bf4644631fbe7339bb114c4c462a50"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">MQTT_NS::async_read</a> (tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence &amp;&amp;buffers, ReadHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a72bf4644631fbe7339bb114c4c462a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5edced8a82e297d3176f6d22a7d4a2f"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:aa5edced8a82e297d3176f6d22a7d4a2f"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#aa5edced8a82e297d3176f6d22a7d4a2f">MQTT_NS::write</a> (tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence &amp;&amp;buffers)</td></tr>
-<tr class="separator:aa5edced8a82e297d3176f6d22a7d4a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3672ca57c2b689d7c48f0c80114d8f66"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence &gt; </td></tr>
-<tr class="memitem:a3672ca57c2b689d7c48f0c80114d8f66"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#a3672ca57c2b689d7c48f0c80114d8f66">MQTT_NS::write</a> (tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence &amp;&amp;buffers, boost::system::error_code &amp;ec)</td></tr>
-<tr class="separator:a3672ca57c2b689d7c48f0c80114d8f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bca610dc1d74926feb836079660a547"><td class="memTemplParams" colspan="2">template&lt;typename Socket , typename Strand , typename ConstBufferSequence , typename WriteHandler &gt; </td></tr>
-<tr class="memitem:a6bca610dc1d74926feb836079660a547"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMQTT__NS.html#a6bca610dc1d74926feb836079660a547">MQTT_NS::async_write</a> (tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence &amp;&amp;buffers, WriteHandler &amp;&amp;handler)</td></tr>
-<tr class="separator:a6bca610dc1d74926feb836079660a547"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -83,265 +83,244 @@ $(function() {
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/asio/bind_executor.hpp&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="namespace_8hpp.html">mqtt/namespace.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="string__view_8hpp.html">mqtt/string_view.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error__code_8hpp.html">mqtt/error_code.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMQTT__NS.html">MQTT_NS</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceboost_1_1asio.html">as</a> = <a class="code" href="namespaceboost_1_1asio.html">boost::asio</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">   26</a></span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">ws_endpoint</a>(as::io_context&amp; ioc, Args&amp;&amp;... args)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        :ws_(ioc, std::forward&lt;Args&gt;(args)...),</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;         strand_(ioc) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        ws_.binary(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ws_.set_option(</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            boost::beast::websocket::stream_base::decorator(</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                [](boost::beast::websocket::request_type&amp; req) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    req.set(<span class="stringliteral">&quot;Sec-WebSocket-Protocol&quot;</span>, <span class="stringliteral">&quot;mqtt&quot;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            )</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        );</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ae7d3db1ccb27638cc3f7887a4e11bce2">   39</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ae7d3db1ccb27638cc3f7887a4e11bce2">close</a>(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a>&amp; ec) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        ws_.close(boost::beast::websocket::close_code::normal, ec);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">if</span> (ec) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            boost::beast::flat_buffer <a class="code" href="namespaceboost_1_1asio.html#a7824a66f5665545045efcef98dca60c6">buffer</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            ws_.read(<a class="code" href="classMQTT__NS_1_1buffer.html">buffer</a>, ec);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        } <span class="keywordflow">while</span> (!ec);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span> (ec != boost::beast::websocket::error::closed) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        ec = boost::system::errc::make_error_code(boost::system::errc::success);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a6f3cf3b10601816387a3db1c68dfdf57">   50</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a6f3cf3b10601816387a3db1c68dfdf57">get_executor</a>() {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a3470f4c8647216b71020e5146944669c">lowest_layer</a>().get_executor();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#if BOOST_VERSION &gt;= 107000</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">auto</span>&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a3470f4c8647216b71020e5146944669c">lowest_layer</a>() {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> boost::beast::get_lowest_layer(ws_);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#else  </span><span class="comment">// BOOST_VERSION &gt;= 107000</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a3470f4c8647216b71020e5146944669c">   62</a></span>&#160;    <span class="keyword">typename</span> boost::beast::websocket::stream&lt;Socket&gt;::lowest_layer_type&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a3470f4c8647216b71020e5146944669c">lowest_layer</a>() {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> ws_.lowest_layer();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BOOST_VERSION &gt;= 107000</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">   68</a></span>&#160;    <span class="keyword">typename</span> boost::beast::websocket::stream&lt;Socket&gt;::next_layer_type&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">next_layer</a>() {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> ws_.next_layer();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a8b347b9b1ed8373542370ae9b2b3a12a">   72</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a8b347b9b1ed8373542370ae9b2b3a12a">native_handle</a>() {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">next_layer</a>().native_handle();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">   77</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">set_option</a>(T&amp;&amp; t) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        ws_.set_option(std::forward&lt;T&gt;(t));</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> AcceptHandler&gt;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">   82</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">async_accept</a>(</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        AcceptHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        ws_.async_accept(buffers, std::forward&lt;AcceptHandler&gt;(handler));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> ResponseDecorator, <span class="keyword">typename</span> AcceptHandler&gt;</div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">   89</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">async_accept_ex</a>(</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        ResponseDecorator <span class="keyword">const</span>&amp; decorator,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        AcceptHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        ws_.async_accept_ex(buffers, decorator, std::forward&lt;AcceptHandler&gt;(handler));</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">   97</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">async_handshake</a>(Args&amp;&amp; ... args) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        ws_.async_handshake(std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">  102</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">handshake</a>(Args&amp;&amp; ... args) {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        ws_.handshake(std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> MutableBufferSequence, <span class="keyword">typename</span> ReadHandler&gt;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a9bf1681662719a2e5fdb2a9876da503b">  107</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a9bf1681662719a2e5fdb2a9876da503b">async_read</a>(</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        MutableBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        ReadHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">auto</span> req_size = as::buffer_size(buffers);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keyword">using</span> beast_read_handler_t =</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            std::function&lt;void(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::shared_ptr&lt;void&gt;)&gt;;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        std::shared_ptr&lt;beast_read_handler_t&gt; beast_read_handler;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">if</span> (req_size &lt;= buffer_.size()) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            as::buffer_copy(buffers, buffer_.data(), req_size);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            buffer_.consume(req_size);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            handler(boost::system::errc::make_error_code(boost::system::errc::success), req_size);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        beast_read_handler.reset(</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keyword">new</span> beast_read_handler_t(</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                [<span class="keyword">this</span>, req_size, buffers, handler = std::forward&lt;ReadHandler&gt;(handler)]</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::shared_ptr&lt;void&gt; <span class="keyword">const</span>&amp; v) <span class="keyword">mutable</span> {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="keywordflow">if</span> (ec) {</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        std::forward&lt;ReadHandler&gt;(handler)(ec, 0);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                    }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                    <span class="keywordflow">if</span> (!ws_.got_binary()) {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                        buffer_.consume(buffer_.size());</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                        std::forward&lt;ReadHandler&gt;(handler)</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                            (boost::system::errc::make_error_code(boost::system::errc::bad_message), 0);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                    }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                    <span class="keywordflow">if</span> (req_size &gt; buffer_.size()) {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                        <span class="keyword">auto</span> beast_read_handler = std::static_pointer_cast&lt;beast_read_handler_t&gt;(v);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                        ws_.async_read(</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                            buffer_,</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                            as::bind_executor(</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                                strand_,</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                                [beast_read_handler]</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                    (*beast_read_handler)(ec, beast_read_handler);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                                }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                            )</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                        );</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    as::buffer_copy(buffers, buffer_.data(), req_size);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    buffer_.consume(req_size);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    std::forward&lt;ReadHandler&gt;(handler)(boost::system::errc::make_error_code(boost::system::errc::success), req_size);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            )</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        ws_.async_read(</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            buffer_,</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            as::bind_executor(</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                strand_,</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                [beast_read_handler]</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    (*beast_read_handler)(ec, beast_read_handler);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            )</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        );</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence&gt;</div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">  170</a></span>&#160;    std::size_t <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">write</a>(</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers) {</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        ws_.write(buffers);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">return</span> as::buffer_size(buffers);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="type__erased__socket_8hpp.html">mqtt/type_erased_socket.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="move_8hpp.html">mqtt/move.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="attributes_8hpp.html">mqtt/attributes.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="string__view_8hpp.html">mqtt/string_view.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error__code_8hpp.html">mqtt/error_code.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMQTT__NS.html">MQTT_NS</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceboost_1_1asio.html">as</a> = <a class="code" href="namespaceboost_1_1asio.html">boost::asio</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint</a> : <span class="keyword">public</span> <a class="code" href="classMQTT__NS_1_1socket.html">socket</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">   29</a></span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">ws_endpoint</a>(as::io_context&amp; ioc, Args&amp;&amp;... args)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        :ws_(ioc, std::forward&lt;Args&gt;(args)...),</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;         strand_(ioc) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        ws_.binary(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        ws_.set_option(</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            boost::beast::websocket::stream_base::decorator(</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                [](boost::beast::websocket::request_type&amp; req) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    req.set(<span class="stringliteral">&quot;Sec-WebSocket-Protocol&quot;</span>, <span class="stringliteral">&quot;mqtt&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            )</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        );</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a44b11857d338ced4e2f6eea1f34c0490">   42</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a44b11857d338ced4e2f6eea1f34c0490">async_read</a>(</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        as::mutable_buffer buffers,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a>, std::size_t)&gt; handler</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ) <span class="keyword">override</span> <span class="keyword">final</span> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">auto</span> req_size = as::buffer_size(buffers);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">using</span> beast_read_handler_t =</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            std::function&lt;void(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::shared_ptr&lt;void&gt;)&gt;;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        std::shared_ptr&lt;beast_read_handler_t&gt; beast_read_handler;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (req_size &lt;= buffer_.size()) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            as::buffer_copy(buffers, buffer_.data(), req_size);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            buffer_.consume(req_size);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            handler(boost::system::errc::make_error_code(boost::system::errc::success), req_size);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        beast_read_handler.reset(</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keyword">new</span> beast_read_handler_t(</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                [<span class="keyword">this</span>, req_size, buffers, handler = <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)]</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::shared_ptr&lt;void&gt; <span class="keyword">const</span>&amp; v) <span class="keyword">mutable</span> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    <span class="keywordflow">if</span> (ec) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)(ec, 0);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    <span class="keywordflow">if</span> (!ws_.got_binary()) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        buffer_.consume(buffer_.size());</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                            (boost::system::errc::make_error_code(boost::system::errc::bad_message), 0);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    <span class="keywordflow">if</span> (req_size &gt; buffer_.size()) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        <span class="keyword">auto</span> beast_read_handler = std::static_pointer_cast&lt;beast_read_handler_t&gt;(v);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        ws_.async_read(</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                            buffer_,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                            as::bind_executor(</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                strand_,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                [beast_read_handler]</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                    (*beast_read_handler)(ec, beast_read_handler);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                            )</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                        );</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    as::buffer_copy(buffers, buffer_.data(), req_size);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    buffer_.consume(req_size);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)(boost::system::errc::make_error_code(boost::system::errc::success), req_size);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            )</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        );</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        ws_.async_read(</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            buffer_,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            as::bind_executor(</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                strand_,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                [beast_read_handler]</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                (<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a> ec, std::size_t) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                    (*beast_read_handler)(ec, beast_read_handler);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            )</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        );</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ae0941fb2b6ba4c39e76ea6f25a91f182">  105</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ae0941fb2b6ba4c39e76ea6f25a91f182">async_write</a>(</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        std::vector&lt;as::const_buffer&gt; buffers,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">error_code</a>, std::size_t)&gt; handler</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ) <span class="keyword">override</span> <span class="keyword">final</span> {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        ws_.async_write(</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            buffers,</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            as::bind_executor(</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                strand_,</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            )</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        );</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ae2c02543a5b23ce85a537e3f8c49d23a">  118</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> std::size_t <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ae2c02543a5b23ce85a537e3f8c49d23a">write</a>(</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        std::vector&lt;as::const_buffer&gt; buffers,</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a>&amp; ec</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    ) <span class="keyword">override</span> <span class="keyword">final</span> {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        ws_.write(buffers, ec);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> as::buffer_size(buffers);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#acad7ea0b709aedd93779cedc462358fc">  126</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#acad7ea0b709aedd93779cedc462358fc">post</a>(std::function&lt;<span class="keywordtype">void</span>()&gt; handler) <span class="keyword">override</span> <span class="keyword">final</span> {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        as::post(</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            strand_,</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <a class="code" href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">force_move</a>(handler)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        );</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#if BOOST_VERSION &gt;= 107000</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> as::ip::tcp::socket::lowest_layer_type&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">lowest_layer</a>() override final {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> boost::beast::get_lowest_layer(ws_);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#else  </span><span class="comment">// BOOST_VERSION &gt;= 107000</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">  141</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> as::ip::tcp::socket::lowest_layer_type&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">lowest_layer</a>() override final {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">return</span> ws_.lowest_layer();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BOOST_VERSION &gt;= 107000</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a9e818f6eeebf5b1340f98b246702c905">  147</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> any <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a9e818f6eeebf5b1340f98b246702c905">native_handle</a>() override final {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">next_layer</a>().native_handle();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a4572d92f7c4e5c1320204ae94f5538f5">  151</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a4572d92f7c4e5c1320204ae94f5538f5">close</a>(<a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a>&amp; ec) <span class="keyword">override</span> <span class="keyword">final</span> {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        ws_.close(boost::beast::websocket::close_code::normal, ec);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> (ec) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            boost::beast::flat_buffer <a class="code" href="namespaceboost_1_1asio.html#a7824a66f5665545045efcef98dca60c6">buffer</a>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            ws_.read(<a class="code" href="classMQTT__NS_1_1buffer.html">buffer</a>, ec);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        } <span class="keywordflow">while</span> (!ec);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">if</span> (ec != boost::beast::websocket::error::closed) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        ec = boost::system::errc::make_error_code(boost::system::errc::success);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#if BOOST_VERSION &lt; 107400 || defined(BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a34976a2a807f6e53407065a3c93d552b">  163</a></span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> as::executor <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a34976a2a807f6e53407065a3c93d552b">get_executor</a>() override final {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">lowest_layer</a>().get_executor();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#else  </span><span class="comment">// BOOST_VERSION &lt; 107400 || defined(BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT)</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a> as::any_io_executor <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a34976a2a807f6e53407065a3c93d552b">get_executor</a>() override final {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">lowest_layer</a>().get_executor();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// BOOST_VERSION &lt; 107400 || defined(BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT)</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">  172</a></span>&#160;    <span class="keyword">typename</span> boost::beast::websocket::stream&lt;Socket&gt;::next_layer_type&amp; <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">next_layer</a>() {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">return</span> ws_.next_layer();</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence&gt;</div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a0a60f34dd4046bcd5df26f03cfa7617b">  177</a></span>&#160;    std::size_t <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a0a60f34dd4046bcd5df26f03cfa7617b">write</a>(</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a>&amp; ec) {</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        ws_.write(buffers, ec);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span> as::buffer_size(buffers);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> WriteHandler&gt;</div>
-<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a151809a366d67e353d53aab3b96a86de">  185</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a151809a366d67e353d53aab3b96a86de">async_write</a>(</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        WriteHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        ws_.async_write(</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            buffers,</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            as::bind_executor(</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                strand_,</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                std::forward&lt;WriteHandler&gt;(handler)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            )</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        );</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PostHandler&gt;</div>
-<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ab7f1c275f513b69b46a90d02050a258d">  198</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ab7f1c275f513b69b46a90d02050a258d">post</a>(PostHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <a class="code" href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">as::post</a>(</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            strand_,</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            std::forward&lt;PostHandler&gt;(handler)</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        );</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    boost::beast::websocket::stream&lt;Socket&gt; ws_;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    boost::beast::flat_buffer buffer_;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    Strand strand_;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;};</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand, <span class="keyword">typename</span> MutableBufferSequence, <span class="keyword">typename</span> ReadHandler&gt;</div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="namespaceMQTT__NS.html#a54e19d3849833b2668524152b4a7c5d1">  212</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">async_read</a>(</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint&lt;Socket, Strand&gt;</a>&amp; ep,</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    MutableBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    ReadHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    ep.<a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a9bf1681662719a2e5fdb2a9876da503b">async_read</a>(buffers, std::forward&lt;ReadHandler&gt;(handler));</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">  177</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">set_option</a>(T&amp;&amp; t) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        ws_.set_option(std::forward&lt;T&gt;(t));</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> AcceptHandler&gt;</div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">  182</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">async_accept</a>(</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        AcceptHandler&amp;&amp; handler) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        ws_.async_accept(buffers, std::forward&lt;AcceptHandler&gt;(handler));</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> ResponseDecorator, <span class="keyword">typename</span> AcceptHandler&gt;</div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">  189</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">async_accept_ex</a>(</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        ResponseDecorator <span class="keyword">const</span>&amp; decorator,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        AcceptHandler&amp;&amp; handler) {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        ws_.async_accept_ex(buffers, decorator, std::forward&lt;AcceptHandler&gt;(handler));</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">  197</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">async_handshake</a>(Args&amp;&amp; ... args) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        ws_.async_handshake(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">  202</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">handshake</a>(Args&amp;&amp; ... args) {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        ws_.handshake(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ConstBufferSequence&gt;</div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">  207</a></span>&#160;    std::size_t <a class="code" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">write</a>(</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        ConstBufferSequence <span class="keyword">const</span>&amp; buffers) {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        ws_.write(buffers);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">return</span> as::buffer_size(buffers);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    boost::beast::websocket::stream&lt;Socket&gt; ws_;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    boost::beast::flat_buffer buffer_;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    Strand strand_;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;};</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand, <span class="keyword">typename</span> ConstBufferSequence&gt;</div>
-<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="namespaceMQTT__NS.html#a8c22ea91a51ec1305b57c21201b9a1fc">  220</a></span>&#160;<span class="keyword">inline</span> std::size_t <a class="code" href="namespaceMQTT__NS.html#aa5edced8a82e297d3176f6d22a7d4a2f">write</a>(</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint&lt;Socket, Strand&gt;</a>&amp; ep,</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    ConstBufferSequence <span class="keyword">const</span>&amp; buffers) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">return</span> ep.<a class="code" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">write</a>(buffers);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;}</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand, <span class="keyword">typename</span> ConstBufferSequence&gt;</div>
-<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="namespaceMQTT__NS.html#a64ac20020808458ce316b5dd0bfdcdea">  227</a></span>&#160;<span class="keyword">inline</span> std::size_t <a class="code" href="namespaceMQTT__NS.html#aa5edced8a82e297d3176f6d22a7d4a2f">write</a>(</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint&lt;Socket, Strand&gt;</a>&amp; ep,</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">boost::system::error_code</a>&amp; ec) {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">return</span> ep.<a class="code" href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">write</a>(buffers, ec);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;}</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Socket, <span class="keyword">typename</span> Strand, <span class="keyword">typename</span> ConstBufferSequence, <span class="keyword">typename</span> WriteHandler&gt;</div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="namespaceMQTT__NS.html#a8f7f4e93190a71529a26aa4e3425b2e2">  235</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespaceMQTT__NS.html#a6bca610dc1d74926feb836079660a547">async_write</a>(</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="classMQTT__NS_1_1ws__endpoint.html">ws_endpoint&lt;Socket, Strand&gt;</a>&amp; ep,</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    ConstBufferSequence <span class="keyword">const</span>&amp; buffers,</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    WriteHandler&amp;&amp; handler) {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    ep.<a class="code" href="classMQTT__NS_1_1ws__endpoint.html#a151809a366d67e353d53aab3b96a86de">async_write</a>(buffers, std::forward&lt;WriteHandler&gt;(handler));</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_WS_ENDPOINT_HPP</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;} <span class="comment">// namespace MQTT_NS</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MQTT_WS_ENDPOINT_HPP</span></div>
+<div class="ttc" id="aattributes_8hpp_html"><div class="ttname"><a href="attributes_8hpp.html">attributes.hpp</a></div></div>
+<div class="ttc" id="aattributes_8hpp_html_a27e44ba0a30f7987ed61228826f1a1e7"><div class="ttname"><a href="attributes_8hpp.html#a27e44ba0a30f7987ed61228826f1a1e7">MQTT_ALWAYS_INLINE</a></div><div class="ttdeci">#define MQTT_ALWAYS_INLINE</div><div class="ttdef"><b>Definition:</b> attributes.hpp:18</div></div>
 <div class="ttc" id="aclassMQTT__NS_1_1buffer_html"><div class="ttname"><a href="classMQTT__NS_1_1buffer.html">MQTT_NS::buffer</a></div><div class="ttdoc">buffer that has string_view interface This class provides string_view interface. This class hold stri...</div><div class="ttdef"><b>Definition:</b> buffer.hpp:30</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html">MQTT_NS::ws_endpoint</a></div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:23</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a0a60f34dd4046bcd5df26f03cfa7617b"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a0a60f34dd4046bcd5df26f03cfa7617b">MQTT_NS::ws_endpoint::write</a></div><div class="ttdeci">std::size_t write(ConstBufferSequence const &amp;buffers, boost::system::error_code &amp;ec)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:177</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a151809a366d67e353d53aab3b96a86de"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a151809a366d67e353d53aab3b96a86de">MQTT_NS::ws_endpoint::async_write</a></div><div class="ttdeci">void async_write(ConstBufferSequence const &amp;buffers, WriteHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:185</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a2bc390c6a91d0a2addbdde87295368e4"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">MQTT_NS::ws_endpoint::ws_endpoint</a></div><div class="ttdeci">ws_endpoint(as::io_context &amp;ioc, Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:26</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a3470f4c8647216b71020e5146944669c"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a3470f4c8647216b71020e5146944669c">MQTT_NS::ws_endpoint::lowest_layer</a></div><div class="ttdeci">boost::beast::websocket::stream&lt; Socket &gt;::lowest_layer_type &amp; lowest_layer()</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:62</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a598e659ee7a377b795a91d973ec81b0a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">MQTT_NS::ws_endpoint::handshake</a></div><div class="ttdeci">void handshake(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:102</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a6f3cf3b10601816387a3db1c68dfdf57"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a6f3cf3b10601816387a3db1c68dfdf57">MQTT_NS::ws_endpoint::get_executor</a></div><div class="ttdeci">auto get_executor()</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:50</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a832886c8c5d270f4663b8b8c894352bd"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">MQTT_NS::ws_endpoint::async_accept_ex</a></div><div class="ttdeci">void async_accept_ex(ConstBufferSequence const &amp;buffers, ResponseDecorator const &amp;decorator, AcceptHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:89</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a8b347b9b1ed8373542370ae9b2b3a12a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a8b347b9b1ed8373542370ae9b2b3a12a">MQTT_NS::ws_endpoint::native_handle</a></div><div class="ttdeci">auto native_handle()</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:72</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a98e027cc9265c283257a69e89e26dc7a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">MQTT_NS::ws_endpoint::next_layer</a></div><div class="ttdeci">boost::beast::websocket::stream&lt; Socket &gt;::next_layer_type &amp; next_layer()</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:68</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a997d9686156249c15ec1d4c0c1b4f3ed"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">MQTT_NS::ws_endpoint::set_option</a></div><div class="ttdeci">void set_option(T &amp;&amp;t)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:77</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a9bf1681662719a2e5fdb2a9876da503b"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a9bf1681662719a2e5fdb2a9876da503b">MQTT_NS::ws_endpoint::async_read</a></div><div class="ttdeci">void async_read(MutableBufferSequence const &amp;buffers, ReadHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:107</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_aa2d8ef4b3a23400d2bf63c21e15dc2db"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">MQTT_NS::ws_endpoint::async_handshake</a></div><div class="ttdeci">void async_handshake(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:97</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ab7f1c275f513b69b46a90d02050a258d"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ab7f1c275f513b69b46a90d02050a258d">MQTT_NS::ws_endpoint::post</a></div><div class="ttdeci">void post(PostHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:198</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_accc63dc042f9ffaceca3bec37090bc71"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">MQTT_NS::ws_endpoint::write</a></div><div class="ttdeci">std::size_t write(ConstBufferSequence const &amp;buffers)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:170</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ae36497603e9fc8a3676d352320fbadb2"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">MQTT_NS::ws_endpoint::async_accept</a></div><div class="ttdeci">void async_accept(ConstBufferSequence const &amp;buffers, AcceptHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:82</div></div>
-<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ae7d3db1ccb27638cc3f7887a4e11bce2"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ae7d3db1ccb27638cc3f7887a4e11bce2">MQTT_NS::ws_endpoint::close</a></div><div class="ttdeci">void close(boost::system::error_code &amp;ec)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:39</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1socket_html"><div class="ttname"><a href="classMQTT__NS_1_1socket.html">MQTT_NS::socket</a></div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:22</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html">MQTT_NS::ws_endpoint</a></div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:26</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a2bc390c6a91d0a2addbdde87295368e4"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a2bc390c6a91d0a2addbdde87295368e4">MQTT_NS::ws_endpoint::ws_endpoint</a></div><div class="ttdeci">ws_endpoint(as::io_context &amp;ioc, Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:29</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a34976a2a807f6e53407065a3c93d552b"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a34976a2a807f6e53407065a3c93d552b">MQTT_NS::ws_endpoint::get_executor</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE as::executor get_executor() override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:163</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a44b11857d338ced4e2f6eea1f34c0490"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a44b11857d338ced4e2f6eea1f34c0490">MQTT_NS::ws_endpoint::async_read</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE void async_read(as::mutable_buffer buffers, std::function&lt; void(error_code, std::size_t)&gt; handler) override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:42</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a4572d92f7c4e5c1320204ae94f5538f5"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a4572d92f7c4e5c1320204ae94f5538f5">MQTT_NS::ws_endpoint::close</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE void close(boost::system::error_code &amp;ec) override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:151</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a598e659ee7a377b795a91d973ec81b0a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a598e659ee7a377b795a91d973ec81b0a">MQTT_NS::ws_endpoint::handshake</a></div><div class="ttdeci">void handshake(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:202</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a6169e998147b5774d1898831fbfe5362"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a6169e998147b5774d1898831fbfe5362">MQTT_NS::ws_endpoint::lowest_layer</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE as::ip::tcp::socket::lowest_layer_type &amp; lowest_layer() override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:141</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a832886c8c5d270f4663b8b8c894352bd"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a832886c8c5d270f4663b8b8c894352bd">MQTT_NS::ws_endpoint::async_accept_ex</a></div><div class="ttdeci">void async_accept_ex(ConstBufferSequence const &amp;buffers, ResponseDecorator const &amp;decorator, AcceptHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:189</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a98e027cc9265c283257a69e89e26dc7a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a98e027cc9265c283257a69e89e26dc7a">MQTT_NS::ws_endpoint::next_layer</a></div><div class="ttdeci">boost::beast::websocket::stream&lt; Socket &gt;::next_layer_type &amp; next_layer()</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:172</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a997d9686156249c15ec1d4c0c1b4f3ed"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a997d9686156249c15ec1d4c0c1b4f3ed">MQTT_NS::ws_endpoint::set_option</a></div><div class="ttdeci">void set_option(T &amp;&amp;t)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:177</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_a9e818f6eeebf5b1340f98b246702c905"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#a9e818f6eeebf5b1340f98b246702c905">MQTT_NS::ws_endpoint::native_handle</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE any native_handle() override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:147</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_aa2d8ef4b3a23400d2bf63c21e15dc2db"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#aa2d8ef4b3a23400d2bf63c21e15dc2db">MQTT_NS::ws_endpoint::async_handshake</a></div><div class="ttdeci">void async_handshake(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:197</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_acad7ea0b709aedd93779cedc462358fc"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#acad7ea0b709aedd93779cedc462358fc">MQTT_NS::ws_endpoint::post</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE void post(std::function&lt; void()&gt; handler) override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:126</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_accc63dc042f9ffaceca3bec37090bc71"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#accc63dc042f9ffaceca3bec37090bc71">MQTT_NS::ws_endpoint::write</a></div><div class="ttdeci">std::size_t write(ConstBufferSequence const &amp;buffers)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:207</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ae0941fb2b6ba4c39e76ea6f25a91f182"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ae0941fb2b6ba4c39e76ea6f25a91f182">MQTT_NS::ws_endpoint::async_write</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE void async_write(std::vector&lt; as::const_buffer &gt; buffers, std::function&lt; void(error_code, std::size_t)&gt; handler) override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:105</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ae2c02543a5b23ce85a537e3f8c49d23a"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ae2c02543a5b23ce85a537e3f8c49d23a">MQTT_NS::ws_endpoint::write</a></div><div class="ttdeci">MQTT_ALWAYS_INLINE std::size_t write(std::vector&lt; as::const_buffer &gt; buffers, boost::system::error_code &amp;ec) override final</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:118</div></div>
+<div class="ttc" id="aclassMQTT__NS_1_1ws__endpoint_html_ae36497603e9fc8a3676d352320fbadb2"><div class="ttname"><a href="classMQTT__NS_1_1ws__endpoint.html#ae36497603e9fc8a3676d352320fbadb2">MQTT_NS::ws_endpoint::async_accept</a></div><div class="ttdeci">void async_accept(ConstBufferSequence const &amp;buffers, AcceptHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> ws_endpoint.hpp:182</div></div>
 <div class="ttc" id="aerror__code_8hpp_html"><div class="ttname"><a href="error__code_8hpp.html">error_code.hpp</a></div></div>
+<div class="ttc" id="amove_8hpp_html"><div class="ttname"><a href="move_8hpp.html">move.hpp</a></div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html"><div class="ttname"><a href="namespaceMQTT__NS.html">MQTT_NS</a></div><div class="ttdef"><b>Definition:</b> any.hpp:27</div></div>
 <div class="ttc" id="anamespaceMQTT__NS_html_a5a0205af6c142eef71e19d7066501d91"><div class="ttname"><a href="namespaceMQTT__NS.html#a5a0205af6c142eef71e19d7066501d91">MQTT_NS::error_code</a></div><div class="ttdeci">boost::system::error_code error_code</div><div class="ttdef"><b>Definition:</b> error_code.hpp:16</div></div>
-<div class="ttc" id="anamespaceMQTT__NS_html_a6bca610dc1d74926feb836079660a547"><div class="ttname"><a href="namespaceMQTT__NS.html#a6bca610dc1d74926feb836079660a547">MQTT_NS::async_write</a></div><div class="ttdeci">void async_write(tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence &amp;&amp;buffers, WriteHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:142</div></div>
-<div class="ttc" id="anamespaceMQTT__NS_html_a72bf4644631fbe7339bb114c4c462a50"><div class="ttname"><a href="namespaceMQTT__NS.html#a72bf4644631fbe7339bb114c4c462a50">MQTT_NS::async_read</a></div><div class="ttdeci">void async_read(tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, MutableBufferSequence &amp;&amp;buffers, ReadHandler &amp;&amp;handler)</div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:119</div></div>
-<div class="ttc" id="anamespaceMQTT__NS_html_aa5edced8a82e297d3176f6d22a7d4a2f"><div class="ttname"><a href="namespaceMQTT__NS.html#aa5edced8a82e297d3176f6d22a7d4a2f">MQTT_NS::write</a></div><div class="ttdeci">std::size_t write(tcp_endpoint&lt; Socket, Strand &gt; &amp;ep, ConstBufferSequence &amp;&amp;buffers)</div><div class="ttdef"><b>Definition:</b> tcp_endpoint.hpp:127</div></div>
+<div class="ttc" id="anamespaceMQTT__NS_html_a668d2397a4d95f82b905b43680ceaebf"><div class="ttname"><a href="namespaceMQTT__NS.html#a668d2397a4d95f82b905b43680ceaebf">MQTT_NS::force_move</a></div><div class="ttdeci">constexpr std::remove_reference_t&lt; T &gt; &amp;&amp; force_move(T &amp;&amp;t)</div><div class="ttdef"><b>Definition:</b> move.hpp:20</div></div>
 <div class="ttc" id="anamespace_8hpp_html"><div class="ttname"><a href="namespace_8hpp.html">namespace.hpp</a></div></div>
 <div class="ttc" id="anamespaceboost_1_1asio_html"><div class="ttname"><a href="namespaceboost_1_1asio.html">boost::asio</a></div><div class="ttdef"><b>Definition:</b> buffer.hpp:242</div></div>
 <div class="ttc" id="anamespaceboost_1_1asio_html_a7824a66f5665545045efcef98dca60c6"><div class="ttname"><a href="namespaceboost_1_1asio.html#a7824a66f5665545045efcef98dca60c6">boost::asio::buffer</a></div><div class="ttdeci">const_buffer buffer(MQTT_NS::buffer const &amp;data)</div><div class="ttdoc">create boost::asio::const_buffer from the MQTT_NS::buffer boost::asio::const_buffer is a kind of view...</div><div class="ttdef"><b>Definition:</b> buffer.hpp:253</div></div>
 <div class="ttc" id="astring__view_8hpp_html"><div class="ttname"><a href="string__view_8hpp.html">string_view.hpp</a></div></div>
-<div class="ttc" id="atype__erased__socket_8hpp_html_a7f3504a67662ee6f264bde4235063e08"><div class="ttname"><a href="type__erased__socket_8hpp.html#a7f3504a67662ee6f264bde4235063e08">post</a></div><div class="ttdeci">post</div><div class="ttdef"><b>Definition:</b> type_erased_socket.hpp:29</div></div>
+<div class="ttc" id="atype__erased__socket_8hpp_html"><div class="ttname"><a href="type__erased__socket_8hpp.html">type_erased_socket.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

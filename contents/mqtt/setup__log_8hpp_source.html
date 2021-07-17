@@ -166,8 +166,8 @@ $(function() {
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        };</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    sink-&gt;set_filter(fil);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    boost::log::core::get()-&gt;set_filter(fil);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    boost::log::core::get()-&gt;add_sink(sink);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    boost::log::add_common_attributes();</div>

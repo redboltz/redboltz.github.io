@@ -92,10 +92,10 @@ $(function() {
 : <a class="el" href="classMQTT__NS_1_1value__allocator.html#a3c8eabb38fc57814929ae6e05bc6cac2">MQTT_NS::value_allocator&lt; T &gt;</a>
 </li>
 <li>apply()
-: <a class="el" href="structMQTT__NS_1_1add__packet__id__to__buf_3_012_01_4.html#ae75895407a70503c4d8b35be3673dfbc">MQTT_NS::add_packet_id_to_buf&lt; 2 &gt;</a>
-, <a class="el" href="structMQTT__NS_1_1add__packet__id__to__buf_3_014_01_4.html#a71608e9e3fccc4c2cc30c4bb244004de">MQTT_NS::add_packet_id_to_buf&lt; 4 &gt;</a>
-, <a class="el" href="structMQTT__NS_1_1make__packet__id_3_012_01_4.html#a4f6e66e8d1c3c09fa33f2d6dad761657">MQTT_NS::make_packet_id&lt; 2 &gt;</a>
-, <a class="el" href="structMQTT__NS_1_1make__packet__id_3_014_01_4.html#ac1b3b00d2a677e702504a40dc43658d9">MQTT_NS::make_packet_id&lt; 4 &gt;</a>
+: <a class="el" href="structMQTT__NS_1_1add__two__or__four__byte__to__buf_3_012_01_4.html#ae3fb3e0fe5d3f91c65f1182d421e357e">MQTT_NS::add_two_or_four_byte_to_buf&lt; 2 &gt;</a>
+, <a class="el" href="structMQTT__NS_1_1add__two__or__four__byte__to__buf_3_014_01_4.html#aa5c51eb4553e6b0a5b3d12285e0b2b12">MQTT_NS::add_two_or_four_byte_to_buf&lt; 4 &gt;</a>
+, <a class="el" href="structMQTT__NS_1_1make__two__or__four__byte_3_012_01_4.html#ac4b03a7dbfc3232a176811146969c0b4">MQTT_NS::make_two_or_four_byte&lt; 2 &gt;</a>
+, <a class="el" href="structMQTT__NS_1_1make__two__or__four__byte_3_014_01_4.html#a078ef253d6adb8241787f85ac465392f">MQTT_NS::make_two_or_four_byte&lt; 4 &gt;</a>
 </li>
 <li>assigned_client_identifier()
 : <a class="el" href="classMQTT__NS_1_1v5_1_1property_1_1assigned__client__identifier.html#aa3772a04a3009ac6a7f818d7828c5f36">MQTT_NS::v5::property::assigned_client_identifier</a>
@@ -124,7 +124,7 @@ $(function() {
 </li>
 <li>async_disconnect()
 : <a class="el" href="classMQTT__NS_1_1client.html#ae95bf49ee5a7add6bb58f26a0ce7c414">MQTT_NS::client&lt; Socket, PacketIdBytes &gt;</a>
-, <a class="el" href="classMQTT__NS_1_1endpoint.html#a7e3ace4ba483c42831c1977004604041">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1endpoint.html#aca4f14e205e649f130db4903e43b7e4b">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
 , <a class="el" href="classMQTT__NS_1_1sync__client.html#a435b751d97cbc064c6618a1e6d347db1">MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;</a>
 </li>
 <li>async_handler_t
@@ -150,7 +150,7 @@ $(function() {
 , <a class="el" href="classMQTT__NS_1_1sync__client.html#a2c8652d83caebcb6767e591abec26ea6">MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;</a>
 </li>
 <li>async_publish()
-: <a class="el" href="classMQTT__NS_1_1endpoint.html#ac48b04a5dea51912ebbd56130ca29c4c">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
+: <a class="el" href="classMQTT__NS_1_1endpoint.html#af58a19525c5613bab04f867a8f03c392">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
 , <a class="el" href="classMQTT__NS_1_1sync__client.html#a68155c68ccdf8a8ad8fe85a46b5da65c">MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;</a>
 </li>
 <li>async_pubrec()
@@ -162,8 +162,9 @@ $(function() {
 , <a class="el" href="classMQTT__NS_1_1sync__client.html#a8f3723575e5fada30985069b3e79cfa5">MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;</a>
 </li>
 <li>async_read()
-: <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#a31d51c58a48360d364588d6fa5be0207">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#a9bf1681662719a2e5fdb2a9876da503b">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
+: <a class="el" href="classMQTT__NS_1_1socket.html#aedeccd9a24c416b8562c63575b688ecf">MQTT_NS::socket</a>
+, <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#a4a3046bbf905e7246acc1cd6f8a15410">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#a44b11857d338ced4e2f6eea1f34c0490">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
 </li>
 <li>async_read_control_packet_type()
 : <a class="el" href="classMQTT__NS_1_1endpoint.html#ae7dba0a39184031abbbff36356edc30f">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
@@ -191,8 +192,9 @@ $(function() {
 , <a class="el" href="classMQTT__NS_1_1sync__client.html#aba734d7aa7a554c76625bcba397d3f2e">MQTT_NS::sync_client&lt; Socket, PacketIdBytes &gt;</a>
 </li>
 <li>async_write()
-: <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#aa6af558521401de4dce49a1c99a73673">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
-, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#a151809a366d67e353d53aab3b96a86de">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
+: <a class="el" href="classMQTT__NS_1_1socket.html#a36be6f09bc6ee8d2b266591760fb7159">MQTT_NS::socket</a>
+, <a class="el" href="classMQTT__NS_1_1tcp__endpoint.html#a9dc4a908097f8a8618eaf98a95a73d14">MQTT_NS::tcp_endpoint&lt; Socket, Strand &gt;</a>
+, <a class="el" href="classMQTT__NS_1_1ws__endpoint.html#ae0941fb2b6ba4c39e76ea6f25a91f182">MQTT_NS::ws_endpoint&lt; Socket, Strand &gt;</a>
 </li>
 <li>auth()
 : <a class="el" href="classMQTT__NS_1_1endpoint.html#a976536019598132e1eefc9bf74da3ddd">MQTT_NS::endpoint&lt; Mutex, LockGuard, PacketIdBytes &gt;</a>
